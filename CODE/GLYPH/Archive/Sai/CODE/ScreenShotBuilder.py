@@ -30,7 +30,6 @@ class ScreenShot:
         draw.line((location0[1]*100+50, location0[0]*100+50, location1[1]*100+50, location1[0]*100+50), width = 5, fill='yellow')
 
     def drawText(self,text):
-        # font = ImageFont.load("arial.pil")
         (x, y) = (500, 850)
         draw = ImageDraw.Draw(self.preImage)
         draw.text((x, y), text, fill=self.text_color,font=self.font)
