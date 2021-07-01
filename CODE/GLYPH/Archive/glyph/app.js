@@ -25,6 +25,8 @@ var groupSvg;
 var userIDLengthLimit = 10;
 file_suffix = '';
 
+var clicked_circle=''
+
 // The below loads data from server
 d3.json('data/visualization_ids.json', function (error, sessionList) {
     if (error) {
@@ -326,6 +328,17 @@ function visualizeStateData() {
     statenodeGroup.append("circle")
         .attr("r", function (d) {
             return linearStateNodeScale(d.user_ids.length);
+        })
+        .on('click',function(d){
+
+                //list of users passing through this node
+                console.log(d.user_ids)
+                //current chosen player by the user
+                console.log(clicked_circle)
+                //if choosen player passes through the current state
+                if(d.user_ids.includes(clicked_circle)){
+                    console.log(state_node_label(d))
+                }
         })
         .on("mouseover", stateDisplayInfo);
 
@@ -1054,6 +1067,7 @@ function behaviorDragstart(d, i) {
 
     // Highlight the behavior
     clearHighlight();
+    clicked_circle = d.user_ids;
     displayStateImages(d.user_ids)
     applyOpacity(lowestOpacity);
     highlightBehaviorNodeIndex(i, "red");

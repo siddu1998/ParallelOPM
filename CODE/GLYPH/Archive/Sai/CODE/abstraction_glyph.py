@@ -5,12 +5,13 @@ from snapshot_status import getStatus
 
 
 class GameState:
-    
     def __init__(self,level,zoneSheet,user,board_snapshot_id,isSolution=False):
         
         self.user = user
-        self.screenshot = ScreenShot(level,f'../DATA/Screenshots/{self.user}/{self.user}_{datetime.datetime.now()}.png'.replace(' ','_'))
-        
+
+        self.screenshot_destination = f'../DATA/Screenshots/{self.user}/{self.user}_{datetime.datetime.now()}.png'.replace(' ','_')
+        self.screenshot = ScreenShot(level,self.screenshot_destination)
+
         self.board_snapshot_id = board_snapshot_id
         self.text              = getStatus(self.board_snapshot_id,f"{self.user}"+".json")        
         
