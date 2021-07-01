@@ -26,7 +26,10 @@ def GetAbstraction(fileName,game_level,user):
     for event in data['events']:
         if event["type"]=="BOARD_SNAPSHOT":
             #Create a gameState
-            gameState = GameState(level,f'../DATA/maps_with_zones/MapInfo_{level}.json',user)    
+            
+            #TODO pass BOARD_SNAPSHOT id to the gameState
+            board_snapshot_id = event['id']
+            gameState = GameState(level,f'../DATA/maps_with_zones/MapInfo_{level}.json',user,board_snapshot_id)    
             components = event['board']['components']
             
             #TODO : need to handle this 2 time iterations (since sometimes the data comes such that links are added before even the board state registers the semaphore :/)
