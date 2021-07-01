@@ -1,17 +1,18 @@
 import json
 from ScreenShotBuilder import *
 import datetime
-
+from snapshot_status import getStatus
 
 
 class GameState:
+    
     def __init__(self,level,zoneSheet,user,board_snapshot_id,isSolution=False):
         
         self.user = user
         self.screenshot = ScreenShot(level,f'../DATA/Screenshots/{self.user}/{self.user}_{datetime.datetime.now()}.png'.replace(' ','_'))
         
-        self.board_snapshot_id = board_snapshot_id -->take this from params
-        self.text              = getStatus(self.board_snapshot_id,f"{self.user}+.json"        
+        self.board_snapshot_id = board_snapshot_id
+        self.text              = getStatus(self.board_snapshot_id,f"{self.user}"+".json")        
         
         #Load Game Properties
         self.level = str(level)
