@@ -63,7 +63,7 @@ class GlyphBuilder():
         '''
         res = []
         for id in ids:
-            print(USERMAP[id])
+            # print(USERMAP[id])
             res.append(USERMAP[id])
         return res
 

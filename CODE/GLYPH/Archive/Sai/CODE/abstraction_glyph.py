@@ -8,8 +8,8 @@ class GameState:
     def __init__(self,level,zoneSheet,user,board_snapshot_id,isSolution=False):
         
         self.user = user
-
-        self.screenshot_destination = f'../DATA/Screenshots/{self.user}/{self.user}_{datetime.datetime.now()}.png'.replace(' ','_')
+        self.image_path = f'Screenshots/{self.user}/{self.user}_{datetime.datetime.now()}.png'.replace(' ','_')
+        self.screenshot_destination = f'../DATA/{self.image_path}'
         self.screenshot = ScreenShot(level,self.screenshot_destination)
 
         self.board_snapshot_id = board_snapshot_id
@@ -54,7 +54,7 @@ class GameState:
         
         
     def getSemaphoreXY(self,id):
-        print(self.semaphorePositions)
+        
         for semaphore in self.semaphorePositions:
             if semaphore[0]==id:
                 return (semaphore[1],semaphore[2]) 
@@ -85,8 +85,8 @@ class GameState:
         return self.indexMap[zone]
 
     def putSignal(self,x,y,id_1,id_2):
-        print(f'[INFO] Trying to put Signal at {x},{y} for {id_1}')
-        print(f'[INFO] Putting a Link Between {id_1},{id_2}')
+        # print(f'[INFO] Trying to put Signal at {x},{y} for {id_1}')
+        # print(f'[INFO] Putting a Link Between {id_1},{id_2}')
 
         zone  = self.getZone(x,y)
         if zone in self.signal_zone_dict:
@@ -94,9 +94,9 @@ class GameState:
         else:
             self.signal_zone_dict[zone]=1
 
-        print(f'[INFO] adding {id_1} to signal positions')
+        # print(f'[INFO] adding {id_1} to signal positions')
         self.signalPositions.append((id_1,x,y,zone))
-        print(self.signalPositions)
+        # print(self.signalPositions)
         self.nSignals+=1
 
         #populate link dict
@@ -115,8 +115,9 @@ class GameState:
             self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
-            print(id_1,id_2)
-            print('[INFO] HAVE A SIGNAL BUT NO CONNECTIONNNNNN!!!!!##################')
+            pass
+            # print(id_1,id_2)
+            # print('[INFO] HAVE A SIGNAL BUT NO CONNECTIONNNNNN!!!!!##################')
     #returns which zone a point belongs to 
     def getZone(self,x,y):
         query = [x,y]
@@ -126,7 +127,7 @@ class GameState:
                 return zone 
 
         
-        print('[WARNING] This Point does not belong to any Marked Zone')
+        # print('[WARNING] This Point does not belong to any Marked Zone')
         return None
     
     
@@ -160,6 +161,14 @@ class GameState:
             'signal_zone_dict':self.signal_zone_dict,
             'link_dict':self.link_dict,
         }
+        
+        temp=abstraction
+        temp['nextAction']='Recieved Next State'
+        temp_dict = {'board_state':temp}
+        print('"'+self.user+'/'+str(temp_dict)+'":'+'"'+self.image_path+'",')
+        
+
+        
         
         self.screenshot.drawText(self.text)
         self.screenshot.saveImage()

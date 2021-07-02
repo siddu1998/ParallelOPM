@@ -7,7 +7,7 @@ LOGS = '../DATA/DDRI_STUDY_LOGS'
 
 def getStatus(board_snapshot_id,fileName):
     fileName = LOGS+'/'+fileName
-    print(fileName)
+    # print(fileName)
     try:
         data = json.load(open(fileName))
     except:
@@ -28,8 +28,8 @@ def getStatus(board_snapshot_id,fileName):
             temp.append(str(event['content']['status'])+"/"+str(event['content']['simType']))    
             log[-1]=temp
     
-    for i in log:
-        print(i)
+    # for i in log:
+    #     print(i)
         
     id_log = {}
     last_snapshot = None

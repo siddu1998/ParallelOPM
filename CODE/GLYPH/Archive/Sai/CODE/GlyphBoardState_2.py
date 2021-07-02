@@ -8,7 +8,7 @@ from BuildNewGlyph import *
 
 
 def GetAbstraction(fileName,game_level,user):
-    print(fileName)    
+    # print(fileName)    
     abstractions = []   
     level = game_level
     try:
@@ -21,7 +21,7 @@ def GetAbstraction(fileName,game_level,user):
     required_elements = ['semaphore','signal']
 
     gameStates = []
-    print(f"[INFO] You are working with a snapshopt from the game of {fileName}")
+    # print(f"[INFO] You are working with a snapshopt from the game of {fileName}")
 
     for event in data['events']:
         if event["type"]=="BOARD_SNAPSHOT":
@@ -94,9 +94,9 @@ for file in os.listdir(log_files):
     user = user_id.split('.')[0]
     
 
-print(userStates)
-print('=====USER ACTIONS=====')
-print(userActions)
+# print(userStates)
+# print('=====USER ACTIONS=====')
+# print(userActions)
 
 glyphBuilder = GlyphBuilder(userStates, userActions, f'level_{level}_sai.json')
 glyphBuilder.run()
