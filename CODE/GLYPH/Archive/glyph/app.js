@@ -27,6 +27,69 @@ file_suffix = '';
 
 var clicked_circle=''
 
+var nodeImages ={
+    "b4152ba7-4846-4ba2-93c4-eba434125dbe/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:50.871147.png",
+    "b4152ba7-4846-4ba2-93c4-eba434125dbe/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'C': 1, 'A': 1}, 'signal_zone_dict': {'C': 1, 'H': 1, 'F': 1}, 'link_dict': {'CE': 1, 'HA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:50.979699.png",
+    "b4152ba7-4846-4ba2-93c4-eba434125dbe/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'C': 1, 'E': 1, 'A': 1}, 'signal_zone_dict': {'C': 2, 'F': 1}, 'link_dict': {'CE': 1, 'CA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.096466.png",
+    "b4152ba7-4846-4ba2-93c4-eba434125dbe/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'C': 1, 'A': 1}, 'signal_zone_dict': {'C': 1, 'G': 1, 'F': 1}, 'link_dict': {'CE': 1, 'GA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.301688.png",
+    "b4152ba7-4846-4ba2-93c4-eba434125dbe/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'C': 1, 'A': 1}, 'signal_zone_dict': {'C': 1, 'G': 1, 'B': 1}, 'link_dict': {'CE': 1, 'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.406265.png",
+    "248d368d-232d-46c8-b137-8f81dc77f809/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.461508.png",
+    "248d368d-232d-46c8-b137-8f81dc77f809/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.551636.png",
+    "248d368d-232d-46c8-b137-8f81dc77f809/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.653541.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.703121.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 1, 'nSignals': 1, 'semaphore_zone_dict': {'C': 1}, 'signal_zone_dict': {'E': 1}, 'link_dict': {'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.793850.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'F': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DF': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.900645.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'B': 1, 'C': 1}, 'signal_zone_dict': {'F': 1, 'D': 1}, 'link_dict': {'FC': 1, 'DB': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.074244.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'B': 1, 'C': 1}, 'signal_zone_dict': {'B': 1, 'D': 1}, 'link_dict': {'BC': 1, 'DB': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.123710.png",
+    "34939330-b4bf-42a6-88b1-294148819974/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'B': 1, 'C': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GB': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.326787.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.697369.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'D': 1, 'E': 1}, 'link_dict': {'DA': 1, 'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.540826.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EA': 1, 'DC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.898103.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.796803.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'D': 1, 'E': 1}, 'link_dict': {'DA': 1, 'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.949386.png",
+    "37023d9a-a8a3-4998-be0e-447962220be0/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'C': 1, 'A': 1, 'E': 1}, 'signal_zone_dict': {'D': 1, 'E': 1, 'H': 1}, 'link_dict': {'DA': 1, 'EC': 1, 'HE': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:53.058439.png",
+    "64ea8334-1539-4f9c-a5fd-9788528f5c3f/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-02_16:54:53.117706.png",
+    "64ea8334-1539-4f9c-a5fd-9788528f5c3f/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'G': 1, 'B': 1}, 'link_dict': {'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-02_16:54:53.216743.png",
+    "d0cd0662-ac0d-4d28-a799-3ed4a0495793/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.322433.png",
+    "d0cd0662-ac0d-4d28-a799-3ed4a0495793/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'F': 1, 'G': 1}, 'link_dict': {'FC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.441353.png",
+    "d0cd0662-ac0d-4d28-a799-3ed4a0495793/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.587341.png",
+    "d0cd0662-ac0d-4d28-a799-3ed4a0495793/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.634522.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.690256.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.787026.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.002042.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 4, 'nSignals': 2, 'semaphore_zone_dict': {'G': 1, 'B': 1, 'H': 1, 'F': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EH': 1, 'DF': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.109891.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 4, 'nSignals': 2, 'semaphore_zone_dict': {'G': 1, 'B': 1, 'A': 1, 'C': 1}, 'signal_zone_dict': {'G': 1, 'B': 1}, 'link_dict': {'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.219467.png",
+    "0ba55f9b-be6f-4478-b31a-547ea6f64ef4/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'G': 1, 'B': 1}, 'link_dict': {'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.325084.png",
+    "2e07ba3c-51be-498f-815a-768f3b7cb7e1/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.379690.png",
+    "2e07ba3c-51be-498f-815a-768f3b7cb7e1/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'E': 1, 'D': 1}, 'link_dict': {'EC': 1, 'DA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.531067.png",
+    "2e07ba3c-51be-498f-815a-768f3b7cb7e1/{'board_state': {'nSemaphores': 4, 'nSignals': 4, 'semaphore_zone_dict': {'C': 2, 'A': 2}, 'signal_zone_dict': {'E': 1, 'D': 1, 'H': 1, 'B': 1}, 'link_dict': {'EC': 1, 'DA': 1, 'HA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.694137.png",
+    "2e07ba3c-51be-498f-815a-768f3b7cb7e1/{'board_state': {'nSemaphores': 4, 'nSignals': 4, 'semaphore_zone_dict': {'C': 2, 'A': 2}, 'signal_zone_dict': {'E': 1, 'D': 1, 'G': 1, 'B': 1}, 'link_dict': {'EC': 1, 'DA': 1, 'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.749220.png",
+    "2e07ba3c-51be-498f-815a-768f3b7cb7e1/{'board_state': {'nSemaphores': 4, 'nSignals': 4, 'semaphore_zone_dict': {'A': 2, 'C': 2}, 'signal_zone_dict': {'E': 1, 'D': 1, 'G': 1, 'B': 1}, 'link_dict': {'EC': 1, 'DA': 1, 'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.820058.png",
+    "787785b5-e800-45e2-82dd-9001eae092ef/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:54.922664.png",
+    "787785b5-e800-45e2-82dd-9001eae092ef/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'D': 1, 'E': 1}, 'link_dict': {'DA': 1, 'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:54.967604.png",
+    "787785b5-e800-45e2-82dd-9001eae092ef/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'D': 1, 'E': 1}, 'link_dict': {'DA': 1, 'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:55.025218.png",
+    "4666e412-31ab-421b-b335-b30c7c322bdd/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.124724.png",
+    "4666e412-31ab-421b-b335-b30c7c322bdd/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.227867.png",
+    "780fc9bd-794c-4906-9f64-c04d19144e0f/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.322775.png",
+    "780fc9bd-794c-4906-9f64-c04d19144e0f/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'G': 1, 'F': 1}, 'link_dict': {'GA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.369248.png",
+    "780fc9bd-794c-4906-9f64-c04d19144e0f/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'G': 1, 'B': 1}, 'link_dict': {'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.473096.png",
+    "ceb929b7-97d0-4d10-89f8-8206ce24e7a5/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-02_16:54:55.524314.png",
+    "ceb929b7-97d0-4d10-89f8-8206ce24e7a5/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'C': 1, 'A': 1}, 'signal_zone_dict': {'D': 1, 'C': 1, 'F': 1}, 'link_dict': {'DA': 1, 'CE': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-02_16:54:55.621305.png",
+    "e95dfdda-ad84-47c2-8d04-105692208369/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.781883.png",
+    "e95dfdda-ad84-47c2-8d04-105692208369/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'C': 1, 'A': 1, 'E': 1}, 'signal_zone_dict': {'E': 1, 'D': 1, 'H': 1}, 'link_dict': {'EC': 1, 'DA': 1, 'HE': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.727697.png",
+    "e95dfdda-ad84-47c2-8d04-105692208369/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'A': 1, 'C': 1}, 'signal_zone_dict': {'C': 1, 'D': 1, 'F': 1}, 'link_dict': {'CE': 1, 'DA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.830930.png",
+    "e95dfdda-ad84-47c2-8d04-105692208369/{'board_state': {'nSemaphores': 3, 'nSignals': 3, 'semaphore_zone_dict': {'E': 1, 'C': 1, 'A': 1}, 'signal_zone_dict': {'C': 1, 'D': 1, 'F': 1}, 'link_dict': {'CE': 1, 'DA': 1, 'FC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.884130.png",
+    "9553b141-533e-4cd7-bb59-5d8f8c56a507/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:55.985677.png",
+    "9553b141-533e-4cd7-bb59-5d8f8c56a507/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'G': 1, 'B': 1}, 'link_dict': {'GA': 1, 'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.256248.png",
+    "9553b141-533e-4cd7-bb59-5d8f8c56a507/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'D': 1, 'E': 1}, 'link_dict': {'DA': 1, 'EC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.150352.png",
+    "c996d3cd-6f96-4b58-a4f4-60026db0edcc/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.309131.png",
+    "c996d3cd-6f96-4b58-a4f4-60026db0edcc/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'A': 1, 'C': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.353780.png",
+    "c996d3cd-6f96-4b58-a4f4-60026db0edcc/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.402603.png",
+    "5c2947cc-34b1-42ac-864c-3f69f9171c54/{'board_state': {'nSemaphores': 0, 'nSignals': 0, 'semaphore_zone_dict': {}, 'signal_zone_dict': {}, 'link_dict': {}, 'nextAction': 'Recieved Next State'}}": "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.508504.png",
+    "5c2947cc-34b1-42ac-864c-3f69f9171c54/{'board_state': {'nSemaphores': 1, 'nSignals': 1, 'semaphore_zone_dict': {'C': 1}, 'signal_zone_dict': {'B': 1}, 'link_dict': {'BC': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.608617.png",
+    "5c2947cc-34b1-42ac-864c-3f69f9171c54/{'board_state': {'nSemaphores': 2, 'nSignals': 2, 'semaphore_zone_dict': {'C': 1, 'A': 1}, 'signal_zone_dict': {'B': 1, 'G': 1}, 'link_dict': {'BC': 1, 'GA': 1}, 'nextAction': 'Recieved Next State'}}": "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.705523.png"
+  }
+
 // The below loads data from server
 d3.json('data/visualization_ids.json', function (error, sessionList) {
     if (error) {
@@ -330,15 +393,13 @@ function visualizeStateData() {
             return linearStateNodeScale(d.user_ids.length);
         })
         .on('click',function(d){
+            // console.log(d)
+                    console.log(clicked_circle+'/'+state_node_label(d))
+                    path = nodeImages[clicked_circle+'/'+state_node_label(d)]
+                    console.log(path)
+                    $('#player_state_image').empty()
+                    $('#player_state_image').append("<img class='image-style'" + "src= "+ path + ">")
 
-                //list of users passing through this node
-                console.log(d.user_ids)
-                //current chosen player by the user
-                console.log(clicked_circle)
-                //if choosen player passes through the current state
-                if(d.user_ids.includes(clicked_circle)){
-                    console.log(state_node_label(d))
-                }
         })
         .on("mouseover", stateDisplayInfo);
 
@@ -632,9 +693,155 @@ function setNodeForFreq(index) {
 var linearScaleBehaviorNode, distanceBehaviorScale;
 function displayStateImages(id){
     $('#state_images').empty()
-    var myImages ={"d0cd0662-ac0d-4d28-a799-3ed4a0495793": ["Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.062746.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.105737.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.170153.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.223223.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.272837.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.318880.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.366014.png", "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-01_20:09:56.412499.png"], "787785b5-e800-45e2-82dd-9001eae092ef": ["Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-01_20:09:57.685749.png", "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-01_20:09:57.728736.png", "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-01_20:09:57.771764.png", "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-01_20:09:57.824218.png"], "64ea8334-1539-4f9c-a5fd-9788528f5c3f": ["Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-01_20:09:55.884968.png", "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-01_20:09:55.953411.png", "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-01_20:09:56.006843.png"], "0ba55f9b-be6f-4478-b31a-547ea6f64ef4": ["Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.488102.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.533604.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.584403.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.637530.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.688276.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.738978.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.791509.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.844681.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.897520.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:56.951249.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:57.005090.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:57.058946.png", "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-01_20:09:57.108915.png"], "34939330-b4bf-42a6-88b1-294148819974": ["Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.434114.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.478520.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.528340.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.582938.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.633158.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.682465.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.734032.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.809813.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.861405.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.911138.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:54.963352.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:55.017158.png", "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-01_20:09:55.070044.png"], "248d368d-232d-46c8-b137-8f81dc77f809": ["Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-01_20:09:54.192365.png", "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-01_20:09:54.234888.png", "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-01_20:09:54.282999.png", "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-01_20:09:54.334488.png", "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-01_20:09:54.382323.png"], "5c2947cc-34b1-42ac-864c-3f69f9171c54": ["Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.214473.png", "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.257999.png", "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.300790.png", "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.351407.png", "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.397132.png", "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-01_20:09:59.444948.png"], "9553b141-533e-4cd7-bb59-5d8f8c56a507": ["Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.705735.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.771837.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.817706.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.872619.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.922771.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:58.973369.png", "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-01_20:09:59.023576.png"], "37023d9a-a8a3-4998-be0e-447962220be0": ["Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.129679.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.173995.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.225736.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.282159.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.337096.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.386114.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.432961.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.477374.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.529256.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.580374.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.627234.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.674695.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.725047.png", "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-01_20:09:55.779255.png"], "b4152ba7-4846-4ba2-93c4-eba434125dbe": ["Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.487527.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.639066.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.714960.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.767756.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.819906.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.872352.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.924344.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:53.977509.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:54.030404.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:54.083212.png", "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-01_20:09:54.136268.png"], "c996d3cd-6f96-4b58-a4f4-60026db0edcc": ["Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-01_20:09:59.075972.png", "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-01_20:09:59.118218.png", "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-01_20:09:59.164127.png"], "4666e412-31ab-421b-b335-b30c7c322bdd": ["Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-01_20:09:57.873905.png", "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-01_20:09:57.918134.png", "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-01_20:09:57.960600.png", "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-01_20:09:58.012722.png"], "2e07ba3c-51be-498f-815a-768f3b7cb7e1": ["Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.161495.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.204868.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.255768.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.310075.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.361329.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.413924.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.467809.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.522319.png", "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-01_20:09:57.591806.png"], "e95dfdda-ad84-47c2-8d04-105692208369": ["Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-01_20:09:58.454375.png", "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-01_20:09:58.498746.png", "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-01_20:09:58.551541.png", "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-01_20:09:58.598461.png", "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-01_20:09:58.650530.png"], "ceb929b7-97d0-4d10-89f8-8206ce24e7a5": ["Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-01_20:09:58.301988.png", "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-01_20:09:58.344282.png", "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-01_20:09:58.394489.png"], "780fc9bd-794c-4906-9f64-c04d19144e0f": ["Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-01_20:09:58.062406.png", "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-01_20:09:58.105944.png", "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-01_20:09:58.149335.png", "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-01_20:09:58.202990.png", "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-01_20:09:58.253295.png"]}
+    var myImages ={
+        "d0cd0662-ac0d-4d28-a799-3ed4a0495793": [
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.275973.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.322433.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.386108.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.441353.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.490568.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.537300.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.587341.png",
+          "Screenshots/d0cd0662-ac0d-4d28-a799-3ed4a0495793/d0cd0662-ac0d-4d28-a799-3ed4a0495793_2021-07-02_16:54:53.634522.png"
+        ],
+        "787785b5-e800-45e2-82dd-9001eae092ef": [
+          "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:54.876144.png",
+          "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:54.922664.png",
+          "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:54.967604.png",
+          "Screenshots/787785b5-e800-45e2-82dd-9001eae092ef/787785b5-e800-45e2-82dd-9001eae092ef_2021-07-02_16:54:55.025218.png"
+        ],
+        "64ea8334-1539-4f9c-a5fd-9788528f5c3f": [
+          "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-02_16:54:53.117706.png",
+          "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-02_16:54:53.161737.png",
+          "Screenshots/64ea8334-1539-4f9c-a5fd-9788528f5c3f/64ea8334-1539-4f9c-a5fd-9788528f5c3f_2021-07-02_16:54:53.216743.png"
+        ],
+        "0ba55f9b-be6f-4478-b31a-547ea6f64ef4": [
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.690256.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.735022.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.787026.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.843920.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.896937.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:53.950186.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.002042.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.056294.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.109891.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.165261.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.219467.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.275153.png",
+          "Screenshots/0ba55f9b-be6f-4478-b31a-547ea6f64ef4/0ba55f9b-be6f-4478-b31a-547ea6f64ef4_2021-07-02_16:54:54.325084.png"
+        ],
+        "34939330-b4bf-42a6-88b1-294148819974": [
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.703121.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.746548.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.793850.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.850699.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.900645.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:51.950671.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.000568.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.074244.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.123710.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.172155.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.223337.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.275206.png",
+          "Screenshots/34939330-b4bf-42a6-88b1-294148819974/34939330-b4bf-42a6-88b1-294148819974_2021-07-02_16:54:52.326787.png"
+        ],
+        "248d368d-232d-46c8-b137-8f81dc77f809": [
+          "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.461508.png",
+          "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.504038.png",
+          "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.551636.png",
+          "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.606253.png",
+          "Screenshots/248d368d-232d-46c8-b137-8f81dc77f809/248d368d-232d-46c8-b137-8f81dc77f809_2021-07-02_16:54:51.653541.png"
+        ],
+        "5c2947cc-34b1-42ac-864c-3f69f9171c54": [
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.463249.png",
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.508504.png",
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.552845.png",
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.608617.png",
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.656120.png",
+          "Screenshots/5c2947cc-34b1-42ac-864c-3f69f9171c54/5c2947cc-34b1-42ac-864c-3f69f9171c54_2021-07-02_16:54:56.705523.png"
+        ],
+        "9553b141-533e-4cd7-bb59-5d8f8c56a507": [
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:55.939168.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:55.985677.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.030940.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.094944.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.150352.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.203518.png",
+          "Screenshots/9553b141-533e-4cd7-bb59-5d8f8c56a507/9553b141-533e-4cd7-bb59-5d8f8c56a507_2021-07-02_16:54:56.256248.png"
+        ],
+        "37023d9a-a8a3-4998-be0e-447962220be0": [
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.384153.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.430315.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.485070.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.540826.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.596410.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.645979.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.697369.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.742650.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.796803.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.848566.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.898103.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:52.949386.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:53.003307.png",
+          "Screenshots/37023d9a-a8a3-4998-be0e-447962220be0/37023d9a-a8a3-4998-be0e-447962220be0_2021-07-02_16:54:53.058439.png"
+        ],
+        "b4152ba7-4846-4ba2-93c4-eba434125dbe": [
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:50.871147.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:50.924474.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:50.979699.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.044468.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.096466.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.146786.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.198374.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.250033.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.301688.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.354083.png",
+          "Screenshots/b4152ba7-4846-4ba2-93c4-eba434125dbe/b4152ba7-4846-4ba2-93c4-eba434125dbe_2021-07-02_16:54:51.406265.png"
+        ],
+        "c996d3cd-6f96-4b58-a4f4-60026db0edcc": [
+          "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.309131.png",
+          "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.353780.png",
+          "Screenshots/c996d3cd-6f96-4b58-a4f4-60026db0edcc/c996d3cd-6f96-4b58-a4f4-60026db0edcc_2021-07-02_16:54:56.402603.png"
+        ],
+        "4666e412-31ab-421b-b335-b30c7c322bdd": [
+          "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.077983.png",
+          "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.124724.png",
+          "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.170839.png",
+          "Screenshots/4666e412-31ab-421b-b335-b30c7c322bdd/4666e412-31ab-421b-b335-b30c7c322bdd_2021-07-02_16:54:55.227867.png"
+        ],
+        "2e07ba3c-51be-498f-815a-768f3b7cb7e1": [
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.379690.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.423480.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.474089.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.531067.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.583925.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.638439.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.694137.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.749220.png",
+          "Screenshots/2e07ba3c-51be-498f-815a-768f3b7cb7e1/2e07ba3c-51be-498f-815a-768f3b7cb7e1_2021-07-02_16:54:54.820058.png"
+        ],
+        "e95dfdda-ad84-47c2-8d04-105692208369": [
+          "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.681127.png",
+          "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.727697.png",
+          "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.781883.png",
+          "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.830930.png",
+          "Screenshots/e95dfdda-ad84-47c2-8d04-105692208369/e95dfdda-ad84-47c2-8d04-105692208369_2021-07-02_16:54:55.884130.png"
+        ],
+        "ceb929b7-97d0-4d10-89f8-8206ce24e7a5": [
+          "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-02_16:54:55.524314.png",
+          "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-02_16:54:55.567446.png",
+          "Screenshots/ceb929b7-97d0-4d10-89f8-8206ce24e7a5/ceb929b7-97d0-4d10-89f8-8206ce24e7a5_2021-07-02_16:54:55.621305.png"
+        ],
+        "780fc9bd-794c-4906-9f64-c04d19144e0f": [
+          "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.279140.png",
+          "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.322775.png",
+          "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.369248.png",
+          "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.424557.png",
+          "Screenshots/780fc9bd-794c-4906-9f64-c04d19144e0f/780fc9bd-794c-4906-9f64-c04d19144e0f_2021-07-02_16:54:55.473096.png"
+        ]
+      }
     id = id[0].substring(0, id[0].length - 5);
-    console.log(myImages[id])
+    // console.log(myImages[id])
     for (var i = 0; i < myImages[id].length; i++) 
     {
         path =  myImages[id][i].replace(/\/$/, '');;
@@ -709,7 +916,7 @@ function visualizeBehaviorData() {
             displayInfo(d)
             
             shuffleNodeOrder(d.index)
-            // displayStateImages(d.user_ids)
+        
             tooltip
                 .style('opacity', 1)
                 .style("left", d3.event.pageX + "px")
@@ -847,7 +1054,7 @@ function visualizeGroupData() {
             clearGroupNodesActive()
             d3.select(this).classed('groupNode-active', true)
             highlightIndTrajectories(d)
-            //displayStateImages(d.user_ids)
+            
         })
 
     groupNode.append("text")
@@ -1067,7 +1274,7 @@ function behaviorDragstart(d, i) {
 
     // Highlight the behavior
     clearHighlight();
-    clicked_circle = d.user_ids;
+    clicked_circle = d.user_ids[0].slice(0,-5);
     displayStateImages(d.user_ids)
     applyOpacity(lowestOpacity);
     highlightBehaviorNodeIndex(i, "red");

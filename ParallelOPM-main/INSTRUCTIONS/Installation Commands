@@ -1,0 +1,8 @@
+1. Have Python Installed.
+2. pip install networkx
+3. pip install bokeh
+4. Navigate to ParallelGameAnalytics Folder
+5. cd CODE
+6. python GlyphMini.py
+7. Enter as prompted
+
