@@ -50,10 +50,7 @@ def GetAbstraction(fileName,game_level,user):
                                     
             gameStates.append(gameState)
             abstraction = gameState.getScreenshots()
-            #check if this abstraction is a test/submit and if it passed the test/submit and add it to the abstraction
-            #check all the events after this snapshot if it contains a SET_REFLECTION_CONTENT before the occurance of a new BOARD_SNAPSHOT (or not end of file) 
-            #in the SET_REFLECTION_CONTENT determine if is a test or submit and see if it passes the test or submit (need to discuss)
-            
+
             # abstractions.append(abstraction)
 
     # print('-----------------------------------')
