@@ -341,7 +341,7 @@ function visualizeStateData() {
             // edited
             // 't' variable is reponsible for checking if a particular player is clicked, called in behaviorDragStart() function, returned from displayStateImages() function
             // imagedisplay_id= list with a user_id, whose board_state images are being displayed
-            // checker is defined on top
+            // node_image_mapper is defined on top
             if(t)
             {
                 // this means the images for a particular id are being displayed
@@ -355,14 +355,22 @@ function visualizeStateData() {
                     for (j=0;j<node_image_mapper[user_id.slice(0,-5)].length;j++)
                     {
                         file_list=node_image_mapper[user_id.slice(0,-5)][j].split("/")
-                        file2=file_list[0]+"/"+file_list[1]+"/"+file_list[2].slice(2,file_list[2].length)
+                        board_file_list=file_list[2].split("_")
+                        board_file=board_file_list[1]
+                        file2=file_list[0]+"/"+file_list[1]+"/"+board_file
+                        console.log("file2")
+                        console.log(file2)
                         if(file2==file1)
                         {
                             $('#player_state_image').append("<img class='image-style'" + "src= "+ node_image_mapper[user_id.slice(0,-5)][j] + ">")
     
                         }
                     }
-          
+                    // if(node_image_mapper[user_id.slice(0,-5)].includes(file1))
+                    // {
+                    //     console.log(file1)
+                    //     $('#player_state_image').append("<img class='image-style'" + "src= "+ file1 + ">")
+                    // }
                 }
 
             }

@@ -27,4 +27,4 @@ def get_board_ids():
     print(bi)
     return bi
 
-get_board_ids()
+# get_board_ids()
