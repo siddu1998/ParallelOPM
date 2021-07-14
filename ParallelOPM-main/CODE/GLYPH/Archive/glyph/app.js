@@ -1189,7 +1189,8 @@ function behaviorDragstart(d, i) {
     }
     
     displayPieCharts(d.user_ids)
-
+    $('#time_spent_on_level').empty()
+    $('#time_spent_on_level').append("Time Spent on Level " + playerStatisticsData[d.user_ids[0]]['gameplay_duration']+" minutes")
 
     applyOpacity(lowestOpacity);
     highlightBehaviorNodeIndex(i, "red");

@@ -6,6 +6,7 @@ from os.path import isdir, join
 from sys import exit, flags
 from os import mkdir, listdir
 import os
+import time
 import json
 import shutil
 
@@ -95,7 +96,6 @@ class GlyphBuilder():
                 # print(userboardids[user][-1])
                 userStates[user][-1]['board_ids'].append(userboardids[user][-1])
                 self.stateToVis[user] = userStates[user]
-
             
     def save(self):
         '''
@@ -309,7 +309,7 @@ class GlyphBuilder():
             userTrajectory = [0]
             print(user)
             for stateInfo in self.stateToVis[user]:
-                print("STATEINFO")
+                # print("STATEINFO")
                 print(stateInfo)
                 event_type = ''
                 abstraction = self.buildAbstraction(stateInfo) 
@@ -338,7 +338,7 @@ class GlyphBuilder():
                     # print("stateExist")
                     # print(stateExist)
                     # print("stateInfo")
-                    # print(stateInfo)
+                    print(stateInfo)
                     if USERMAP[user] not in stateExist['user_ids']:
                         stateExist['user_ids'].append(USERMAP[user])
                     # edited by moulika
