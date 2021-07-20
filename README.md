@@ -7,12 +7,15 @@
 
     * Replace the "log_files" variable in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py" with the copied path
       
-    * Replace the vaiable "level" in  "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py" to the level you are interested in. (Currently supports Level 5 and 7)
+    * Replace the variable "level" in  "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py" to the level you are interested in. (Currently supports Level 5 and 7)
     
     * Replace the Variable "LOG" in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/player_statistics.py", with the copied path.
 
 * Run the script "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/
 screenshot_dict.py", in the command prompt and copy the command line output and paste it in the "node_image_mapper" variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js".
+
+* Run the script "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/
+player_statistics.py", in the command prompt and copy the command line output and paste it in the "playerStatisticsData" variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js".
 
 * Run the file "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/
 dict_maker.py" and copy the command prompt output and paste it in the USERMAP variable in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/BuildNewGlyph.py".
