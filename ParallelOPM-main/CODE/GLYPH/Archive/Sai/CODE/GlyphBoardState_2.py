@@ -5,6 +5,7 @@ from abstraction_glyph import GameState
 import os
 from BuildNewGlyph import *
 from getBoardID import get_board_ids
+
 def GetAbstraction(fileName,game_level,user):
     print(fileName)    
     abstractions = []  
