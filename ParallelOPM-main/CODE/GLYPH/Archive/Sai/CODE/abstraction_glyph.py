@@ -11,9 +11,9 @@ class GameState:
         self.board_snapshot_id = board_snapshot_id
         self.counter=counter
         # edited
-        self.screenshot_destination = f'../DATA/Screenshots/{self.user}/{self.counter}_{self.board_snapshot_id}.png'.replace(' ','_')
-        self.screenshot = ScreenShot(level,self.screenshot_destination)
-        self.text              = getStatus(self.board_snapshot_id,f"{self.user}"+".json")        
+        # self.screenshot_destination = f'../DATA/Screenshots/{self.user}/{self.counter}_{self.board_snapshot_id}.png'.replace(' ','_')
+        # self.screenshot = ScreenShot(level,self.screenshot_destination)
+        # self.text              = getStatus(self.board_snapshot_id,f"{self.user}"+".json")        
         #Load Game Properties
         self.level = str(level)
         self.zoneSheet = zoneSheet
@@ -54,7 +54,7 @@ class GameState:
     def putSemaphore(self,x,y,id,status):
         zone  = self.getZone(x,y)
         # edited passed status @@@
-        self.screenshot.drawSemaphore(x,y,status)
+        # self.screenshot.drawSemaphore(x,y,status)
         if zone in self.semaphore_zone_dict:
             self.semaphore_zone_dict[zone]+=1
         else:
@@ -85,8 +85,8 @@ class GameState:
                 self.link_dict[key]+=1
             else:
                 self.link_dict[key]=1
-            self.screenshot.drawSignal(x,y)
-            self.screenshot.drawLink(x,y,connection_x,connection_y)
+            # self.screenshot.drawSignal(x,y)
+            # self.screenshot.drawLink(x,y,connection_x,connection_y)
             self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
@@ -122,8 +122,8 @@ class GameState:
             'signal_zone_dict':self.signal_zone_dict,
             'link_dict':self.link_dict,
         }
-        self.screenshot.drawText(self.text)
-        self.screenshot.saveImage()
+        # self.screenshot.drawText(self.text)
+        # self.screenshot.saveImage()
         return abstraction
 #------UNIT TEST -----------
 #create gameState

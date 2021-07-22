@@ -190,7 +190,6 @@ CRITICAL_EVENTS=[
 player_traces = {}
 
 for file in os.listdir(log_files):
-    
     user = file.split('.')[0]
     fileName = log_files+'/'+file
     board_state = {}
@@ -202,7 +201,7 @@ for file in os.listdir(log_files):
         
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
-            stateShot = StateShot(board_state,event['id'],"LEVEL RESTARTED",level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
             stateShot.buildScreenShot()
     
         if event['type'] == 'ADD_ELEMENT':
@@ -228,7 +227,7 @@ for file in os.listdir(log_files):
             print('[INFO] Element Added',element_id)
             
             #CALL SCREEENSHOT on board_state
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
                                 
         if event['type'] == 'MOVE_ELEMENT':
@@ -242,7 +241,7 @@ for file in os.listdir(log_files):
             
             print('[INFO] Element Moved',element_id)
             #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
 
         if event['type'] == 'TOGGLE_ELEMENT':
@@ -251,7 +250,7 @@ for file in os.listdir(log_files):
 
             print('[INFO] Element Toggled',element_id)
             #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
 
         if event['type'] == 'REMOVE_ELEMENT':
@@ -273,7 +272,7 @@ for file in os.listdir(log_files):
                         
             
             #CALL SCREENSHOT
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
@@ -288,14 +287,14 @@ for file in os.listdir(log_files):
             board_state[element_1_id]['link']=element_2_id
             # print(board_state) 
             #CALL SCREENSHOT
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
             
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
             text  = getStatus(event['id'],f"{user}"+".json")        
-            stateShot = StateShot(board_state,event['id'],text,level,user,event['type']) 
+            stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
             stateShot.buildScreenShot()
             
         #Calling Abstraction

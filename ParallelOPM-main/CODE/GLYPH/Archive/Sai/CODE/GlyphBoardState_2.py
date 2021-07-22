@@ -64,7 +64,7 @@ level = 5
 for file in os.listdir(log_files):
     #CREATE FOLDER TO STORE THE STATE SCREENSHOTS
     user = file.split('.')[0]
-    os.mkdir(f'../DATA/Screenshots/{user}')
+
     #call abstraction
     fileName = log_files+'/'+file
     abstractions = GetAbstraction(fileName,level,user)
@@ -72,6 +72,7 @@ for file in os.listdir(log_files):
     userStates[user_id] = abstractions
     userActions[user_id]=["Recieved Next State"]*(len(userStates[user_id])-1 )     
     user = user_id.split('.')[0]
+
 #edited by moulika
 userboardids=get_board_ids() 
 print(userStates)
