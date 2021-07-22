@@ -297,14 +297,14 @@ for file in os.listdir(log_files):
             
         #Calling Abstraction
         if event['type'] in CRITICAL_EVENTS:
-            board_state_abstraction = buildAbstraction(level,board_state)            
+                        
             if user in player_traces:
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{event['id']}.png",
-                    "absolute_board_state":board_state,
-                    "abstracted_board_state":board_state_abstraction,
+                    "absolute_board_state":board_state.copy(),
+                    "abstracted_board_state":buildAbstraction(level,board_state),
                     "created": event['created']
                 }
             else:
@@ -313,8 +313,8 @@ for file in os.listdir(log_files):
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{event['id']}.png",
-                    "absolute_board_state":board_state,
-                    "abstracted_board_state":board_state_abstraction,
+                    "absolute_board_state":board_state.copy(),
+                    "abstracted_board_state":buildAbstraction(level,board_state),
                     "created":event['created']
                 }
                 
