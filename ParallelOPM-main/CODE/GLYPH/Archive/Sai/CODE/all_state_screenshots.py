@@ -11,15 +11,16 @@ level = 5
 
 
 class StateShot:
-    def __init__(self,board_state,fileName,text,level,user):
+    def __init__(self,board_state,fileName,text,level,user,counter):
         self.board_state = board_state
         self.fileName    = fileName
         self.text        = text
         self.level       = level
         self.user       = user  
+        self.counter  =counter
 
         self.preImage = Image.open(f'{SCREENSHOT_BLOCKS}/order{self.level}.png')
-        self.destination = f'../DATA/IntermediateScreenShots/{self.user}/{fileName}.png'
+        self.destination = f'../DATA/IntermediateScreenShots/{self.user}/{counter}_{fileName}.png'
         self.font = ImageFont.truetype("Roboto-Bold.ttf",size=45)
         self.text_color =  'rgb(255, 255, 255)'
          
@@ -79,7 +80,8 @@ for file in os.listdir(log_files):
     for index,event in enumerate(data['events']):    
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
-            stateShot = StateShot(board_state,event['id'],"LEVEL RESTARTED",level,user) 
+            stateShot = StateShot(board_state,event['id'],"LEVEL RESTARTED",level,user,counter)
+            counter=index
             stateShot.buildScreenShot()
 
             
@@ -121,7 +123,8 @@ for file in os.listdir(log_files):
             
             print('[INFO] Element Moved',element_id)
             #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,event['id'],event['type'],level,user,counter)
+            counter=index
             stateShot.buildScreenShot()
 
         if event['type'] == 'TOGGLE_ELEMENT':
@@ -130,7 +133,8 @@ for file in os.listdir(log_files):
 
             print('[INFO] Element Toggled',element_id)
             #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,event['id'],event['type'],level,user,counter)
+            counter=index
             stateShot.buildScreenShot()
 
         if event['type'] == 'REMOVE_ELEMENT':
@@ -152,7 +156,8 @@ for file in os.listdir(log_files):
                         
             
             #CALL SCREENSHOT
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,event['id'],event['type'],level,user,counter) 
+            counter=index
             stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
@@ -167,7 +172,8 @@ for file in os.listdir(log_files):
             board_state[element_1_id]['link']=element_2_id
             # print(board_state) 
             #CALL SCREENSHOT
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot = StateShot(board_state,event['id'],event['type'],level,user,counter)
+            counter=index
             stateShot.buildScreenShot()
         
         
@@ -175,7 +181,8 @@ for file in os.listdir(log_files):
             #No element manipulation 
             # so just Build the screenshot
             text  = getStatus(event['id'],f"{user}"+".json")        
-            stateShot = StateShot(board_state,event['id'],text,level,user) 
+            stateShot = StateShot(board_state,event['id'],text,level,user,counter)
+            counter=index
             stateShot.buildScreenShot()
             
         #IGNORING REMOVE_LINK : Since we can not mannually remove a link
