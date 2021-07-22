@@ -72,7 +72,6 @@ for file in os.listdir(log_files):
     fileName = log_files+'/'+file
     board_state = {}
     os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
-    counter = 0
     
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
@@ -152,13 +151,25 @@ for file in os.listdir(log_files):
             element_1_id = event['element']['id']
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
-            
+            else:
+                print('[ERROR] Could Not find Finish Link!')
+                print('[INFO] Either CODE needs fix or the log file is corrupted')
+                
             board_state[element_1_id]['link']=element_2_id
             # print(board_state) 
             #CALL SCREENSHOT
             stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
             stateShot.buildScreenShot()
         
+        
+        if event['type']=='BOARD_SNAPSHOT':
+            #No element manipulation 
+            # so just Build the screenshot
+            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            stateShot.buildScreenShot()
+            
+        #IGNORING REMOVE_LINK : Since we can not mannually remove a link
+
         
     print(board_state)
 
