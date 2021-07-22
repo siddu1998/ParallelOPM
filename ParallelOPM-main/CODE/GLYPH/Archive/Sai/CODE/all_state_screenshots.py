@@ -304,7 +304,7 @@ for file in os.listdir(log_files):
                     "type":event['type'],
                     "screenshot":f"{event['id']}.png",
                     "absolute_board_state":board_state,
-                    "abstracted_board_state":board_state_abstraction
+                    "abstracted_board_state":board_state_abstraction,
                     "created": event['created']
                 }
             else:
@@ -314,7 +314,7 @@ for file in os.listdir(log_files):
                     "type":event['type'],
                     "screenshot":f"{event['id']}.png",
                     "absolute_board_state":board_state,
-                    "abstracted_board_state":board_state_abstraction
+                    "abstracted_board_state":board_state_abstraction,
                     "created":event['created']
                 }
                 
