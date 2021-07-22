@@ -3,6 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 from sys import exit
 import json
 import os
+
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 class ScreenShot:
     def __init__(self,level,destination):

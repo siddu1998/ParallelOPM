@@ -2,6 +2,8 @@ import os
 import json
 from PIL import Image, ImageDraw, ImageFont
 from sys import exit
+from snapshot_status import getStatus
+
 
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 log_files = "../DATA/DDRI_STUDY_LOGS"
@@ -75,6 +77,13 @@ for file in os.listdir(log_files):
     
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
+        if event['type']=="BEGIN_LEVEL_LOAD":
+            board_state = {}
+            stateShot = StateShot(board_state,event['id'],"LEVEL RESTARTED",level,user) 
+            stateShot.buildScreenShot()
+
+            
+            
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
             element_type = event['element']['type'] #semaphore, signal
@@ -165,7 +174,8 @@ for file in os.listdir(log_files):
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
-            stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
+            text  = getStatus(event['id'],f"{user}"+".json")        
+            stateShot = StateShot(board_state,event['id'],text,level,user) 
             stateShot.buildScreenShot()
             
         #IGNORING REMOVE_LINK : Since we can not mannually remove a link
