@@ -11,7 +11,7 @@ level = 5
 
 
 class StateShot:
-    def __init__(self,board_state,fileName,text,level,user):
+    def __init__(self,board_state,fileName,text,level,user,eventType=None):
         self.board_state = board_state
         self.fileName    = fileName
         self.text        = text
@@ -20,9 +20,11 @@ class StateShot:
 
         self.preImage = Image.open(f'{SCREENSHOT_BLOCKS}/order{self.level}.png')
         self.destination = f'../DATA/IntermediateScreenShots/{self.user}/{fileName}.png'
+        self.destination_2 = f'../DATA/Screenshots/{self.user}/{fileName}.png'
         self.font = ImageFont.truetype("Roboto-Bold.ttf",size=45)
         self.text_color =  'rgb(255, 255, 255)'
-         
+        self.event_type = eventType
+        
     def drawSemaphore(self,x,y,status):
         location = [x,y]
         # edited for the active and inactive semaphore @@@
@@ -46,7 +48,9 @@ class StateShot:
         draw.text((x, y), text, fill=self.text_color,font=self.font)
     def saveImage(self):
         self.preImage.save(self.destination, quality=95)
-
+        if self.event_type=='BOARD_SNAPSHOT':
+            self.preImage.save(self.destination_2, quality=95)
+            
 
     def buildScreenShot(self):
         for item in self.board_state:
@@ -187,12 +191,11 @@ player_traces = {}
 
 for file in os.listdir(log_files):
     
-   
-    
     user = file.split('.')[0]
     fileName = log_files+'/'+file
     board_state = {}
     os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
+    os.mkdir(f'../DATA/Screenshots/{user}')
     
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
@@ -292,7 +295,7 @@ for file in os.listdir(log_files):
             #No element manipulation 
             # so just Build the screenshot
             text  = getStatus(event['id'],f"{user}"+".json")        
-            stateShot = StateShot(board_state,event['id'],text,level,user) 
+            stateShot = StateShot(board_state,event['id'],text,level,user,event['type']) 
             stateShot.buildScreenShot()
             
         #Calling Abstraction
