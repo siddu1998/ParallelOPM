@@ -68,8 +68,127 @@ class StateShot:
         self.saveImage()
 
 
+class Abstraction:
+    def __init__(self,level,board_state):
+        self.level = str(level)
+        self.zoneSheet = f'../DATA/maps_with_zones/MapInfo_{self.level}.json'
+        self.level_info      = json.load(open(self.zoneSheet))
+        self.zones         =   self.level_info[self.level]['mapAreas']      
+        self.index         = 0
+        self.indexMap      = {}
+        self.nSemaphores   = 0
+        self.nSignals      = 0
+        
+        #cordinates
+        self.semaphorePositions = [] #(id,x,y,zone) 
+        self.signalPositions    = [] #(id,x,y,zone)
+        self.linkPositions      = [] #(position1,postion2)        
+        #abstraction 1
+        self.semaphore_zone_dict = {}
+        self.signal_zone_dict    = {}
+        self.link_dict           = {} #{"zone1zone2" : count}
+
+        for zone in self.zones:
+            self.indexMap[zone]=self.index
+            self.index+=1
+    def getSemaphoreXY(self,id):
+        if id==None:
+            return (None,None)
+        
+        for semaphore in self.semaphorePositions:
+            if semaphore[0]==id:
+                return (semaphore[1],semaphore[2]) 
+        return None
+    def getSignalXY(self,id):
+        for signal in self.signalPositions:
+            if signal[0]==id:
+                return signal[1],signal[2]
+        return None
+    def putSemaphore(self,x,y,id,status):
+        zone  = self.getZone(x,y)
+        if zone in self.semaphore_zone_dict:
+            self.semaphore_zone_dict[zone]+=1
+        else:
+            self.semaphore_zone_dict[zone]=1
+        #add the element to the board
+        self.semaphorePositions.append((id,x,y,zone))
+        #update the counts
+        self.nSemaphores+=1
+
+    def zoneIndex(self,zone):
+        return self.indexMap[zone]
+    def putSignal(self,x,y,id_1,id_2):
+        zone  = self.getZone(x,y)
+        if zone in self.signal_zone_dict:
+            self.signal_zone_dict[zone]+=1
+        else:
+            self.signal_zone_dict[zone]=1
+        print(f'[INFO] adding {id_1} to signal positions')
+        self.signalPositions.append((id_1,x,y,zone))
+        self.nSignals+=1
+        #populate link dict
+        (connection_x,connection_y) = self.getSemaphoreXY(id_2)
+        if connection_x!=None:
+            key  = zone + self.getZone(connection_x,connection_y)
+            if key in self.link_dict:
+                self.link_dict[key]+=1
+            else:
+                self.link_dict[key]=1
+            self.linkPositions.append([x,y,connection_x,connection_y])
+        else:
+            pass
+    #returns which zone a point belongs to 
+    def getZone(self,x,y):
+        query = [x,y]
+        for zone in self.zones:
+            if query in self.zones[zone]:
+                return zone 
+        return None
+    def getAbstraction(self):
+        abstraction = {
+            'nSemaphores'     : self.nSemaphores,
+            'nSignals'        : self.nSignals,
+            'semaphore_zone_dict':self.semaphore_zone_dict,
+            'signal_zone_dict':self.signal_zone_dict,
+            'link_dict':self.link_dict,
+        }
+        return abstraction
+
+
+def buildAbstraction(level,board_state):
+    abstraction = Abstraction(level,board_state)
+    for item in board_state:
+        if board_state[item]['type']=="semaphore":
+            abstraction.putSemaphore(board_state[item]['element_x'],
+                                     board_state[item]['element_y'],
+                                     item,
+                                     board_state[item]['status'])
+    
+    for item in board_state:        
+        if board_state[item]['type']=='signal':
+            abstraction.putSignal(board_state[item]['element_x'],
+                                  board_state[item]['element_y'],
+                                  item,
+                                  board_state[item]['link'])
+
+    return abstraction.getAbstraction()       
+        
+        
+CRITICAL_EVENTS=[
+    "BEGIN_LEVEL_LOAD",
+    'ADD_ELEMENT',
+    'MOVE_ELEMENT',
+    'TOGGLE_ELEMENT',
+    'REMOVE_ELEMENT',
+    'BEGIN_LINK',
+    'BOARD_SNAPSHOT'
+]
+player_traces = {}
 
 for file in os.listdir(log_files):
+    
+   
+    
     user = file.split('.')[0]
     fileName = log_files+'/'+file
     board_state = {}
@@ -77,13 +196,12 @@ for file in os.listdir(log_files):
     
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
+        
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
             stateShot = StateShot(board_state,event['id'],"LEVEL RESTARTED",level,user) 
             stateShot.buildScreenShot()
-
-            
-            
+    
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
             element_type = event['element']['type'] #semaphore, signal
@@ -169,8 +287,7 @@ for file in os.listdir(log_files):
             #CALL SCREENSHOT
             stateShot = StateShot(board_state,event['id'],event['type'],level,user) 
             stateShot.buildScreenShot()
-        
-        
+            
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
@@ -178,12 +295,29 @@ for file in os.listdir(log_files):
             stateShot = StateShot(board_state,event['id'],text,level,user) 
             stateShot.buildScreenShot()
             
-        #IGNORING REMOVE_LINK : Since we can not mannually remove a link
+        #Calling Abstraction
+        if event['type'] in CRITICAL_EVENTS:
+            board_state_abstraction = buildAbstraction(level,board_state)            
+            if user in player_traces:
+                player_traces[user][event['id']]={
+                    "id":event['id'],
+                    "type":event['type'],
+                    "screenshot":f"{event['id']}.png",
+                    "absolute_board_state":board_state,
+                    "abstracted_board_state":board_state_abstraction
+                }
+            else:
+                player_traces[user]={}
+                player_traces[user][event['id']]={
+                    "id":event['id'],
+                    "type":event['type'],
+                    "screenshot":f"{event['id']}.png",
+                    "absolute_board_state":board_state,
+                    "abstracted_board_state":board_state_abstraction
+                }
+                
 
-        
-    print(board_state)
-
-
+print(player_traces)
 
 
 
