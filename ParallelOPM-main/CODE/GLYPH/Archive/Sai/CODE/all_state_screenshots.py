@@ -371,7 +371,7 @@ out_file = open("stats.json", "w")
 json.dump(stats, out_file, indent = 6) 
 out_file.close() 
 
-# #2. Player Statistics
+# #2. Screenshots 
 # out_file = open("node_image_mapper.json", "w") 
 # json.dump(node_image_mapper, out_file, indent = 6) 
 # out_file.close() 
