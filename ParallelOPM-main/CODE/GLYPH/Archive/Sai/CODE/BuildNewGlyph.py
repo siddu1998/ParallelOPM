@@ -68,7 +68,7 @@ class GlyphBuilder():
         '''
         res = []
         for id in ids:
-            print(USERMAP[id])
+            # print(USERMAP[id])
             res.append(USERMAP[id])
         return res
     # edited by moulika
@@ -351,7 +351,7 @@ class GlyphBuilder():
             # print(userTrajectory)
             userTrajectory.append(1)
             self.userTrajectories[USERMAP[user]] = userTrajectory
-
+            
     def checkLinkExist(self, link):
         '''
         Implement later, how to recognize same link

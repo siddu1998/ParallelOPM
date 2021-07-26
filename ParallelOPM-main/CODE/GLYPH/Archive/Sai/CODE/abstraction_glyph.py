@@ -7,13 +7,6 @@ class GameState:
     # edited for adding board_id_array and counter
     def __init__(self,level,zoneSheet,user,board_snapshot_id,counter,isSolution=False):
         self.user = user
-        # edited
-        self.board_snapshot_id = board_snapshot_id
-        self.counter=counter
-        # edited
-        # self.screenshot_destination = f'../DATA/Screenshots/{self.user}/{self.counter}_{self.board_snapshot_id}.png'.replace(' ','_')
-        # self.screenshot = ScreenShot(level,self.screenshot_destination)
-        # self.text              = getStatus(self.board_snapshot_id,f"{self.user}"+".json")        
         #Load Game Properties
         self.level = str(level)
         self.zoneSheet = zoneSheet

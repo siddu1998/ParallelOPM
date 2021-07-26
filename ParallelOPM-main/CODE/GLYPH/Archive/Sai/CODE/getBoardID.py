@@ -1,17 +1,17 @@
 # called in GlyphBoardState_2.py
 import json
 import os
-from abstraction_glyph import *
+# from abstraction_glyph import *
 
-LOGS = '../DATA/DDRI_STUDY_LOGS'
 
-def get_board_ids():
+
+def get_board_ids(LOGS):
     # bi= Board Ids
     bi={}
     for filename in os.listdir(LOGS):
         fileName = LOGS+'/'+filename
         log=[]
-        print(fileName)
+
         try:
             data = json.load(open(fileName))
         except:
@@ -24,7 +24,7 @@ def get_board_ids():
                 log.append(event["id"])
                 
         bi[filename]=log
-    print(bi)
+
     return bi
 
 # get_board_ids()

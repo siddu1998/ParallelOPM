@@ -3,6 +3,11 @@ import json
 from PIL import Image, ImageDraw, ImageFont
 from sys import exit
 from snapshot_status import getStatus
+from getBoardID import get_board_ids
+import gif_builder
+import player_statistics
+from BuildNewGlyph import *
+
 
 
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
@@ -321,9 +326,52 @@ for file in os.listdir(log_files):
                 }
                 
 
-print(player_traces)
+#BUILD GLYPH Visualization
+print('[INFO] Building Glyph Visualization')
+
+userStates = {}
+userActions = {} 
+for player in player_traces:
+    board_snapshot_abstractions = []
+    for event in player_traces[player]:
+        if player_traces[player][event]['type']=='BOARD_SNAPSHOT':
+            board_snapshot_abstractions.append(player_traces[player][event]["abstracted_board_state"])
+    
+    userStates[f"{player}.json"]=board_snapshot_abstractions
+    userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
+    userboardids=get_board_ids(log_files) 
+ 
+glyphBuilder = GlyphBuilder(userStates, userActions, userboardids, f'level_{level}_sai.json')
+glyphBuilder.run()
+
+print('[INFO] GLYPH Visualizatoin Built and saved')
 
 
-
+#BUILD GIFs Comment out to ignore
+print('[INFO] Building GIFs')
+gif_builder.main(level,log_files)
+print('[INFO] Finished Building GIFs')
 
     
+#Player Statistics
+stats = player_statistics.get_statistics(log_files)
+
+#node image mapper for app.js
+# node_image_mapper = screenshot_dict.log('Screenshots')
+
+
+#SAVING LOG FILES
+#1. Trace Data
+out_file = open("trace.json", "w") 
+json.dump(player_traces, out_file, indent = 6) 
+out_file.close() 
+
+#2. Player Statistics
+out_file = open("stats.json", "w") 
+json.dump(stats, out_file, indent = 6) 
+out_file.close() 
+
+# #2. Player Statistics
+# out_file = open("node_image_mapper.json", "w") 
+# json.dump(node_image_mapper, out_file, indent = 6) 
+# out_file.close() 
