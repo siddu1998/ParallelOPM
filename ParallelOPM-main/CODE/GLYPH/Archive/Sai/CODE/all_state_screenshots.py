@@ -303,8 +303,7 @@ for file in os.listdir(log_files):
             stateShot.buildScreenShot()
             
         #Calling Abstraction
-        if event['type'] in CRITICAL_EVENTS:
-                        
+        if event['type'] in CRITICAL_EVENTS:                   
             if user in player_traces:
                 player_traces[user][event['id']]={
                     "id":event['id'],
@@ -312,6 +311,8 @@ for file in os.listdir(log_files):
                     "screenshot":f"{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":buildAbstraction(level,board_state),
+                    "discussion":[],
+                    "upvotes":0,
                     "created": event['created']
                 }
             else:
@@ -322,6 +323,8 @@ for file in os.listdir(log_files):
                     "screenshot":f"{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":buildAbstraction(level,board_state),
+                    "discussion":[],
+                    "upvotes":0,
                     "created":event['created']
                 }
                 
