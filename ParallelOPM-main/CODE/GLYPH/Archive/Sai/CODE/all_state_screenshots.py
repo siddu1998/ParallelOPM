@@ -308,7 +308,7 @@ for file in os.listdir(log_files):
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
-                    "screenshot":f"{event['id']}.png",
+                    "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":buildAbstraction(level,board_state),
                     "discussion":[],
@@ -320,7 +320,7 @@ for file in os.listdir(log_files):
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
-                    "screenshot":f"{event['id']}.png",
+                    "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":buildAbstraction(level,board_state),
                     "discussion":[],
