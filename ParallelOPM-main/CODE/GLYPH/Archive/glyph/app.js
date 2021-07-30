@@ -71,13 +71,7 @@ function emptyIntemediateDiv()
 {
     $('#intermediate_action_analysis_svg').empty();
 }
-function click_upvote(upvote_Value)
-{
-    upvote_value=upvote_Value
-    $('#upvote_status').append('p')
-    .text("Upvoted successfully")
-    .style("text-align","center")
-}
+
 function drawEvent(x_axis_circle,y_axis_circle,radius,line_length,fill,text,id,event_id)
 {
     $('.node_commenting').hide();
@@ -107,14 +101,21 @@ function drawEvent(x_axis_circle,y_axis_circle,radius,line_length,fill,text,id,e
         group.on("click", function(){
             localStorage.setItem('event_id',event_id)
             localStorage.setItem('player_id',id)
+            
+            $('#show_screenshot').empty();
+            d3.select('#show_screenshot')
+            .append("img")
+            .attr('src',"IntermediateScreenShots/"+id+"/"+player_traces[id][event_id]['screenshot'])
+            .style('height','300px')
+            .style('width','300px')
+
             $('.node_commenting').show();
             $('#comment').val('');
             $('#previous_comments').empty();
             $('#player_id').text("Player Id: "+id)
             $('#event_id').text("Event Id: "+event_id)
             $('#event_type').text("Event Type: "+player_traces[id][event_id]['type'])
-            $('#current_upvotes').text('Current Upvotes: '+player_traces[id][event_id]['upvotes'])
-           
+            $('#current_upvotes').text('Current Upvotes: '+player_traces[id][event_id]['upvotes']) 
             for(var i=0;i<player_traces[id][event_id]['discussion'].length;i++)
             {   
                 $('#previous_comments').append('<p>'+ player_traces[id][event_id]['discussion'][i] +'</p>')
@@ -168,29 +169,27 @@ for (const [key, value] of Object.entries(player_traces[id[0].slice(0,-5)])) {
     event_ids.push(key)
   }
 
+//TODO : This loop needs to be optimized. Lot of repeted code!
 for(var j=0; j<event_ids.length;j++)
 {
-      // console.log(event_ids[j])
       present_event_type=player_traces[id[0].slice(0,-5)][event_ids[j]]['type']
       if(j==0)
       {
-      previous_event_type='none'    
+        previous_event_type='none'    
       }
       else{
-      previous_event_type=player_traces[id[0].slice(0,-5)][event_ids[j-1]]['type']
+        previous_event_type=player_traces[id[0].slice(0,-5)][event_ids[j-1]]['type']
       }
       
       if (present_event_type=="ADD_ELEMENT")
       {
-      if(j!=0 && previous_event_type=="BOARD_SNAPSHOT")
-      {
-      x_axis_circle=x_axis_circle-radius_snapshot+radius_other
+            if(j!=0 && previous_event_type=="BOARD_SNAPSHOT"){
+                x_axis_circle=x_axis_circle-radius_snapshot+radius_other
+            }
+            drawEvent(x_axis_circle,y_axis_circle,radius_other,line_length,'#3366cc',"add element",id[0].slice(0,-5),event_ids[j])
+            x_axis_circle+=2*radius_other+line_length
       }
-      drawEvent(x_axis_circle,y_axis_circle,radius_other,line_length,'#3366cc',"add element",id[0].slice(0,-5),event_ids[j])
-      x_axis_circle+=2*radius_other+line_length
-      }
-      if (present_event_type=="MOVE_ELEMENT")
-      {
+      if (present_event_type=="MOVE_ELEMENT"){
       if(j!=0 && previous_event_type=="BOARD_SNAPSHOT")
       {
       x_axis_circle=x_axis_circle-radius_snapshot+radius_other
