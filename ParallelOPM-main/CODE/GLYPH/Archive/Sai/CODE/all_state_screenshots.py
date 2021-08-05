@@ -190,7 +190,6 @@ CRITICAL_EVENTS=[
     'TOGGLE_ELEMENT',
     'REMOVE_ELEMENT',
     'BEGIN_LINK',
-    'BOARD_SNAPSHOT'
 ]
 player_traces = {}
 
@@ -200,6 +199,8 @@ for file in os.listdir(log_files):
     board_state = {}
     os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
     os.mkdir(f'../DATA/Screenshots/{user}')
+    
+    board_snapshot_ticks = "No Ticks Available"
     
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
@@ -294,14 +295,17 @@ for file in os.listdir(log_files):
             #CALL SCREENSHOT
             stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
-            
+        
+        if event['type'] == 'FINISH_SIMULATION':
+            board_snapshot_ticks = event['total']
+        
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
-            text  = getStatus(event['id'],f"{user}"+".json")        
+            text  = getStatus(event['id'],f"{user}"+".json")                    
             stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
             stateShot.buildScreenShot()
-            
+           
         #Calling Abstraction
         if event['type'] in CRITICAL_EVENTS:                   
             if user in player_traces:
@@ -327,7 +331,39 @@ for file in os.listdir(log_files):
                     "upvotes":0,
                     "created":event['created']
                 }
-                
+        
+        if event['type']=='BOARD_SNAPSHOT':                   
+            if user in player_traces:
+                player_traces[user][event['id']]={
+                    "id":event['id'],
+                    "type":event['type'],
+                    "screenshot":f"{index}_{event['id']}.png",
+                    "absolute_board_state":board_state.copy(),
+                    "abstracted_board_state":buildAbstraction(level,board_state),
+                    "discussion":[],
+                    "upvotes":0,
+                    "created": event['created'],
+                    "submission_result" : getStatus(event['id'],f"{user}"+".json"),
+                    "ticks":board_snapshot_ticks
+                }
+            else:
+                player_traces[user]={}
+                player_traces[user][event['id']]={
+                    "id":event['id'],
+                    "type":event['type'],
+                    "screenshot":f"{index}_{event['id']}.png",
+                    "absolute_board_state":board_state.copy(),
+                    "abstracted_board_state":buildAbstraction(level,board_state),
+                    "discussion":[],
+                    "upvotes":0,
+                    "created":event['created'],
+                    "submission_result" : getStatus(event['id'],f"{user}"+".json"),
+                    "ticks":board_snapshot_ticks
+
+                }
+        
+            board_snapshot_ticks = "No Ticks Available"
+
 
 #BUILD GLYPH Visualization
 print('[INFO] Building Glyph Visualization')
