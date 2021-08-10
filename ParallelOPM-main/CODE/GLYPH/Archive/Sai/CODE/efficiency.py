@@ -38,6 +38,6 @@ def buildEfficiency(LOGS):
 
 
 
-print(buildEfficiency('../DATA/DDRI_STUDY_LOGS'))
+print(buildEfficiency('../DATA/LEVEL_13_LOGS'))
                         
                         

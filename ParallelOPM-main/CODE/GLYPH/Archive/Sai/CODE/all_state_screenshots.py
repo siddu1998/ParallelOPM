@@ -11,8 +11,13 @@ from BuildNewGlyph import *
 
 
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
-log_files = "../DATA/DDRI_STUDY_LOGS"
-level = 5
+# log_files = "../DATA/DDRI_STUDY_LOGS"
+# level = 5
+
+log_files = "../DATA/LEVEL_13_LOGS"
+level = 13
+
+default_elements = {"13":{"L_dragonfruit_5001":(4,12)}}
 
 
 class StateShot:
@@ -65,14 +70,23 @@ class StateShot:
                 self.drawSignal(self.board_state[item]["element_x"],self.board_state[item]["element_y"])
                 if self.board_state[item]['link']!=None:
                     link_id=self.board_state[item]['link']
-                    self.drawLink(
-                        self.board_state[item]["element_x"],
-                        self.board_state[item]["element_y"], 
-                        self.board_state[link_id]["element_x"],
-                        self.board_state[link_id]["element_y"],
+                    try:
+                        self.drawLink(
+                            self.board_state[item]["element_x"],
+                            self.board_state[item]["element_y"], 
+                            self.board_state[link_id]["element_x"],
+                            self.board_state[link_id]["element_y"],
 
-                    )
-
+                        )
+                    except:
+                        print('[INFO] This is a default element!')
+                        self.drawLink(
+                            self.board_state[item]["element_x"],
+                            self.board_state[item]["element_y"], 
+                            default_elements[str(self.level)][link_id][0],
+                            default_elements[str(self.level)][link_id][1],
+                        )
+                            
         self.drawText(self.text)
         self.saveImage()
 
@@ -107,7 +121,7 @@ class Abstraction:
         for semaphore in self.semaphorePositions:
             if semaphore[0]==id:
                 return (semaphore[1],semaphore[2]) 
-        return None
+        return (None,None)
     def getSignalXY(self,id):
         for signal in self.signalPositions:
             if signal[0]==id:
@@ -127,6 +141,7 @@ class Abstraction:
     def zoneIndex(self,zone):
         return self.indexMap[zone]
     def putSignal(self,x,y,id_1,id_2):
+        
         zone  = self.getZone(x,y)
         if zone in self.signal_zone_dict:
             self.signal_zone_dict[zone]+=1
@@ -145,7 +160,21 @@ class Abstraction:
                 self.link_dict[key]=1
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
-            pass
+            print('[INFO] This signal could not find a semaphore!')
+            print('[INFO] This could be a link between a signal and a Default element!')
+            print('[INFO] Attempting to search in default elements')
+            if id_2!=None:
+                (connection_x,connection_y) = default_elements[str(self.level)][id_2]
+                if connection_x!=None:
+                    key  = zone + self.getZone(connection_x,connection_y)
+                    if key in self.link_dict:
+                        self.link_dict[key]+=1
+                    else:
+                        self.link_dict[key]=1
+                    self.linkPositions.append([x,y,connection_x,connection_y])
+                else:
+                    pass 
+                    
     #returns which zone a point belongs to 
     def getZone(self,x,y):
         query = [x,y]
@@ -282,10 +311,12 @@ for file in os.listdir(log_files):
             stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
-            # print('[INFO] Adding a Link')
+            print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
+            print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
+                print(element_2_id)
             else:
                 print('[ERROR] Could Not find Finish Link!')
                 print('[INFO] Either CODE needs fix or the log file is corrupted')
