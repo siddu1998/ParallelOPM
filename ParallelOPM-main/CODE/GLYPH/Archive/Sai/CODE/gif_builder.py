@@ -32,6 +32,13 @@ def main(level,log_files):
         
         previous_boardsnapshot_id = None
         
+        #add 0_1.gif aesthetic purpose
+        zero_event  = "0"  + '_' +data['events'][0]['id']+".png"
+        first_event = "1" + "_" +data['events'][1]['id']+".png"
+        print(zero_event,first_event)
+        destination_path = GIF_STOREAGE + '/' + '0_1'+'.gif'
+        buildGIF(f'{IMAGES_FOLDER}/{zero_event}',f'{IMAGES_FOLDER}/{first_event}',IMAGES_FOLDER,destination_path)
+        
         
         for index,event in enumerate(data['events']):
             if event['type']=='BOARD_SNAPSHOT':
@@ -45,11 +52,4 @@ def main(level,log_files):
                     buildGIF(f'{IMAGES_FOLDER}/{previous_boardsnapshot_id}',f'{IMAGES_FOLDER}/{current_boardsnapshot_id}',IMAGES_FOLDER,destination_path)
                     previous_boardsnapshot_id = current_boardsnapshot_id
         
-        
-        #add 0_1.gif aesthetic purpose
-        zero_event  = "0"  + '_' +data['events'][0]['id']+".png"
-        first_event = "1" + "_" +data['events'][1]['id']+".png"
-        print(zero_event,first_event)
-        destination_path = GIF_STOREAGE + '/' + '0_1'.gif'
-        buildGIF(f'{IMAGES_FOLDER}/{zero_event}',f'{IMAGES_FOLDER}/{first_event}',IMAGES_FOLDER,destination_path)
         

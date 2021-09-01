@@ -7,6 +7,8 @@ from getBoardID import get_board_ids
 import gif_builder
 import player_statistics
 from BuildNewGlyph import *
+import glob
+
 
 
 
@@ -428,13 +430,26 @@ print('[INFO] GLYPH Visualizatoin Built and saved')
 print('[INFO] Building GIFs')
 gif_builder.main(level,log_files)
 print('[INFO] Finished Building GIFs')
+#GIF Log file
 
-    
 #Player Statistics
 stats = player_statistics.get_statistics(log_files)
 
-#node image mapper for app.js
-# node_image_mapper = screenshot_dict.log('Screenshots')
+stats_2 = {}
+for player in player_traces:
+    stats_2[f'{player}.json']={}
+
+    for event in player_traces[player]:
+        if player_traces[player][event]['type'] in CRITICAL_EVENTS:
+            if player_traces[player][event]['type'] in stats_2[f'{player}.json']:
+                stats_2[f'{player}.json'][player_traces[player][event]['type']]+=1
+            else:
+                stats_2[f'{player}.json'][player_traces[player][event]['type']]=1
+        print(stats_2)    
+
+
+
+
 
 
 #SAVING LOG FILES
@@ -448,7 +463,10 @@ out_file = open("stats.json", "w")
 json.dump(stats, out_file, indent = 6) 
 out_file.close() 
 
-# #2. Screenshots 
-# out_file = open("node_image_mapper.json", "w") 
-# json.dump(node_image_mapper, out_file, indent = 6) 
-# out_file.close() 
+out_file = open("stats_2.json", "w") 
+json.dump(stats_2, out_file, indent = 6) 
+out_file.close() 
+
+
+
+
