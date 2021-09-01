@@ -4,9 +4,6 @@ import json
 import os
 import re
 
-
-
-
 def buildGIF(event_id_1,event_id_2,folder,destination):
     print(event_id_1,event_id_2)
     gif = []
@@ -20,7 +17,6 @@ def buildGIF(event_id_1,event_id_2,folder,destination):
     
     imageio.mimsave(destination, gif)
     
-
 
 #Iterate and build
 def main(level,log_files):
@@ -36,6 +32,7 @@ def main(level,log_files):
         
         previous_boardsnapshot_id = None
         
+        
         for index,event in enumerate(data['events']):
             if event['type']=='BOARD_SNAPSHOT':
                 if previous_boardsnapshot_id == None:
@@ -44,6 +41,15 @@ def main(level,log_files):
                 else:
                     current_boardsnapshot_id = f'{index}_{event["id"]}.png'
                     print(f'Storing between {previous_boardsnapshot_id},{current_boardsnapshot_id}')
-                    destination_path = GIF_STOREAGE + '/' + previous_boardsnapshot_id + '|' + current_boardsnapshot_id+'.gif'
+                    destination_path = GIF_STOREAGE + '/' + previous_boardsnapshot_id.split("_")[0] + '_' + current_boardsnapshot_id.split("_")[0]+'.gif'
                     buildGIF(f'{IMAGES_FOLDER}/{previous_boardsnapshot_id}',f'{IMAGES_FOLDER}/{current_boardsnapshot_id}',IMAGES_FOLDER,destination_path)
                     previous_boardsnapshot_id = current_boardsnapshot_id
+        
+        
+        #add 0_1.gif aesthetic purpose
+        zero_event  = "0"  + '_' +data['events'][0]['id']+".png"
+        first_event = "1" + "_" +data['events'][1]['id']+".png"
+        print(zero_event,first_event)
+        destination_path = GIF_STOREAGE + '/' + '0_1'.gif'
+        buildGIF(f'{IMAGES_FOLDER}/{zero_event}',f'{IMAGES_FOLDER}/{first_event}',IMAGES_FOLDER,destination_path)
+        

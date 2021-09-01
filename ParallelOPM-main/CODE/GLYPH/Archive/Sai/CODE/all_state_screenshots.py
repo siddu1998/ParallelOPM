@@ -10,12 +10,19 @@ from BuildNewGlyph import *
 
 
 
-SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
-# log_files = "../DATA/DDRI_STUDY_LOGS"
-# level = 5
 
-log_files = "../DATA/LEVEL_13_LOGS"
-level = 13
+SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
+
+#TODO : CHANGE FILE PATH in snapshot_status.py
+#TODO : CHANGE USERMAP IN BuildNewGlpyh.py
+
+log_files = "../DATA/DDRI_STUDY_LOGS"
+level = 5
+
+# log_files = "../DATA/LEVEL_13_LOGS"
+# level = 13
+
+
 
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)}}
 
