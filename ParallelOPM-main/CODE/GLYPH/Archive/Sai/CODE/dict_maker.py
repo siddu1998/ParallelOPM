@@ -2,7 +2,7 @@ import os
 
 USERMAP = {}
 
-for user in os.listdir('../DATA/DDRI_STUDY_LOGS'):
+for user in os.listdir('../DATA/LEVEL_13_LOGS'):
     USERMAP[user]=user
     
 print(USERMAP)

@@ -1,114 +1,37 @@
 {
-      "b4152ba7-4846-4ba2-93c4-eba434125dbe.json": {
-            "test_success": 5,
-            "test_fail": 0,
-            "submit_success": 4,
-            "submit_fail": 1,
-            "gameplay_duration": 6.0
-      },
-      "248d368d-232d-46c8-b137-8f81dc77f809.json": {
-            "test_success": 2,
-            "test_fail": 0,
-            "submit_success": 1,
-            "submit_fail": 1,
-            "gameplay_duration": 3.0
-      },
-      "34939330-b4bf-42a6-88b1-294148819974.json": {
-            "test_success": 6,
-            "test_fail": 2,
-            "submit_success": 1,
-            "submit_fail": 3,
-            "gameplay_duration": 7.0
-      },
-      "37023d9a-a8a3-4998-be0e-447962220be0.json": {
-            "test_success": 5,
-            "test_fail": 6,
-            "submit_success": 0,
-            "submit_fail": 1,
-            "gameplay_duration": 9.0
-      },
-      "64ea8334-1539-4f9c-a5fd-9788528f5c3f.json": {
+      "f37b8cd6-dfd3-455f-8256-60b4718715cd.json": {
             "test_success": 1,
             "test_fail": 0,
             "submit_success": 1,
             "submit_fail": 0,
             "gameplay_duration": 1.0
       },
-      "d0cd0662-ac0d-4d28-a799-3ed4a0495793.json": {
-            "test_success": 3,
-            "test_fail": 0,
-            "submit_success": 3,
-            "submit_fail": 0,
-            "gameplay_duration": 14.0
-      },
-      "0ba55f9b-be6f-4478-b31a-547ea6f64ef4.json": {
-            "test_success": 6,
-            "test_fail": 0,
-            "submit_success": 2,
-            "submit_fail": 4,
-            "gameplay_duration": 14.0
-      },
-      "2e07ba3c-51be-498f-815a-768f3b7cb7e1.json": {
-            "test_success": 3,
-            "test_fail": 2,
-            "submit_success": 2,
-            "submit_fail": 1,
-            "gameplay_duration": 6.0
-      },
-      "787785b5-e800-45e2-82dd-9001eae092ef.json": {
+      "8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json": {
             "test_success": 1,
             "test_fail": 0,
-            "submit_success": 0,
-            "submit_fail": 1,
-            "gameplay_duration": 28.0
-      },
-      "4666e412-31ab-421b-b335-b30c7c322bdd.json": {
-            "test_success": 1,
-            "test_fail": 1,
             "submit_success": 1,
             "submit_fail": 0,
             "gameplay_duration": 2.0
       },
-      "780fc9bd-794c-4906-9f64-c04d19144e0f.json": {
-            "test_success": 3,
-            "test_fail": 0,
-            "submit_success": 1,
-            "submit_fail": 0,
-            "gameplay_duration": 3.0
-      },
-      "ceb929b7-97d0-4d10-89f8-8206ce24e7a5.json": {
-            "test_success": 2,
-            "test_fail": 0,
-            "submit_success": 0,
-            "submit_fail": 0,
-            "gameplay_duration": 2.0
-      },
-      "e95dfdda-ad84-47c2-8d04-105692208369.json": {
-            "test_success": 2,
+      "975572d2-1e6f-4d20-aac8-01c45b7abf3b.json": {
+            "test_success": 1,
             "test_fail": 1,
-            "submit_success": 0,
+            "submit_success": 1,
             "submit_fail": 0,
             "gameplay_duration": 5.0
       },
-      "9553b141-533e-4cd7-bb59-5d8f8c56a507.json": {
-            "test_success": 4,
-            "test_fail": 0,
+      "62af7ea0-3a97-4324-a157-91b48f4bd787.json": {
+            "test_success": 1,
+            "test_fail": 5,
             "submit_success": 1,
-            "submit_fail": 1,
-            "gameplay_duration": 6.0
+            "submit_fail": 0,
+            "gameplay_duration": 4.0
       },
-      "c996d3cd-6f96-4b58-a4f4-60026db0edcc.json": {
+      "e1789fd0-1ec8-45ed-abd2-0789de029f46.json": {
             "test_success": 1,
             "test_fail": 0,
             "submit_success": 1,
             "submit_fail": 0,
-            "gameplay_duration": 1.0
-      },
-      "5c2947cc-34b1-42ac-864c-3f69f9171c54.json": {
-            "test_success": 2,
-            "test_fail": 1,
-            "submit_success": 1,
-            "submit_fail": 1,
-            "gameplay_duration": 3.0
+            "gameplay_duration": 7.0
       }
 }

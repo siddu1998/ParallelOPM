@@ -4,8 +4,8 @@ import json
 
 
 
-LOGS = '../DATA/DDRI_STUDY_LOGS'
-# LOGS = '../DATA/LEVEL_13_LOGS'
+#LOGS = '../DATA/DDRI_STUDY_LOGS'
+LOGS = '../DATA/LEVEL_13_LOGS'
 
 def getStatus(board_snapshot_id,fileName):
     fileName = LOGS+'/'+fileName

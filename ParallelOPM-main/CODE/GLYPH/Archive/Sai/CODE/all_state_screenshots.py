@@ -18,11 +18,11 @@ SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 #TODO : CHANGE FILE PATH in snapshot_status.py
 #TODO : CHANGE USERMAP IN BuildNewGlpyh.py
 
-log_files = "../DATA/DDRI_STUDY_LOGS"
-level = 5
+# log_files = "../DATA/DDRI_STUDY_LOGS"
+# level = 5
 
-# log_files = "../DATA/LEVEL_13_LOGS"
-# level = 13
+log_files = "../DATA/LEVEL_13_LOGS"
+level = 13
 
 
 

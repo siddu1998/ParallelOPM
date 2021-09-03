@@ -1,32 +1,52 @@
 # ParallelOPM
 
-* 1.Collect all the log files for a particular Level in a Folder. Save the folder in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA"
+* This repository contains Code segments for Abstraction and drawing a connection between Glyph and the game Parallel.
 
-* Copy the path of this folder with log files. 
-    * Replace the "LOGS" variable in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/getBoardID.py" with the copied path
+* There are two modes you can use this repository (a) With Screenshots and GIFs (b) Without Screenshots and GIFs
 
-    * Replace the "log_files" variable in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py" with the copied path
-      
-    * Replace the variable "level" in  "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py" to the level you are interested in. (Currently supports Level 5 and 7)
-    
-    * Replace the Variable "LOG" in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/player_statistics.py", with the copied path.
+### With Screenshots and GIFs and Glyph
 
-* Run the script "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/
-screenshot_dict.py", in the command prompt and copy the command line output and paste it in the "node_image_mapper" variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js".
+* Navigate to "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE"
 
-* Run the script "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/
-player_statistics.py", in the command prompt and copy the command line output and paste it in the "playerStatisticsData" variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js".
+* Edit Line Number 24,25 with the correct directory of the Log Files and Level of the Game in all_state_screenshots.py
 
-* Run the file "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/
-dict_maker.py" and copy the command prompt output and paste it in the USERMAP variable in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/BuildNewGlyph.py".
+* Edit Line Number 8 of  with the correct directory of the Log files in snapshot_status.py
 
-* Ensure that you have an empty "Screenshots", folder in "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA" folder
+* Navigate to  "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA" and empty folders in directories GIFs, IntermediateScreenshots,Screenshots.
 
-* Open the command prompt and run the python file "ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE/GlyphBoardState_2.py", after that you should be able to see the "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/Screenshots" folder full with all the screenshots. In  "ParallelOPM-main/CODE/GLYPH/Archive/glyph/data" you should find "level_{the level number}_sai.json"
+* Navigate to "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE"
 
-* After running the abstraction make sure to copy the "ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/Screenshots" folder to "ParallelOPM-main/CODE/GLYPH/Archive/glyph/Screenshots" folder
+* Run dict_maker.py. Copy the terminal output and replace the USERMAP variable with the copied output.
 
-* Navigate to "ParallelOPM-main/CODE/GLYPH/Archive/glyph/" folder and run command prompt and run the command "python -m http.server".
+* Run python all_state_screenshots.py
+
+* In the current directory you will see output files trace.json, stats.json, stats_2.json.
+
+* Copy content in trace.json and update the *player_traces* variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js"
+
+* Copy content in stats.json and update the *playerStatisticsData* variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js"
+
+* Copy content in stats.json and update the *playerEventStatisticsData* variable in "ParallelOPM-main/CODE/GLYPH/Archive/glyph/app.js"
+
+* Run "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/gif_dict.py". Copy the terminal output and repace the *gif_mapper* in app.js with the copied output.
+
+* Run "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA/screenshot_dict.py". Copy the terminal output and repace the *node_image_mapper* in app.js with the copied output.
+
+* Copy Screenshots, IntermediateScreenshots, GIFs from "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/DATA" to "ParallelOPM-main/CODE/GLYPH/Archive/glyph"
+
+* From "ParallelOPM-main/CODE/GLYPH/Archive/glyph" run *python -m http.server*
+
+
+### Without Screenshots and GIFs
+
+* Navigate to "/ParallelOPM-main/CODE/GLYPH/Archive/Sai/CODE"
+
+* Edit Line Number 24,25 with the correct directory of the Log Files and Level of the Game in backend_style.py
+
+* Edit Line Number 8 of  with the correct directory of the Log files in snapshot_status.py
+
+* Run backend_style.py
+
 
 
 

@@ -1,116 +1,39 @@
 {
-      "b4152ba7-4846-4ba2-93c4-eba434125dbe.json": {
+      "f37b8cd6-dfd3-455f-8256-60b4718715cd.json": {
             "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 6,
-            "MOVE_ELEMENT": 10,
+            "ADD_ELEMENT": 5,
+            "MOVE_ELEMENT": 1,
             "TOGGLE_ELEMENT": 1,
             "BEGIN_LINK": 3
       },
-      "248d368d-232d-46c8-b137-8f81dc77f809.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 6,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "34939330-b4bf-42a6-88b1-294148819974.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "BEGIN_LINK": 2,
-            "MOVE_ELEMENT": 9,
-            "TOGGLE_ELEMENT": 2
-      },
-      "37023d9a-a8a3-4998-be0e-447962220be0.json": {
-            "BEGIN_LEVEL_LOAD": 2,
-            "ADD_ELEMENT": 14,
-            "BEGIN_LINK": 9,
-            "MOVE_ELEMENT": 15,
-            "TOGGLE_ELEMENT": 9,
-            "REMOVE_ELEMENT": 4
-      },
-      "64ea8334-1539-4f9c-a5fd-9788528f5c3f.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 1,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "d0cd0662-ac0d-4d28-a799-3ed4a0495793.json": {
-            "BEGIN_LEVEL_LOAD": 2,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 2,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "0ba55f9b-be6f-4478-b31a-547ea6f64ef4.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 16,
-            "MOVE_ELEMENT": 14,
-            "TOGGLE_ELEMENT": 5,
-            "BEGIN_LINK": 8,
-            "REMOVE_ELEMENT": 12
-      },
-      "2e07ba3c-51be-498f-815a-768f3b7cb7e1.json": {
+      "8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json": {
             "BEGIN_LEVEL_LOAD": 1,
             "ADD_ELEMENT": 8,
-            "MOVE_ELEMENT": 4,
-            "BEGIN_LINK": 4,
-            "TOGGLE_ELEMENT": 2
-      },
-      "787785b5-e800-45e2-82dd-9001eae092ef.json": {
-            "BEGIN_LEVEL_LOAD": 2,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 1,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "4666e412-31ab-421b-b335-b30c7c322bdd.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 1,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "780fc9bd-794c-4906-9f64-c04d19144e0f.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 2,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "ceb929b7-97d0-4d10-89f8-8206ce24e7a5.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 6,
-            "MOVE_ELEMENT": 2,
-            "TOGGLE_ELEMENT": 1,
+            "TOGGLE_ELEMENT": 2,
+            "MOVE_ELEMENT": 6,
+            "REMOVE_ELEMENT": 3,
             "BEGIN_LINK": 3
       },
-      "e95dfdda-ad84-47c2-8d04-105692208369.json": {
-            "BEGIN_LEVEL_LOAD": 2,
-            "ADD_ELEMENT": 12,
-            "BEGIN_LINK": 6,
-            "MOVE_ELEMENT": 3,
-            "TOGGLE_ELEMENT": 2
-      },
-      "9553b141-533e-4cd7-bb59-5d8f8c56a507.json": {
+      "975572d2-1e6f-4d20-aac8-01c45b7abf3b.json": {
             "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 6,
+            "ADD_ELEMENT": 5,
+            "BEGIN_LINK": 3,
             "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
+            "MOVE_ELEMENT": 5
       },
-      "c996d3cd-6f96-4b58-a4f4-60026db0edcc.json": {
+      "62af7ea0-3a97-4324-a157-91b48f4bd787.json": {
             "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "MOVE_ELEMENT": 1,
-            "TOGGLE_ELEMENT": 1,
-            "BEGIN_LINK": 2
-      },
-      "5c2947cc-34b1-42ac-864c-3f69f9171c54.json": {
-            "BEGIN_LEVEL_LOAD": 1,
-            "ADD_ELEMENT": 4,
-            "BEGIN_LINK": 2,
-            "MOVE_ELEMENT": 1,
+            "ADD_ELEMENT": 6,
+            "MOVE_ELEMENT": 8,
+            "BEGIN_LINK": 4,
             "TOGGLE_ELEMENT": 1
+      },
+      "e1789fd0-1ec8-45ed-abd2-0789de029f46.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 7,
+            "MOVE_ELEMENT": 5,
+            "BEGIN_LINK": 4,
+            "REMOVE_ELEMENT": 1,
+            "TOGGLE_ELEMENT": 5
       }
 }
