@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/getAbstraction')
 def get_abstraction():
+    
     data = json.loads(str(request.data, encoding='utf-8'))
-   
     # TODO: Need to handle error for level not found in 
     # zone sheet (currently works for level 7,5)    
     
