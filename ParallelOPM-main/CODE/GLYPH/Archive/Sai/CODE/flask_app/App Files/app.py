@@ -475,9 +475,10 @@ def getGlyphFile():
     print(userStates,userActions,usermap,userboardids)
     glyphBuilder = GlyphBuilder(userStates, userActions, userboardids,usermap)
     glyph_vis = glyphBuilder.run()
-
+    
+    print(player_traces)
     print('[INFO] GLYPH Visualizatoin Built and saved')
-    return glyph_vis
+    return {"glyph_vis":glyph_vis, "player_traces":player_traces}
 
     
     
@@ -491,3 +492,4 @@ def hello_world():
   
 if __name__ == '__main__':  
     app.run(debug=True)
+    app.config['JSON_SORT_KEYS'] = False

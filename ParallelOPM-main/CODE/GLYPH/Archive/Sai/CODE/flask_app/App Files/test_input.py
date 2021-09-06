@@ -2,10 +2,10 @@ import os
 import json
 
 data = {}
-data['level']=5
+data['level']=13
 data['raw_logs']={}
 
-log_files = "../DATA/DDRI_STUDY_LOGS"
+log_files = "../DATA/LEVEL_13_LOGS"
 
 for file in os.listdir(log_files):
     user = file.split('.')[0]

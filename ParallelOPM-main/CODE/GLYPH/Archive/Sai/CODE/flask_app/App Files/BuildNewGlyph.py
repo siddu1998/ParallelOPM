@@ -262,8 +262,8 @@ class GlyphBuilder():
             stateAbstraction = state['details']['abstraction']
             stateToCheckAbstraction = stateToCheck['details']['abstraction']
             if self.compareStateAbstraction(stateAbstraction, stateToCheckAbstraction):
-                print('check:', stateToCheckAbstraction)
-                print(stateAbstraction)
+                #print('check:', stateToCheckAbstraction)
+                #print(stateAbstraction)
                 return state['id']
         return 0
 
@@ -271,13 +271,13 @@ class GlyphBuilder():
         """
         Create state/node of Glyph visualization
         """
-        print(self.stateToVis)
+        #print(self.stateToVis)
         for user in self.stateToVis:
             userTrajectory = [0]
             print(user)
             for stateInfo in self.stateToVis[user]:
                 # print("STATEINFO")
-                print(stateInfo)
+                #print(stateInfo)
                 event_type = ''
                 abstraction = self.buildAbstraction(stateInfo) 
                 stateId = len(self.states)
@@ -305,14 +305,14 @@ class GlyphBuilder():
                     # print("stateExist")
                     # print(stateExist)
                     # print("stateInfo")
-                    print(stateInfo)
+                    #print(stateInfo)
                     if self.usermap[user] not in stateExist['user_ids']:
                         stateExist['user_ids'].append(self.usermap[user])
                     # edited by moulika
                     if stateInfo['board_ids'] not in stateExist['details']['board_ids']:
                         stateExist['details']['board_ids']=stateExist['details']['board_ids']+(stateInfo['board_ids']) 
-                    print("since duplicacy appended==check")
-                    print(stateExist)
+                    #print("since duplicacy appended==check")
+                    #print(stateExist)
                     userTrajectory.append(existId)
             
             # print(userTrajectory)
