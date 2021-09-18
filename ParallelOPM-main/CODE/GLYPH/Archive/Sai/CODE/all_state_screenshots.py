@@ -119,10 +119,13 @@ class Abstraction:
         self.semaphore_zone_dict = {}
         self.signal_zone_dict    = {}
         self.link_dict           = {} #{"zone1zone2" : count}
-
+        
         for zone in self.zones:
             self.indexMap[zone]=self.index
             self.index+=1
+        
+        self.adjaceny_matrix = [[0 for j in range(len(self.zones))] for i in range(len(self.zones)) ]  
+
     def getSemaphoreXY(self,id):
         if id==None:
             return (None,None)
@@ -167,6 +170,8 @@ class Abstraction:
                 self.link_dict[key]+=1
             else:
                 self.link_dict[key]=1
+
+            self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
             print('[INFO] This signal could not find a semaphore!')
@@ -180,6 +185,8 @@ class Abstraction:
                         self.link_dict[key]+=1
                     else:
                         self.link_dict[key]=1
+                    
+                    self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
                     self.linkPositions.append([x,y,connection_x,connection_y])
                 else:
                     pass 
@@ -191,6 +198,10 @@ class Abstraction:
             if query in self.zones[zone]:
                 return zone 
         return None
+    
+    def getAdjacencyMatrix(self):
+        return self.adjaceny_matrix 
+    
     def getAbstraction(self):
         abstraction = {
             'nSemaphores'     : self.nSemaphores,
@@ -218,7 +229,7 @@ def buildAbstraction(level,board_state):
                                   item,
                                   board_state[item]['link'])
 
-    return abstraction.getAbstraction()       
+    return abstraction.getAbstraction(),abstraction.getAdjacencyMatrix()       
         
         
 CRITICAL_EVENTS=[
@@ -349,24 +360,28 @@ for file in os.listdir(log_files):
         #Calling Abstraction
         if event['type'] in CRITICAL_EVENTS:                   
             if user in player_traces:
+                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":buildAbstraction(level,board_state),
+                    "abstracted_board_state":abstraction,
+                    "adjacency_matrix":adjacency_matrix,
                     "discussion":[],
                     "upvotes":0,
                     "created": event['created']
                 }
             else:
                 player_traces[user]={}
+                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":buildAbstraction(level,board_state),
+                    "abstracted_board_state":abstraction,
+                    "adjacency_matrix":adjacency_matrix,                    
                     "discussion":[],
                     "upvotes":0,
                     "created":event['created']
@@ -374,12 +389,14 @@ for file in os.listdir(log_files):
         
         if event['type']=='BOARD_SNAPSHOT':                   
             if user in player_traces:
+                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":buildAbstraction(level,board_state),
+                    "abstracted_board_state":abstraction,
+                    "adjacency_matrix":adjacency_matrix,                    
                     "discussion":[],
                     "upvotes":0,
                     "created": event['created'],
@@ -393,8 +410,8 @@ for file in os.listdir(log_files):
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":buildAbstraction(level,board_state),
-                    "discussion":[],
+                    "abstracted_board_state":abstraction,
+                    "adjacency_matrix":adjacency_matrix,                    "discussion":[],
                     "upvotes":0,
                     "created":event['created'],
                     "submission_result" : getStatus(event['id'],f"{user}"+".json"),
