@@ -8,7 +8,7 @@ import gif_builder
 import player_statistics
 from BuildNewGlyph import *
 import glob
-
+from copy import copy, deepcopy
 
 
 
@@ -16,7 +16,6 @@ import glob
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 
 #TODO : CHANGE FILE PATH in snapshot_status.py
-#TODO : CHANGE USERMAP IN BuildNewGlpyh.py
 
 # log_files = "../DATA/DDRI_STUDY_LOGS"
 # level = 5
@@ -24,10 +23,28 @@ SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 log_files = "../DATA/LEVEL_13_LOGS"
 level = 13
 
+# log_files = "../DATA/LEVEL_15_LOGS"
+# level = 15
 
 
-default_elements = {"13":{"L_dragonfruit_5001":(4,12)}}
 
+default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
+                    
+                    "15":{
+                        "L_fig_5002":(6,2),
+                        "L_fig_5003":(6,10),
+                        "L_fig_5001":(3,6),
+                        "L_fig_4006":(8,12),
+                        "L_fig_4005":(12,8),
+                        "L_fig_4004":(8,8),
+                        "L_fig_4003":(12,4),
+                        "L_fig_4002":(8,4),
+                        "L_fig_4001":(12,0),
+                        "L_fig_3001":(12,12),
+                        "L_fig_2001":(7,0)
+                        
+                    }
+                    }
 
 class StateShot:
     def __init__(self,board_state,fileName,text,level,user,eventType=None):
@@ -43,6 +60,7 @@ class StateShot:
         self.font = ImageFont.truetype("Roboto-Bold.ttf",size=45)
         self.text_color =  'rgb(255, 255, 255)'
         self.event_type = eventType
+        self.stateMatrix = None
         
     def drawSemaphore(self,x,y,status):
         location = [x,y]
@@ -123,9 +141,13 @@ class Abstraction:
         for zone in self.zones:
             self.indexMap[zone]=self.index
             self.index+=1
+        self.indexMap["semaphore_row"]=self.index
+        self.index+=1
+        self.indexMap["signal_row"]=self.index
         
         self.adjaceny_matrix = [[0 for j in range(len(self.zones))] for i in range(len(self.zones)) ]  
 
+        
     def getSemaphoreXY(self,id):
         if id==None:
             return (None,None)
@@ -189,7 +211,7 @@ class Abstraction:
                     self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
                     self.linkPositions.append([x,y,connection_x,connection_y])
                 else:
-                    pass 
+                    print("===================CONNECTION NOT FOUND IN DEFAULT ELEMENTS TOO!") 
                     
     #returns which zone a point belongs to 
     def getZone(self,x,y):
@@ -212,7 +234,28 @@ class Abstraction:
         }
         return abstraction
 
+    def getStateMatrix(self):
+        semaphore_row = []
+        signal_row    = []
+        for zone in self.zones:
+            if zone in self.semaphore_zone_dict:
+                print(zone,"+1")
+                semaphore_row.append(self.semaphore_zone_dict[zone])
+            else:
+                semaphore_row.append(0)
+            if zone in self.signal_zone_dict:
+                signal_row.append(self.signal_zone_dict[zone])
+            else:
+                signal_row.append(0)
+        
+        
+        self.stateMatrix = deepcopy(self.adjaceny_matrix)
 
+        self.stateMatrix.append(semaphore_row)
+        self.stateMatrix.append(signal_row)
+
+        return self.stateMatrix               
+     
 def buildAbstraction(level,board_state):
     abstraction = Abstraction(level,board_state)
     for item in board_state:
@@ -229,7 +272,7 @@ def buildAbstraction(level,board_state):
                                   item,
                                   board_state[item]['link'])
 
-    return abstraction.getAbstraction(),abstraction.getAdjacencyMatrix()       
+    return abstraction.getAbstraction(),abstraction.getAdjacencyMatrix(),abstraction.getStateMatrix()       
         
         
 CRITICAL_EVENTS=[
@@ -246,9 +289,13 @@ for file in os.listdir(log_files):
     user = file.split('.')[0]
     fileName = log_files+'/'+file
     board_state = {}
-    os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
-    os.mkdir(f'../DATA/Screenshots/{user}')
     
+    try:
+        os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
+        os.mkdir(f'../DATA/Screenshots/{user}')
+    except:
+        pass
+        
     board_snapshot_ticks = "No Ticks Available"
     
     data = json.load(open(fileName))
@@ -311,7 +358,7 @@ for file in os.listdir(log_files):
         if event['type'] == 'REMOVE_ELEMENT':
             element_id = event['element']['id']         
             board_state.pop(element_id)
-            print('[INFO] Element Removed',element_id)            
+            print('[INFO] Element Removed',element_id,file)            
 
             #if you are deleting a semaphore 
             # you want to delete the signal link
@@ -324,8 +371,10 @@ for file in os.listdir(log_files):
 
                     except:
                         pass
-                        
-            
+
+                    
+                            
+                
             #CALL SCREENSHOT
             stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
             stateShot.buildScreenShot()
@@ -336,12 +385,20 @@ for file in os.listdir(log_files):
             print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
+                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                board_state[element_1_id]['link']=element_2_id
+                print(element_2_id)
+            elif data['events'][index+2]['type']=='FINISH_LINK':
+                element_2_id = data['events'][index+2]['element']['id']
+                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                board_state[element_1_id]['link']=element_2_id
+
                 print(element_2_id)
             else:
-                print('[ERROR] Could Not find Finish Link!')
+                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
                 print('[INFO] Either CODE needs fix or the log file is corrupted')
-                
-            board_state[element_1_id]['link']=element_2_id
+                print(file)
+            
             # print(board_state) 
             #CALL SCREENSHOT
             stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
@@ -359,8 +416,8 @@ for file in os.listdir(log_files):
            
         #Calling Abstraction
         if event['type'] in CRITICAL_EVENTS:                   
+            abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
             if user in player_traces:
-                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
@@ -368,35 +425,37 @@ for file in os.listdir(log_files):
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":abstraction,
                     "adjacency_matrix":adjacency_matrix,
+                    "state_matrix":state_matrix,
                     "discussion":[],
                     "upvotes":0,
                     "created": event['created']
                 }
             else:
                 player_traces[user]={}
-                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,                    
+                    "adjacency_matrix":adjacency_matrix, 
+                    "state_matrix":state_matrix,                   
                     "discussion":[],
                     "upvotes":0,
                     "created":event['created']
                 }
         
         if event['type']=='BOARD_SNAPSHOT':                   
+            abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
             if user in player_traces:
-                abstraction,adjacency_matrix =  buildAbstraction(level,board_state)
                 player_traces[user][event['id']]={
                     "id":event['id'],
                     "type":event['type'],
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,                    
+                    "adjacency_matrix":adjacency_matrix,
+                    "state_matrix":state_matrix,                    
                     "discussion":[],
                     "upvotes":0,
                     "created": event['created'],
@@ -411,7 +470,9 @@ for file in os.listdir(log_files):
                     "screenshot":f"{index}_{event['id']}.png",
                     "absolute_board_state":board_state.copy(),
                     "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,                    "discussion":[],
+                    "adjacency_matrix":adjacency_matrix,
+                    "state_matrix":state_matrix,
+                    "discussion":[],
                     "upvotes":0,
                     "created":event['created'],
                     "submission_result" : getStatus(event['id'],f"{user}"+".json"),
@@ -427,6 +488,7 @@ print('[INFO] Building Glyph Visualization')
 
 userStates = {}
 userActions = {} 
+usermap = {}
 for player in player_traces:
     board_snapshot_abstractions = []
     for event in player_traces[player]:
@@ -436,8 +498,12 @@ for player in player_traces:
     userStates[f"{player}.json"]=board_snapshot_abstractions
     userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
     userboardids=get_board_ids(log_files) 
+
+for user in player_traces:
+    usermap[user+'.json']=user+'.json'
+
  
-glyphBuilder = GlyphBuilder(userStates, userActions, userboardids, f'level_{level}_sai.json')
+glyphBuilder = GlyphBuilder(userStates, userActions, userboardids, f'level_{level}_sai.json',usermap)
 glyphBuilder.run()
 
 print('[INFO] GLYPH Visualizatoin Built and saved')
@@ -483,7 +549,6 @@ out_file.close()
 out_file = open("stats_2.json", "w") 
 json.dump(stats_2, out_file, indent = 6) 
 out_file.close() 
-
 
 
 

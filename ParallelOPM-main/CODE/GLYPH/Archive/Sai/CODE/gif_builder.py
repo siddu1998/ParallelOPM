@@ -25,7 +25,11 @@ def main(level,log_files):
         fileName = log_files+'/'+file
         
         GIF_STOREAGE = f'../DATA/GIFs/{user}'     
-        os.mkdir(GIF_STOREAGE)
+        try:
+            os.mkdir(GIF_STOREAGE)
+        except:
+            pass
+        
         IMAGES_FOLDER = f'../DATA/IntermediateScreenShots/{user}'
         
         data = json.load(open(fileName))
@@ -33,13 +37,15 @@ def main(level,log_files):
         previous_boardsnapshot_id = None
         
         #add 0_1.gif aesthetic purpose
-        zero_event  = "0"  + '_' +data['events'][0]['id']+".png"
-        first_event = "1" + "_" +data['events'][1]['id']+".png"
-        print(zero_event,first_event)
-        destination_path = GIF_STOREAGE + '/' + '0_1'+'.gif'
-        buildGIF(f'{IMAGES_FOLDER}/{zero_event}',f'{IMAGES_FOLDER}/{first_event}',IMAGES_FOLDER,destination_path)
-        
-        
+        try:
+            zero_event  = "0"  + '_' +data['events'][0]['id']+".png"
+            first_event = "1" + "_" +data['events'][1]['id']+".png"
+            print(zero_event,first_event)
+            destination_path = GIF_STOREAGE + '/' + '0_1'+'.gif'
+            buildGIF(f'{IMAGES_FOLDER}/{zero_event}',f'{IMAGES_FOLDER}/{first_event}',IMAGES_FOLDER,destination_path)
+        except:
+            pass    
+
         for index,event in enumerate(data['events']):
             if event['type']=='BOARD_SNAPSHOT':
                 if previous_boardsnapshot_id == None:

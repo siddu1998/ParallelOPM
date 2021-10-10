@@ -38,10 +38,12 @@ INFINITE_SIMILARITY = 50000
 #LEVEL 5 USERMAP
 # USERMAP = {'c7ecee3a-f7e7-4b4a-9415-aa57a304ee43.json': 'c7ecee3a-f7e7-4b4a-9415-aa57a304ee43.json', '5c62ae0e-41c1-49e5-8b98-4c28be09539c.json': '5c62ae0e-41c1-49e5-8b98-4c28be09539c.json', 'b4152ba7-4846-4ba2-93c4-eba434125dbe.json': 'b4152ba7-4846-4ba2-93c4-eba434125dbe.json', 'bc196560-cafb-4ae0-8e10-bb12911ff32c.json': 'bc196560-cafb-4ae0-8e10-bb12911ff32c.json', '248d368d-232d-46c8-b137-8f81dc77f809.json': '248d368d-232d-46c8-b137-8f81dc77f809.json', 'b752ff5e-fa1c-427a-b6f7-7195818ffc0c.json': 'b752ff5e-fa1c-427a-b6f7-7195818ffc0c.json', '34939330-b4bf-42a6-88b1-294148819974.json': '34939330-b4bf-42a6-88b1-294148819974.json', '37023d9a-a8a3-4998-be0e-447962220be0.json': '37023d9a-a8a3-4998-be0e-447962220be0.json', '64ea8334-1539-4f9c-a5fd-9788528f5c3f.json': '64ea8334-1539-4f9c-a5fd-9788528f5c3f.json', '05243b18-5570-4a7f-9a72-b1754d655efd.json': '05243b18-5570-4a7f-9a72-b1754d655efd.json', '74b44793-56a8-4273-b534-ac65dc021d59.json': '74b44793-56a8-4273-b534-ac65dc021d59.json', '8db5cdd0-68e1-433b-829f-a948b9f3804f.json': '8db5cdd0-68e1-433b-829f-a948b9f3804f.json', 'd0cd0662-ac0d-4d28-a799-3ed4a0495793.json': 'd0cd0662-ac0d-4d28-a799-3ed4a0495793.json', 'f34e4bd3-6e71-4666-8329-c37b8dbe53cb.json': 'f34e4bd3-6e71-4666-8329-c37b8dbe53cb.json', 'e74a8e34-0def-4c5d-b68d-d0a01283b185.json': 'e74a8e34-0def-4c5d-b68d-d0a01283b185.json', 'a75411b3-98a4-4d80-ae3e-f26022dc6e56.json': 'a75411b3-98a4-4d80-ae3e-f26022dc6e56.json', '7e7e9d04-fccd-43ca-90f8-25fcb8fa731b.json': '7e7e9d04-fccd-43ca-90f8-25fcb8fa731b.json', '5ab92afb-b42c-4453-9edc-897eaee8dec9.json': '5ab92afb-b42c-4453-9edc-897eaee8dec9.json', '9b5d16e5-b059-428b-a3a5-38e0f115bb0b.json': '9b5d16e5-b059-428b-a3a5-38e0f115bb0b.json', '8ff05d4e-24dd-41e8-9993-a36175297b55.json': '8ff05d4e-24dd-41e8-9993-a36175297b55.json', '0ba55f9b-be6f-4478-b31a-547ea6f64ef4.json': '0ba55f9b-be6f-4478-b31a-547ea6f64ef4.json', '44e69456-7f4c-4701-afa3-d2b34de63d59.json': '44e69456-7f4c-4701-afa3-d2b34de63d59.json', '2e07ba3c-51be-498f-815a-768f3b7cb7e1.json': '2e07ba3c-51be-498f-815a-768f3b7cb7e1.json', '787785b5-e800-45e2-82dd-9001eae092ef.json': '787785b5-e800-45e2-82dd-9001eae092ef.json', '4666e412-31ab-421b-b335-b30c7c322bdd.json': '4666e412-31ab-421b-b335-b30c7c322bdd.json', '780fc9bd-794c-4906-9f64-c04d19144e0f.json': '780fc9bd-794c-4906-9f64-c04d19144e0f.json', 'd766e0b6-f9a3-49e2-bf39-afd2bf804f7a.json': 'd766e0b6-f9a3-49e2-bf39-afd2bf804f7a.json', 'ceb929b7-97d0-4d10-89f8-8206ce24e7a5.json': 'ceb929b7-97d0-4d10-89f8-8206ce24e7a5.json', '48a119ff-73df-4007-8c3d-f33098aa8f74.json': '48a119ff-73df-4007-8c3d-f33098aa8f74.json', 'e95dfdda-ad84-47c2-8d04-105692208369.json': 'e95dfdda-ad84-47c2-8d04-105692208369.json', 'e9ba6451-d997-4d62-9267-32039ef4426f.json': 'e9ba6451-d997-4d62-9267-32039ef4426f.json', '9553b141-533e-4cd7-bb59-5d8f8c56a507.json': '9553b141-533e-4cd7-bb59-5d8f8c56a507.json', '3a25390a-71ac-447a-8af6-d7d6ac9745b6.json': '3a25390a-71ac-447a-8af6-d7d6ac9745b6.json', 'c996d3cd-6f96-4b58-a4f4-60026db0edcc.json': 'c996d3cd-6f96-4b58-a4f4-60026db0edcc.json', '0df64be6-6b66-4bd8-8894-173ae3c5393c.json': '0df64be6-6b66-4bd8-8894-173ae3c5393c.json', '5c2947cc-34b1-42ac-864c-3f69f9171c54.json': '5c2947cc-34b1-42ac-864c-3f69f9171c54.json', '8a28d10a-a617-46af-87a4-ad04f85d19eb.json': '8a28d10a-a617-46af-87a4-ad04f85d19eb.json'}
 #LEVEL 13 USERMAP
-USERMAP = {'f37b8cd6-dfd3-455f-8256-60b4718715cd.json': 'f37b8cd6-dfd3-455f-8256-60b4718715cd.json', '8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json': '8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json', '975572d2-1e6f-4d20-aac8-01c45b7abf3b.json': '975572d2-1e6f-4d20-aac8-01c45b7abf3b.json', '62af7ea0-3a97-4324-a157-91b48f4bd787.json': '62af7ea0-3a97-4324-a157-91b48f4bd787.json', 'e1789fd0-1ec8-45ed-abd2-0789de029f46.json': 'e1789fd0-1ec8-45ed-abd2-0789de029f46.json'}
+# USERMAP = {'f37b8cd6-dfd3-455f-8256-60b4718715cd.json': 'f37b8cd6-dfd3-455f-8256-60b4718715cd.json', '8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json': '8f25e0c0-5708-43f2-a927-e4e342b6b5f0.json', '975572d2-1e6f-4d20-aac8-01c45b7abf3b.json': '975572d2-1e6f-4d20-aac8-01c45b7abf3b.json', '62af7ea0-3a97-4324-a157-91b48f4bd787.json': '62af7ea0-3a97-4324-a157-91b48f4bd787.json', 'e1789fd0-1ec8-45ed-abd2-0789de029f46.json': 'e1789fd0-1ec8-45ed-abd2-0789de029f46.json'}
 
 class GlyphBuilder():
-    def __init__(self, userStates, userActions, userboardids, filename):
+    def __init__(self, userStates, userActions, userboardids, filename,usermap):
+        self.usermap = usermap
+        print(self.usermap)
         self.states = []            #Store all of the states
         self.trajectories = []      #Store all of the trajectories
         self.links = []             #Store all of the links
@@ -71,12 +73,13 @@ class GlyphBuilder():
         res = []
         for id in ids:
             # print(USERMAP[id])
-            res.append(USERMAP[id])
+            res.append(self.usermap[id])
         return res
     # edited by moulika
     def buildStateToVis(self, userStates, userActions,userboardids):
         f=0
         for user in userStates:
+            print(user)
             if len(userStates[user]) - len(userActions[user]) != 1:
                 print(f'Something wrong! There are {len(userStates[user])} states with {len(userActions[user])} actions!' )
                 exit(0)
@@ -325,7 +328,7 @@ class GlyphBuilder():
                     'details': {'event_type': event_type, 'abstraction':abstraction, 'nextAction':stateInfo['nextAction'], 'board_ids':stateInfo['board_ids']},
                     # 'details': {'event_type': event_type},
                     'stat': {},
-                    'user_ids': [USERMAP[user]]
+                    'user_ids': [self.usermap[user]]
                 }
                 # print("**STATE TO BUILD**")
                 # print(stateToBuild)
@@ -341,8 +344,8 @@ class GlyphBuilder():
                     # print(stateExist)
                     # print("stateInfo")
                     print(stateInfo)
-                    if USERMAP[user] not in stateExist['user_ids']:
-                        stateExist['user_ids'].append(USERMAP[user])
+                    if self.usermap[user] not in stateExist['user_ids']:
+                        stateExist['user_ids'].append(self.usermap[user])
                     # edited by moulika
                     if stateInfo['board_ids'] not in stateExist['details']['board_ids']:
                         stateExist['details']['board_ids']=stateExist['details']['board_ids']+(stateInfo['board_ids']) 
@@ -352,7 +355,7 @@ class GlyphBuilder():
             
             # print(userTrajectory)
             userTrajectory.append(1)
-            self.userTrajectories[USERMAP[user]] = userTrajectory
+            self.userTrajectories[self.usermap[user]] = userTrajectory
             
     def checkLinkExist(self, link):
         '''
