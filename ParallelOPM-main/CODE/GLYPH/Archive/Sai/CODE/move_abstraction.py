@@ -168,15 +168,16 @@ for file in os.listdir(log_files):
             new_zone = move_abstraction.getZone(new_x,new_y)
             old_zone = move_abstraction.getZone(old_x,old_y)    
             #adjust links 
-            if element_type == "signal":
-                if new_zone!=old_zone:
+            if new_zone!=old_zone:    
+                if element_type == "signal":
                     move_abstraction.add_signal(new_zone)
+                    move_abstraction.remove_signal(old_zone)
                     if board_state[element_id]['link']!=None:
                         move_abstraction.add_link(new_zone)
 
-            if element_type =="semaphore":
-                if new_zone!=old_zone:
+                if element_type =="semaphore":
                     move_abstraction.add_semaphore(new_zone)
+                    move_abstraction.remove_semaphore(old_zone)
                     for item in board_state:
                         if board_state[item]['type']=='signal':
                             if board_state[item]['link']==element_id:

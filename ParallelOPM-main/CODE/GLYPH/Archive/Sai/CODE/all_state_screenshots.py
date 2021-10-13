@@ -26,6 +26,8 @@ level = 13
 # log_files = "../DATA/LEVEL_15_LOGS"
 # level = 15
 
+# log_files = "../DATA/Logfiles"
+# level = 7
 
 
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
