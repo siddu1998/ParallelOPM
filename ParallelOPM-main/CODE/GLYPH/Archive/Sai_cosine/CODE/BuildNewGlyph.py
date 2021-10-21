@@ -276,7 +276,7 @@ class GlyphBuilder():
         if sum(a)==0 and sum(b)==0:
             return True
 
-        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=0.8:
+        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=0.4:
             return True
 
         
