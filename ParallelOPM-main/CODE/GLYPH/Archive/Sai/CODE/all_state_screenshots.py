@@ -501,6 +501,7 @@ for player in player_traces:
     userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
     userboardids=get_board_ids(log_files) 
 
+
 for user in player_traces:
     usermap[user+'.json']=user+'.json'
 
