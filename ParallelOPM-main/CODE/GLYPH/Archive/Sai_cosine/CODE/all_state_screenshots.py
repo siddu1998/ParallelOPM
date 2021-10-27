@@ -12,7 +12,6 @@ from copy import copy, deepcopy
 
 
 
-
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 
 #TODO : CHANGE FILE PATH in snapshot_status.py
@@ -29,6 +28,8 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
+SCREENSHOT_FLAG = False
+GIF_FLAG        = False
 
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
                     
@@ -287,10 +288,15 @@ CRITICAL_EVENTS=[
 ]
 player_traces = {}
 
+abstraction_object = Abstraction(level,{})
+
 for file in os.listdir(log_files):
     user = file.split('.')[0]
     fileName = log_files+'/'+file
     board_state = {}
+    
+    order_change_events_behaviour = False
+    store_in_trace = True
     
     try:
         os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
@@ -305,8 +311,9 @@ for file in os.listdir(log_files):
         
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
-            stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
+                stateShot.buildScreenShot()
     
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
@@ -330,32 +337,52 @@ for file in os.listdir(log_files):
                 
             print('[INFO] Element Added',element_id)
             
-            #CALL SCREEENSHOT on board_state
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
-                                
+            if SCREENSHOT_FLAG:            
+                #CALL SCREEENSHOT on board_state
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
+                                    
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
+            
+            old_x = board_state[element_id]['element_x'] 
+            old_y = board_state[element_id]['element_y']
+            old_zone = abstraction_object.getZone(old_x,old_y)
+            
             new_x = event['element']['cell'][0] #x
             new_y = event['element']['cell'][1] #y
+            new_zone = abstraction_object.getZone(new_x,new_y)
+            print(f"Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")
             
-            #update to new coordinates
-            board_state[element_id]['element_x']=new_x
-            board_state[element_id]['element_y']=new_y
-            
-            print('[INFO] Element Moved',element_id)
-            #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
-
+            if (new_x,new_y) != (old_x,old_y):
+                print(f"#################### Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")                
+                #update to new coordinates
+                board_state[element_id]['element_x']=new_x
+                board_state[element_id]['element_y']=new_y
+                
+                print('[INFO] Element Moved',element_id)
+                
+                if new_zone == old_zone:
+                    order_change_events_behaviour=True
+        
+                #CALL SCREENSHOT on board_state
+                if SCREENSHOT_FLAG:
+                    stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                    stateShot.buildScreenShot()
+            else:
+                print('[INFOOOOOO] ############ ahaa did not actually move hence not adding to trace')
+                store_in_trace = False
+                
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
 
             print('[INFO] Element Toggled',element_id)
-            #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            
+            if SCREENSHOT_FLAG:
+                #CALL SCREENSHOT on board_state
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
 
         if event['type'] == 'REMOVE_ELEMENT':
             element_id = event['element']['id']         
@@ -377,9 +404,10 @@ for file in os.listdir(log_files):
                     
                             
                 
-            #CALL SCREENSHOT
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                #CALL SCREENSHOT
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
             print('[INFO] Adding a Link')
@@ -402,9 +430,10 @@ for file in os.listdir(log_files):
                 print(file)
             
             # print(board_state) 
-            #CALL SCREENSHOT
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            #CALL SCREENSHOT            
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
         
         if event['type'] == 'FINISH_SIMULATION':
             board_snapshot_ticks = event['total']
@@ -412,78 +441,84 @@ for file in os.listdir(log_files):
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
-            text  = getStatus(event['id'],f"{user}"+".json")                    
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                text  = getStatus(event['id'],f"{user}"+".json")                    
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
+                stateShot.buildScreenShot()
            
         #Calling Abstraction
-        if event['type'] in CRITICAL_EVENTS:                   
-            abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
-            if user in player_traces:
-                player_traces[user][event['id']]={
-                    "id":event['id'],
-                    "type":event['type'],
-                    "screenshot":f"{index}_{event['id']}.png",
-                    "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,
-                    "state_matrix":state_matrix,
-                    "discussion":[],
-                    "upvotes":0,
-                    "created": event['created']
-                }
-            else:
-                player_traces[user]={}
-                player_traces[user][event['id']]={
-                    "id":event['id'],
-                    "type":event['type'],
-                    "screenshot":f"{index}_{event['id']}.png",
-                    "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix, 
-                    "state_matrix":state_matrix,                   
-                    "discussion":[],
-                    "upvotes":0,
-                    "created":event['created']
-                }
-        
-        if event['type']=='BOARD_SNAPSHOT':                   
-            abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
-            if user in player_traces:
-                player_traces[user][event['id']]={
-                    "id":event['id'],
-                    "type":event['type'],
-                    "screenshot":f"{index}_{event['id']}.png",
-                    "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,
-                    "state_matrix":state_matrix,                    
-                    "discussion":[],
-                    "upvotes":0,
-                    "created": event['created'],
-                    "submission_result" : getStatus(event['id'],f"{user}"+".json"),
-                    "ticks":board_snapshot_ticks
-                }
-            else:
-                player_traces[user]={}
-                player_traces[user][event['id']]={
-                    "id":event['id'],
-                    "type":event['type'],
-                    "screenshot":f"{index}_{event['id']}.png",
-                    "absolute_board_state":board_state.copy(),
-                    "abstracted_board_state":abstraction,
-                    "adjacency_matrix":adjacency_matrix,
-                    "state_matrix":state_matrix,
-                    "discussion":[],
-                    "upvotes":0,
-                    "created":event['created'],
-                    "submission_result" : getStatus(event['id'],f"{user}"+".json"),
-                    "ticks":board_snapshot_ticks
+        if store_in_trace:
+            if event['type'] in CRITICAL_EVENTS:                   
+                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                if user in player_traces:
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,
+                        "discussion":[],
+                        "upvotes":0,
+                        "created": event['created']
+                    }
+                else:
+                    player_traces[user]={}
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix, 
+                        "state_matrix":state_matrix,                   
+                        "discussion":[],
+                        "upvotes":0,
+                        "created":event['created']
+                    }
+            
+            if event['type']=='BOARD_SNAPSHOT':                   
+                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                if user in player_traces:
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,                    
+                        "discussion":[],
+                        "upvotes":0,
+                        "created": event['created'],
+                        "submission_result" : getStatus(event['id'],f"{user}"+".json"),
+                        "ticks":board_snapshot_ticks,
+                        "no_order_change_behaviour_issue":order_change_events_behaviour
+                    }
+                else:
+                    player_traces[user]={}
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,
+                        "discussion":[],
+                        "upvotes":0,
+                        "created":event['created'],
+                        "submission_result" : getStatus(event['id'],f"{user}"+".json"),
+                        "ticks":board_snapshot_ticks,
+                        "no_order_change_behaviour_issue":order_change_events_behaviour
 
-                }
+                    }
+            
+                board_snapshot_ticks = "No Ticks Available"
+                order_change_events_behaviour = False
         
-            board_snapshot_ticks = "No Ticks Available"
-
+        store_in_trace = True
 
 #BUILD GLYPH Visualization
 print('[INFO] Building Glyph Visualization')
@@ -501,7 +536,7 @@ for player in player_traces:
     userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
     userboardids=get_board_ids(log_files) 
 
-print(userStates)
+
 for user in player_traces:
     usermap[user+'.json']=user+'.json'
 
@@ -512,11 +547,12 @@ glyphBuilder.run()
 print('[INFO] GLYPH Visualizatoin Built and saved')
 
 
-#BUILD GIFs Comment out to ignore
-print('[INFO] Building GIFs')
-gif_builder.main(level,log_files)
-print('[INFO] Finished Building GIFs')
-#GIF Log file
+if GIF_FLAG:
+    #BUILD GIFs Comment out to ignore
+    print('[INFO] Building GIFs')
+    gif_builder.main(level,log_files)
+    print('[INFO] Finished Building GIFs')
+    #GIF Log file
 
 #Player Statistics
 stats = player_statistics.get_statistics(log_files)

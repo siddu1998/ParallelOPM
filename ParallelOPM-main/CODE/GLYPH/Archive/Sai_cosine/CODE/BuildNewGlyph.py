@@ -49,7 +49,7 @@ INFINITE_SIMILARITY = 50000
 class GlyphBuilder():
     def __init__(self, userStates, userActions, userboardids, filename,usermap):
         self.usermap = usermap
-        print(self.usermap)
+        #print(self.usermap)
         self.states = []            #Store all of the states
         self.trajectories = []      #Store all of the trajectories
         self.links = []             #Store all of the links
@@ -85,13 +85,13 @@ class GlyphBuilder():
     def buildStateToVis(self, userStates, userActions,userboardids):
         f=0
         for user in userStates:
-            print(user)
-            print(type(userStates[user]))
+            # print(user)
+            # print(type(userStates[user]))
             if len(userStates[user]) - len(userActions[user]) != 1:
                 print(f'Something wrong! There are {len(userStates[user])} states with {len(userActions[user])} actions!' )
                 exit(0)
             for i in range(len(userActions[user])):
-                print(type(userStates[user]),type(i))
+                #print(type(userStates[user]),type(i))
                 userStates[user][i]['nextAction'] = userActions[user][i]
                 # edited by moulika
                 try:
@@ -271,12 +271,16 @@ class GlyphBuilder():
         a = np.array(abstraction1['state_matrix']).flatten()
         b = np.array(abstraction2['state_matrix']).flatten()
 
+        if sum(a)==0 and sum(b)!=0:
+            return False
         
-        #case 1 both are origins then return true instead of NaN
-        if sum(a)==0 and sum(b)==0:
+        elif sum(a)!=0 and sum(b)==0:
+            return False
+        
+        elif sum(a)==0 and sum(b)==0:
             return True
 
-        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=0.1:
+        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=0.8:
             return True
 
         
@@ -301,8 +305,8 @@ class GlyphBuilder():
             stateAbstraction = state['details']['abstraction']
             stateToCheckAbstraction = stateToCheck['details']['abstraction']
             if self.compareStateAbstraction(stateAbstraction, stateToCheckAbstraction):
-                print('check:', stateToCheckAbstraction)
-                print(stateAbstraction)
+                #print('check:', stateToCheckAbstraction)
+                #print(stateAbstraction)
                 return state['id']
         return 0
 
@@ -310,13 +314,13 @@ class GlyphBuilder():
         """
         Create state/node of Glyph visualization
         """
-        print(self.stateToVis)
+        #print(self.stateToVis)
         for user in self.stateToVis:
             userTrajectory = [0]
-            print(user)
+            #print(user)
             for stateInfo in self.stateToVis[user]:
                 # print("STATEINFO")
-                print(stateInfo)
+                #print(stateInfo)
                 event_type = ''
                 abstraction = self.buildAbstraction(stateInfo) 
                 stateId = len(self.states)
@@ -344,7 +348,7 @@ class GlyphBuilder():
                     # print("stateExist")
                     # print(stateExist)
                     # print("stateInfo")
-                    print(stateInfo)
+                    #print(stateInfo)
                     if self.usermap[user] not in stateExist['user_ids']:
                         stateExist['user_ids'].append(self.usermap[user])
                     # edited by moulika
