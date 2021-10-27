@@ -17,11 +17,21 @@ SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 
 #TODO : CHANGE FILE PATH in snapshot_status.py
 
+# log_files = "../DATA/LEVEL_1_LOGS"
+# level = 1
+
+# log_files = "../DATA/LEVEL_2_LOGS"
+# level = 2
+
+log_files = "../DATA/LEVEL_3_LOGS"
+level = 3
+
+
 # log_files = "../DATA/DDRI_STUDY_LOGS"
 # level = 5
 
-log_files = "../DATA/LEVEL_13_LOGS"
-level = 13
+# log_files = "../DATA/LEVEL_13_LOGS"
+# level = 13
 
 # log_files = "../DATA/LEVEL_15_LOGS"
 # level = 15
@@ -29,24 +39,29 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
+SCREENSHOT_FLAG = False
+GIF_FLAG        = False
 
-default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
+default_elements = {
+    "1":{"L_apple_4001":(6,7)},
+    
+    "13":{"L_dragonfruit_5001":(4,12)},
                     
-                    "15":{
-                        "L_fig_5002":(6,2),
-                        "L_fig_5003":(6,10),
-                        "L_fig_5001":(3,6),
-                        "L_fig_4006":(8,12),
-                        "L_fig_4005":(12,8),
-                        "L_fig_4004":(8,8),
-                        "L_fig_4003":(12,4),
-                        "L_fig_4002":(8,4),
-                        "L_fig_4001":(12,0),
-                        "L_fig_3001":(12,12),
-                        "L_fig_2001":(7,0)
-                        
-                    }
-                    }
+            "15":{
+                "L_fig_5002":(6,2),
+                "L_fig_5003":(6,10),
+                "L_fig_5001":(3,6),
+                "L_fig_4006":(8,12),
+                "L_fig_4005":(12,8),
+                "L_fig_4004":(8,8),
+                "L_fig_4003":(12,4),
+                "L_fig_4002":(8,4),
+                "L_fig_4001":(12,0),
+                "L_fig_3001":(12,12),
+                "L_fig_2001":(7,0)
+                
+            }
+    }
 
 class StateShot:
     def __init__(self,board_state,fileName,text,level,user,eventType=None):
@@ -305,8 +320,9 @@ for file in os.listdir(log_files):
         
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
-            stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
+                stateShot.buildScreenShot()
     
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
@@ -331,8 +347,9 @@ for file in os.listdir(log_files):
             print('[INFO] Element Added',element_id)
             
             #CALL SCREEENSHOT on board_state
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
                                 
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
@@ -344,9 +361,11 @@ for file in os.listdir(log_files):
             board_state[element_id]['element_y']=new_y
             
             print('[INFO] Element Moved',element_id)
-            #CALL SCREENSHOT on board_state
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+
+            if SCREENSHOT_FLAG:
+                #CALL SCREENSHOT on board_state
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
 
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
@@ -376,10 +395,10 @@ for file in os.listdir(log_files):
 
                     
                             
-                
-            #CALL SCREENSHOT
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:                
+                #CALL SCREENSHOT
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
             print('[INFO] Adding a Link')
@@ -403,8 +422,9 @@ for file in os.listdir(log_files):
             
             # print(board_state) 
             #CALL SCREENSHOT
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
         
         if event['type'] == 'FINISH_SIMULATION':
             board_snapshot_ticks = event['total']
@@ -412,9 +432,10 @@ for file in os.listdir(log_files):
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
-            text  = getStatus(event['id'],f"{user}"+".json")                    
-            stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
-            stateShot.buildScreenShot()
+            if SCREENSHOT_FLAG:
+                text  = getStatus(event['id'],f"{user}"+".json")                    
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
+                stateShot.buildScreenShot()
            
         #Calling Abstraction
         if event['type'] in CRITICAL_EVENTS:                   
@@ -512,11 +533,12 @@ glyphBuilder.run()
 print('[INFO] GLYPH Visualizatoin Built and saved')
 
 
-#BUILD GIFs Comment out to ignore
-print('[INFO] Building GIFs')
-gif_builder.main(level,log_files)
-print('[INFO] Finished Building GIFs')
-#GIF Log file
+
+if GIF_FLAG:
+    print('[INFO] Building GIFs')
+    gif_builder.main(level,log_files)
+    print('[INFO] Finished Building GIFs')
+    #GIF Log file
 
 #Player Statistics
 stats = player_statistics.get_statistics(log_files)

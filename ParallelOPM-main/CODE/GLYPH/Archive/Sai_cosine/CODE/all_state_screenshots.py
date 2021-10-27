@@ -28,8 +28,8 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
-SCREENSHOT_FLAG = False
-GIF_FLAG        = False
+SCREENSHOT_FLAG = True
+GIF_FLAG        = True
 
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
                     
