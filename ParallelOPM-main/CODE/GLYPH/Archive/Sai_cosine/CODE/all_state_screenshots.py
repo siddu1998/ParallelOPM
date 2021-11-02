@@ -178,7 +178,7 @@ class Abstraction:
     def zoneIndex(self,zone):
         return self.indexMap[zone]
     def putSignal(self,x,y,id_1,id_2):
-        
+        print(x,y)
         zone  = self.getZone(x,y)
         if zone in self.signal_zone_dict:
             self.signal_zone_dict[zone]+=1
@@ -190,6 +190,8 @@ class Abstraction:
         #populate link dict
         (connection_x,connection_y) = self.getSemaphoreXY(id_2)
         if connection_x!=None:
+            print(connection_x,connection_y)
+            print(self.getZone(connection_x,connection_y),zone)
             key  = zone + self.getZone(connection_x,connection_y)
             if key in self.link_dict:
                 self.link_dict[key]+=1
@@ -205,6 +207,7 @@ class Abstraction:
             if id_2!=None:
                 (connection_x,connection_y) = default_elements[str(self.level)][id_2]
                 if connection_x!=None:
+                    print('[INFO] Yes! Default element found!')
                     key  = zone + self.getZone(connection_x,connection_y)
                     if key in self.link_dict:
                         self.link_dict[key]+=1
@@ -296,7 +299,10 @@ for file in os.listdir(log_files):
     board_state = {}
     
     order_change_events_behaviour = False
+    same_zone_linking = False
+    moving_connected_elements = False
     store_in_trace = True
+    
     
     try:
         os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
@@ -364,15 +370,31 @@ for file in os.listdir(log_files):
                 
                 if new_zone == old_zone:
                     order_change_events_behaviour=True
-        
+                #if the element is connected and being moved it is an interesting move and we want to flag!
+                if board_state[element_id]["type"]=="signal":
+                    if board_state[element_id]['link']!=None:
+                        moving_connected_elements=True
+                        print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                        
+                elif board_state[element_id]["type"]=="semaphore":
+                    for item in board_state:
+                        if board_state[item]['type']=='signal':
+                            try:
+                                if board_state[item]['link']==element_id:
+                                    moving_connected_elements=True
+                                    print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                            except:
+                                pass
+                            
                 #CALL SCREENSHOT on board_state
                 if SCREENSHOT_FLAG:
                     stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
                     stateShot.buildScreenShot()
+
             else:
                 print('[INFOOOOOO] ############ ahaa did not actually move hence not adding to trace')
                 store_in_trace = False
-                
+            
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
@@ -417,13 +439,54 @@ for file in os.listdir(log_files):
                 element_2_id = data['events'][index+1]['element']['id']
                 print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
-                print(element_2_id)
+                try:
+                    element_2_x =  board_state[element_2_id]['element_x']               
+                    element_2_y =  board_state[element_2_id]['element_y']
+                    #if element_2 not in board state and is possibly a default element
+                except:
+                    element_2_x = default_elements[str(level)][element_2_id][0]
+                    element_2_y = default_elements[str(level)][element_2_id][1]
+                element_1_x = board_state[element_1_id]['element_x']
+                element_1_y = board_state[element_1_id]['element_y']
+                
+                element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                
+                if element_2_zone == element_1_zone:
+                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    print('**************************')
+                    print('**************************')
+                    print('**************************')
+                    same_zone_linking = True
+                    
+                print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                                                       
+
             elif data['events'][index+2]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+2]['element']['id']
                 print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
+                try:
+                    element_2_x =  board_state[element_2_id]['element_x']               
+                    element_2_y =  board_state[element_2_id]['element_y']
+                    #if element_2 not in board state and is possibly a default element
+                except:
+                    element_2_x = default_elements[str(level)][element_2_id][0]
+                    element_2_y = default_elements[str(level)][element_2_id][1]
 
-                print(element_2_id)
+                element_1_x = board_state[element_1_id]['element_x']
+                element_1_y = board_state[element_1_id]['element_y']
+                
+                element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                if element_2_zone == element_1_zone:
+                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    print('**************************')
+                    print('**************************')
+                    print('**************************')
+                    same_zone_linking = True
+                    
+                print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
             else:
                 print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
                 print('[INFO] Either CODE needs fix or the log file is corrupted')
@@ -494,7 +557,9 @@ for file in os.listdir(log_files):
                         "created": event['created'],
                         "submission_result" : getStatus(event['id'],f"{user}"+".json"),
                         "ticks":board_snapshot_ticks,
-                        "no_order_change_behaviour_issue":order_change_events_behaviour
+                        "no_order_change_behaviour_issue":order_change_events_behaviour,
+                        "same_zone_linking":same_zone_linking,
+                        "moving_connected_elements":moving_connected_elements
                     }
                 else:
                     player_traces[user]={}
@@ -511,12 +576,15 @@ for file in os.listdir(log_files):
                         "created":event['created'],
                         "submission_result" : getStatus(event['id'],f"{user}"+".json"),
                         "ticks":board_snapshot_ticks,
-                        "no_order_change_behaviour_issue":order_change_events_behaviour
-
+                        "no_order_change_behaviour_issue":order_change_events_behaviour,
+                        "same_zone_linking":same_zone_linking,
+                        "moving_connected_elements":moving_connected_elements
                     }
             
                 board_snapshot_ticks = "No Ticks Available"
                 order_change_events_behaviour = False
+                same_zone_linking=False
+                moving_connected_elements = False
         
         store_in_trace = True
 
