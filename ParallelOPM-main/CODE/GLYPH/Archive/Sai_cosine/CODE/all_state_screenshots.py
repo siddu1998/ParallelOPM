@@ -28,8 +28,17 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
-SCREENSHOT_FLAG = True
-GIF_FLAG        = True
+SCREENSHOT_FLAG = False
+GIF_FLAG        = False
+
+
+
+
+default_elements_names= {
+    "13":{
+        "L_dragonfruit_5001":"default_switch"
+    }
+}
 
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
                     
@@ -144,6 +153,9 @@ class Abstraction:
         for zone in self.zones:
             self.indexMap[zone]=self.index
             self.index+=1
+        
+        print(self.indexMap)
+        print('=========$$$$$$$$========$$$$$$======')
         self.indexMap["semaphore_row"]=self.index
         self.index+=1
         self.indexMap["signal_row"]=self.index
@@ -178,20 +190,20 @@ class Abstraction:
     def zoneIndex(self,zone):
         return self.indexMap[zone]
     def putSignal(self,x,y,id_1,id_2):
-        print(x,y)
+        #print(x,y)
         zone  = self.getZone(x,y)
         if zone in self.signal_zone_dict:
             self.signal_zone_dict[zone]+=1
         else:
             self.signal_zone_dict[zone]=1
-        print(f'[INFO] adding {id_1} to signal positions')
+        #print(f'[INFO] adding {id_1} to signal positions')
         self.signalPositions.append((id_1,x,y,zone))
         self.nSignals+=1
         #populate link dict
         (connection_x,connection_y) = self.getSemaphoreXY(id_2)
         if connection_x!=None:
-            print(connection_x,connection_y)
-            print(self.getZone(connection_x,connection_y),zone)
+            #print(connection_x,connection_y)
+            #print(self.getZone(connection_x,connection_y),zone)
             key  = zone + self.getZone(connection_x,connection_y)
             if key in self.link_dict:
                 self.link_dict[key]+=1
@@ -302,6 +314,9 @@ for file in os.listdir(log_files):
     same_zone_linking = False
     moving_connected_elements = False
     store_in_trace = True
+    
+    knowledge_statement = "No Knowledge Statement"
+    
     
     
     try:
@@ -454,9 +469,6 @@ for file in os.listdir(log_files):
                 
                 if element_2_zone == element_1_zone:
                     print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
-                    print('**************************')
-                    print('**************************')
-                    print('**************************')
                     same_zone_linking = True
                     
                 print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
@@ -481,9 +493,6 @@ for file in os.listdir(log_files):
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 if element_2_zone == element_1_zone:
                     print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
-                    print('**************************')
-                    print('**************************')
-                    print('**************************')
                     same_zone_linking = True
                     
                 print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
@@ -492,7 +501,9 @@ for file in os.listdir(log_files):
                 print('[INFO] Either CODE needs fix or the log file is corrupted')
                 print(file)
             
-            # print(board_state) 
+            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            print(knowledge_statement)
+
             #CALL SCREENSHOT            
             if SCREENSHOT_FLAG:
                 stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
@@ -524,6 +535,7 @@ for file in os.listdir(log_files):
                         "state_matrix":state_matrix,
                         "discussion":[],
                         "upvotes":0,
+                        "knowledge_statement":knowledge_statement,
                         "created": event['created']
                     }
                 else:
@@ -538,7 +550,9 @@ for file in os.listdir(log_files):
                         "state_matrix":state_matrix,                   
                         "discussion":[],
                         "upvotes":0,
+                        "knowledge_statement":knowledge_statement,
                         "created":event['created']
+
                     }
             
             if event['type']=='BOARD_SNAPSHOT':                   
@@ -559,6 +573,7 @@ for file in os.listdir(log_files):
                         "ticks":board_snapshot_ticks,
                         "no_order_change_behaviour_issue":order_change_events_behaviour,
                         "same_zone_linking":same_zone_linking,
+                        "knowledge_statement":knowledge_statement,
                         "moving_connected_elements":moving_connected_elements
                     }
                 else:
@@ -578,6 +593,7 @@ for file in os.listdir(log_files):
                         "ticks":board_snapshot_ticks,
                         "no_order_change_behaviour_issue":order_change_events_behaviour,
                         "same_zone_linking":same_zone_linking,
+                        "knowledge_statement":knowledge_statement,
                         "moving_connected_elements":moving_connected_elements
                     }
             
@@ -585,6 +601,7 @@ for file in os.listdir(log_files):
                 order_change_events_behaviour = False
                 same_zone_linking=False
                 moving_connected_elements = False
+                knowledge_statement="No Knowledge Statement",
         
         store_in_trace = True
 

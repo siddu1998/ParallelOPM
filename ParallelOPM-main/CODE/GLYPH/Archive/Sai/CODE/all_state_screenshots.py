@@ -47,20 +47,20 @@ default_elements = {
     
     "13":{"L_dragonfruit_5001":(4,12)},
                     
-            "15":{
-                "L_fig_5002":(6,2),
-                "L_fig_5003":(6,10),
-                "L_fig_5001":(3,6),
-                "L_fig_4006":(8,12),
-                "L_fig_4005":(12,8),
-                "L_fig_4004":(8,8),
-                "L_fig_4003":(12,4),
-                "L_fig_4002":(8,4),
-                "L_fig_4001":(12,0),
-                "L_fig_3001":(12,12),
-                "L_fig_2001":(7,0)
-                
-            }
+        "15":{
+            "L_fig_5002":(6,2),
+            "L_fig_5003":(6,10),
+            "L_fig_5001":(3,6),
+            "L_fig_4006":(8,12),
+            "L_fig_4005":(12,8),
+            "L_fig_4004":(8,8),
+            "L_fig_4003":(12,4),
+            "L_fig_4002":(8,4),
+            "L_fig_4001":(12,0),
+            "L_fig_3001":(12,12),
+            "L_fig_2001":(7,0)
+            
+        }
     }
 
 class StateShot:
@@ -300,7 +300,8 @@ CRITICAL_EVENTS=[
     'REMOVE_ELEMENT',
     'BEGIN_LINK',
 ]
-player_traces = {}
+
+player_traces = {} #important
 
 for file in os.listdir(log_files):
     user = file.split('.')[0]
@@ -526,9 +527,11 @@ for player in player_traces:
 for user in player_traces:
     usermap[user+'.json']=user+'.json'
 
- 
+
 glyphBuilder = GlyphBuilder(userStates, userActions, userboardids, f'level_{level}_sai.json',usermap)
 glyphBuilder.run()
+
+
 
 print('[INFO] GLYPH Visualizatoin Built and saved')
 
