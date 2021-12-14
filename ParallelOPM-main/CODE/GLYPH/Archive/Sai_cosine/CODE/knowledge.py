@@ -47,7 +47,8 @@ knowledge = {
                 "concept_8":{
                     "statement":"Handling Race Condition (Red thread Blocking Pink thread)",
                     "link": "DJ",
-                    "OPM":"DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time."
+                    "OPM":"DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                    "suggested": "AJ"
                 },
                 "concept_9":{
                     "statement":"Handling Race Condition (Red thread Blocking Pink thread)",
@@ -226,3 +227,4 @@ out_file = open("trace_2.json", "w")
 json.dump(play_trace, out_file, indent = 6) 
 out_file.close() 
 print("Knowledge added in Play Trace Updated and saved")
+
