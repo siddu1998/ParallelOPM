@@ -19,17 +19,17 @@ SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 # log_files = "../DATA/DDRI_STUDY_LOGS"
 # level = 5
 
-log_files = "../DATA/LEVEL_13_LOGS"
-level = 13
+# log_files = "../DATA/LEVEL_13_LOGS"
+# level = 13
 
-# log_files = "../DATA/LEVEL_15_LOGS"
-# level = 15
+log_files = "../DATA/LEVEL_15_LOGS"
+level = 15
 
 # log_files = "../DATA/Logfiles"
 # level = 7
 
-SCREENSHOT_FLAG = False
-GIF_FLAG        = False
+SCREENSHOT_FLAG = True
+GIF_FLAG        = True
 
 
 
@@ -326,7 +326,7 @@ for file in os.listdir(log_files):
         pass
         
     board_snapshot_ticks = "No Ticks Available"
-    
+    print(fileName)
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
         
@@ -617,9 +617,10 @@ for player in player_traces:
         if player_traces[player][event]['type']=='BOARD_SNAPSHOT':
             board_snapshot_abstractions.append({"state_matrix":player_traces[player][event]["state_matrix"]})
     
-    userStates[f"{player}.json"]=board_snapshot_abstractions
-    userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
-    userboardids=get_board_ids(log_files) 
+    if len(board_snapshot_abstractions)>1:
+        userStates[f"{player}.json"]=board_snapshot_abstractions
+        userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
+        userboardids=get_board_ids(log_files) 
 
 
 for user in player_traces:
@@ -661,16 +662,16 @@ for player in player_traces:
 
 #SAVING LOG FILES
 #1. Trace Data
-out_file = open("trace.json", "w") 
+out_file = open("trace_15.json", "w") 
 json.dump(player_traces, out_file, indent = 6) 
 out_file.close() 
 
 #2. Player Statistics
-out_file = open("stats.json", "w") 
+out_file = open("stats_15.json", "w") 
 json.dump(stats, out_file, indent = 6) 
 out_file.close() 
 
-out_file = open("stats_2.json", "w") 
+out_file = open("stats_2_15.json", "w") 
 json.dump(stats_2, out_file, indent = 6) 
 out_file.close() 
 
