@@ -1,5 +1,6 @@
 import cv2
 import json
+from itertools import islice
 
 screenshot_folder = '../DATA/ScreenshotData'
 level = "15"
@@ -32,14 +33,8 @@ for i in range(0,width_in_cells):
 
 
 
-from itertools import islice
   
-def convert(lst, var_lst):
-    idx = 0
-    for var_len in var_lst:
-        yield lst[idx : idx + var_len]
-        idx += var_len
-      
+
 
 n = 15
 images = [images[i:i+n] for i in range(0, len(images), n)]
