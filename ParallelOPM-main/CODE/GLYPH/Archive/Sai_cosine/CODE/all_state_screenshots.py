@@ -608,7 +608,7 @@ for file in os.listdir(log_files):
 #BUILD GLYPH Visualization
 print('[INFO] Building Glyph Visualization')
 
-userStates = {}
+userStates = {} #usermap{"sai":[],"sal"} --> 
 userActions = {} 
 usermap = {}
 for player in player_traces:

@@ -399,7 +399,7 @@ for player in play_trace:
                         if k_flag==False:
                             print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
                             suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
-            
+                            #alert(there is a new link can you give a reason)
             play_trace[player][action]["suggestions"]=suggestions
             print('========================')
         
