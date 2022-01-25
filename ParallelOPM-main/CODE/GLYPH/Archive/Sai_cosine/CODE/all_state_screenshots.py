@@ -16,14 +16,18 @@ SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 
 #TODO : CHANGE FILE PATH in snapshot_status.py
 
-# log_files = "../DATA/DDRI_STUDY_LOGS"
+# log_files = "../DATA/LEVEL_5_LOGS"
 # level = 5
+
+log_files = "../DATA/LEVEL_10_LOGS"
+level = 10
+
 
 # log_files = "../DATA/LEVEL_13_LOGS"
 # level = 13
 
-log_files = "../DATA/LEVEL_15_LOGS"
-level = 15
+# log_files = "../DATA/LEVEL_15_LOGS"
+# level = 15
 
 # log_files = "../DATA/Logfiles"
 # level = 7
@@ -40,7 +44,13 @@ default_elements_names= {
     }
 }
 
-default_elements = {"13":{"L_dragonfruit_5001":(4,12)},
+default_elements = {
+    
+                    "10":{
+                        "L_coconut_5002":(6,10),
+                        "L_coconut_5001":(8,4)
+                    },
+                    "13":{"L_dragonfruit_5001":(4,12)},
                     
                     "15":{
                         "L_fig_5002":(6,2),
@@ -662,16 +672,16 @@ for player in player_traces:
 
 #SAVING LOG FILES
 #1. Trace Data
-out_file = open("trace_15.json", "w") 
+out_file = open("trace_10.json", "w") 
 json.dump(player_traces, out_file, indent = 6) 
 out_file.close() 
 
 #2. Player Statistics
-out_file = open("stats_15.json", "w") 
+out_file = open("stats_10.json", "w") 
 json.dump(stats, out_file, indent = 6) 
 out_file.close() 
 
-out_file = open("stats_2_15.json", "w") 
+out_file = open("stats_2_10.json", "w") 
 json.dump(stats_2, out_file, indent = 6) 
 out_file.close() 
 

@@ -1,0 +1,64 @@
+{
+      "af6aafb5-a353-408a-bb31-55949efc7a0d.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "044397f8-0ead-4440-8723-a46040eb690e.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 2,
+            "BEGIN_LINK": 2
+      },
+      "4736d7de-1d1e-4a54-9b5b-60b6d5552bdc.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "cca70519-2a06-4e65-ba8c-9d38b363bbd7.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "2f433b50-af50-4b84-a92a-330dc7416930.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 1,
+            "REMOVE_ELEMENT": 1
+      },
+      "d7fc283f-a0a8-444d-a127-cf600f0c2c16.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 3,
+            "REMOVE_ELEMENT": 1,
+            "BEGIN_LINK": 2
+      },
+      "81e55300-0e55-46c5-907f-9f6d7027a548.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 4,
+            "BEGIN_LINK": 1
+      },
+      "e7f1eb4f-8935-47b1-bbe9-a9946dac37f5.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 4,
+            "BEGIN_LINK": 2,
+            "TOGGLE_ELEMENT": 3
+      },
+      "631b904f-2f04-410b-9a3d-82dee33a306a.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "cde502ef-4bbe-4fe7-bc10-096ec60001d2.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "b310e1ed-0924-4464-9a20-3ae08c8cd0cc.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "1804ae02-e255-429c-8e30-7254aa8f149d.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 2,
+            "BEGIN_LINK": 1
+      },
+      "94686023-f58a-4818-bef2-74d27631f9e1.json": {
+            "BEGIN_LEVEL_LOAD": 1
+      },
+      "732f09ae-5500-4e2c-8893-c9676f590f32.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 1,
+            "MOVE_ELEMENT": 8
+      },
+      "7d5d5db5-149b-42c9-83f6-d33bc630f3c5.json": {
+            "BEGIN_LEVEL_LOAD": 1,
+            "ADD_ELEMENT": 1
+      }
+}
