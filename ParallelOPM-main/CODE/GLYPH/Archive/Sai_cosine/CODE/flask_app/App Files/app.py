@@ -4,6 +4,11 @@ from snapshot_status import getStatus
 from getBoardID import get_board_ids
 from BuildNewGlyph import *
 from copy import copy, deepcopy
+import numpy as np
+from numpy import dot
+from numpy.linalg import norm
+import math
+from scipy import spatial
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -1088,37 +1093,381 @@ def getGlyphFile():
     return {"glyph_vis":glyph_vis, "player_traces":player_traces}
 
 
+def getPlayerTrace_internal(data):
+    user = data['id']
+    level = data['events'][0]['order']
+    player_traces = {}
+    order_change_events_behaviour = False
+    same_zone_linking = False
+    moving_connected_elements = False
+    store_in_trace = True
+    SCREENSHOT_FLAG=False
+    
+    knowledge_statement = "No Knowledge Statement"
 
+    board_snapshot_ticks = "No Ticks Available"
+    abstraction_object = Abstraction(level,{})
+    #
+
+
+    for index,event in enumerate(data['events']):    
+        
+        if event['type']=="BEGIN_LEVEL_LOAD":
+            board_state = {}
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
+                stateShot.buildScreenShot()
+    
+        if event['type'] == 'ADD_ELEMENT':
+            element_id   = event['element']['id']     #element id
+            element_type = event['element']['type'] #semaphore, signal
+            element_x = event['element']['cell'][0] #x
+            element_y = event['element']['cell'][1] #y
+            if element_type == 'signal':
+                board_state[element_id] = {
+                    "type":element_type,
+                    "element_x":element_x,
+                    "element_y":element_y,
+                    "link":None
+                }
+            if element_type == 'semaphore':
+                board_state[element_id] = {
+                    "type":element_type,
+                    "element_x":element_x,
+                    "element_y":element_y,
+                    "status":'inactive'
+                }
+                
+            print('[INFO] Element Added',element_id)
+            
+            if SCREENSHOT_FLAG:            
+                #CALL SCREEENSHOT on board_state
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
+                                    
+        if event['type'] == 'MOVE_ELEMENT':
+            element_id   = event['element']['id']  #element id
+            
+            old_x = board_state[element_id]['element_x'] 
+            old_y = board_state[element_id]['element_y']
+            old_zone = abstraction_object.getZone(old_x,old_y)
+            
+            new_x = event['element']['cell'][0] #x
+            new_y = event['element']['cell'][1] #y
+            new_zone = abstraction_object.getZone(new_x,new_y)
+            print(f"Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")
+            
+            if (new_x,new_y) != (old_x,old_y):
+                print(f"#################### Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")                
+                #update to new coordinates
+                board_state[element_id]['element_x']=new_x
+                board_state[element_id]['element_y']=new_y
+                
+                print('[INFO] Element Moved',element_id)
+                
+                if new_zone == old_zone:
+                    order_change_events_behaviour=True
+                #if the element is connected and being moved it is an interesting move and we want to flag!
+                if board_state[element_id]["type"]=="signal":
+                    if board_state[element_id]['link']!=None:
+                        moving_connected_elements=True
+                        print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                        
+                elif board_state[element_id]["type"]=="semaphore":
+                    for item in board_state:
+                        if board_state[item]['type']=='signal':
+                            try:
+                                if board_state[item]['link']==element_id:
+                                    moving_connected_elements=True
+                                    print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                            except:
+                                pass
+                            
+                #CALL SCREENSHOT on board_state
+                if SCREENSHOT_FLAG:
+                    stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                    stateShot.buildScreenShot()
+
+            else:
+                print('[INFOOOOOO] ############ ahaa did not actually move hence not adding to trace')
+                store_in_trace = False
+            
+        if event['type'] == 'TOGGLE_ELEMENT':
+            element_id   = event['element']['id']  #element id
+            board_state[element_id]['status']=event['element']['spec']
+
+            print('[INFO] Element Toggled',element_id)
+            
+            if SCREENSHOT_FLAG:
+                #CALL SCREENSHOT on board_state
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
+
+        if event['type'] == 'REMOVE_ELEMENT':
+            element_id = event['element']['id']         
+            board_state.pop(element_id)
+            #print('[INFO] Element Removed',element_id,file)            
+
+            #if you are deleting a semaphore 
+            # you want to delete the signal link
+            for item in board_state:
+                if board_state[item]['type']=='signal':
+                    try:
+                        if board_state[item]['link']==element_id:
+                            board_state[item]['link']=None
+                            print(f'[INFO] Element Link Removed {element_id} and {item}',)            
+
+                    except:
+                        pass
+
+                    
+                            
+                
+            if SCREENSHOT_FLAG:
+                #CALL SCREENSHOT
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
+               
+        if event['type'] == 'BEGIN_LINK':
+            print('[INFO] Adding a Link')
+            element_1_id = event['element']['id']
+            print('[INFO] Adding a Link',element_1_id)
+            if data['events'][index+1]['type']=='FINISH_LINK':
+                element_2_id = data['events'][index+1]['element']['id']
+                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                board_state[element_1_id]['link']=element_2_id
+                try:
+                    element_2_x =  board_state[element_2_id]['element_x']               
+                    element_2_y =  board_state[element_2_id]['element_y']
+                    #if element_2 not in board state and is possibly a default element
+                except:
+                    element_2_x = default_elements[str(level)][element_2_id][0]
+                    element_2_y = default_elements[str(level)][element_2_id][1]
+                element_1_x = board_state[element_1_id]['element_x']
+                element_1_y = board_state[element_1_id]['element_y']
+                
+                element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                
+                if element_2_zone == element_1_zone:
+                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    same_zone_linking = True
+                    
+                print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                                                       
+
+            elif data['events'][index+2]['type']=='FINISH_LINK':
+                element_2_id = data['events'][index+2]['element']['id']
+                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                board_state[element_1_id]['link']=element_2_id
+                try:
+                    element_2_x =  board_state[element_2_id]['element_x']               
+                    element_2_y =  board_state[element_2_id]['element_y']
+                    #if element_2 not in board state and is possibly a default element
+                except:
+                    element_2_x = default_elements[str(level)][element_2_id][0]
+                    element_2_y = default_elements[str(level)][element_2_id][1]
+
+                element_1_x = board_state[element_1_id]['element_x']
+                element_1_y = board_state[element_1_id]['element_y']
+                
+                element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                if element_2_zone == element_1_zone:
+                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    same_zone_linking = True
+                    
+                print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+            else:
+                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
+                print('[INFO] Either CODE needs fix or the log file is corrupted')
+                #print(file)
+            
+            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            print(knowledge_statement)
+
+            #CALL SCREENSHOT            
+            if SCREENSHOT_FLAG:
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
+                stateShot.buildScreenShot()
+        
+        if event['type'] == 'FINISH_SIMULATION':
+            board_snapshot_ticks = event['total']
+        
+        if event['type']=='BOARD_SNAPSHOT':
+            #No element manipulation 
+            # so just Build the screenshot
+            if SCREENSHOT_FLAG:
+                text  = getStatus(data,event['id'])                    
+                stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
+                stateShot.buildScreenShot()
+           
+        #Calling Abstraction
+        if store_in_trace:
+            if event['type'] in CRITICAL_EVENTS:                   
+                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                if user in player_traces:
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,
+                        "discussion":[],
+                        "upvotes":0,
+                        "knowledge_statement":knowledge_statement,
+                        "created": event['created']
+                    }
+                else:
+                    player_traces[user]={}
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix, 
+                        "state_matrix":state_matrix,                   
+                        "discussion":[],
+                        "upvotes":0,
+                        "knowledge_statement":knowledge_statement,
+                        "created":event['created']
+
+                    }
+            
+            if event['type']=='BOARD_SNAPSHOT':                   
+                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                if user in player_traces:
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,                    
+                        "discussion":[],
+                        "upvotes":0,
+                        "created": event['created'],
+                        "submission_result" : getStatus(data,event['id']),
+                        "ticks":board_snapshot_ticks,
+                        "no_order_change_behaviour_issue":order_change_events_behaviour,
+                        "same_zone_linking":same_zone_linking,
+                        "knowledge_statement":knowledge_statement,
+                        "moving_connected_elements":moving_connected_elements
+                    }
+                else:
+                    player_traces[user]={}
+                    player_traces[user][event['id']]={
+                        "id":event['id'],
+                        "type":event['type'],
+                        "screenshot":f"{index}_{event['id']}.png",
+                        "absolute_board_state":board_state.copy(),
+                        "abstracted_board_state":abstraction,
+                        "adjacency_matrix":adjacency_matrix,
+                        "state_matrix":state_matrix,
+                        "discussion":[],
+                        "upvotes":0,
+                        "created":event['created'],
+                        "submission_result" : getStatus(data,event['id']),
+                        "ticks":board_snapshot_ticks,
+                        "no_order_change_behaviour_issue":order_change_events_behaviour,
+                        "same_zone_linking":same_zone_linking,
+                        "knowledge_statement":knowledge_statement,
+                        "moving_connected_elements":moving_connected_elements
+                    }
+            
+                board_snapshot_ticks = "No Ticks Available"
+                order_change_events_behaviour = False
+                same_zone_linking=False
+                moving_connected_elements = False
+                knowledge_statement="No Knowledge Statement",
+        
+        store_in_trace = True
+
+    for player in player_traces:
+        #go through player actions
+        for action in player_traces[player]:
+            #get player submissions
+            if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
+                print("Player ID: ", player)
+                print("Event ID: ",action)
+                suggestions = []
+                #get adjacency matrix of submission
+                adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
+                #get links in that submissions
+                for row in range(0,len(adjacency_matrix)):
+                    for col in range(0,len(adjacency_matrix[0])):
+                        k_flag = False
+                        if adjacency_matrix[row][col]>0:
+                            link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
+                            
+                            print(f"[INFO] Link in between {link}")
+                            for concept in knowledge[str(level)]["concepts"]:
+                                if link == knowledge[str(level)]["concepts"][concept]["link"]:
+                                    print("--- Concept Found",concept,link)
+                                    print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
+                                    suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
+                                    k_flag = True
+                            if k_flag==False:
+                                print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
+                                suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
+                                #alert(there is a new link can you give a reason)
+                player_traces[player][action]["suggestions"]=suggestions
+                print('========================')
+            
+            else:
+                player_traces[player][action]["suggestions"]=[]
+
+
+
+    return player_traces
+
+
+def cosine(a,b):
+    if (np.isnan(round(dot(a, b)/(norm(a)*norm(b)),2))):
+        print("NAN FOUND", a,b)
+        return "x" 
+    return round(dot(a, b)/(norm(a)*norm(b)),2)
 
 
 
 @app.route('/getSimillar')
 def getSimillar():
-    data = request.data
-    player = request['player']
+    data = json.loads(str(request.data, encoding='utf-8'))
+    player_1 = data['id']
+    data     = getPlayerTrace_internal(data)
 
-    #TODO:
-    #Pull other players based on request type 
-    pool_flag = request['pool'] #passable/default
-    other  = request['other'] #custom pool of players 
+    #REPLACE with API from Dev Team
+    fileName = "../../trace_13_knowledge.json"
+    other_players = json.load(open(fileName))
 
 
-    """
-    #NEED TO WORK ON HOW I WANT TO RETURN #TODO this week
-    similar_traces:{
-        "log_id_1":{"event_id_x":0.9},
-        "log_id_2":{"event_id_y":0.4},
-        "log_id_3::{"event_id_z":0.2}
-        }
-    """
+    output = {}
 
-    return {"simillar_traces":{}}
+    output[player_1]={}
+    for player_2 in other_players: #choose all other player
+        output[player_1][player_2]={}
+        for player_1_event in data[player_1]: #choose one event of first player
+            if data[player_1][player_1_event]["type"]=="BOARD_SNAPSHOT":
+                output[player_1][player_2][player_1_event]={}
+                for player_2_event in other_players[player_2]:  #choose all other player events
+                    if other_players[player_2][player_2_event]["type"]=="BOARD_SNAPSHOT":
+                        matrix_1 = data[player_1][player_1_event]['state_matrix']
+                        matrix_2 = other_players[player_2][player_2_event]['state_matrix']
+                        matrix_1 = np.array(matrix_1).flatten()
+                        matrix_2 = np.array(matrix_2).flatten()
+                        consine_similarity =  cosine(matrix_1,matrix_2)
+                        print(consine_similarity,type(consine_similarity))
+                        if consine_similarity=="x":
+                            pass
+                        elif consine_similarity>0.3:
+                            output[player_1][player_2][player_1_event][player_2_event]=consine_similarity
 
-    
 
-#getTrace/<current_player>
-#getSimilar/current_player/flag --> Trace (P1,P2)
-
+    return {"simillarity":output}
 
     
     
