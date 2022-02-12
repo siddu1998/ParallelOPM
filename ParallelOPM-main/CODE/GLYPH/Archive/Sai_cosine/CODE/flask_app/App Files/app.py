@@ -891,7 +891,10 @@ def getPlayerTrace():
             else:
                 player_traces[player][action]["suggestions"]=[]
 
-
+            player_traces[player][action].pop("adjacency_matrix")
+            player_traces[player][action].pop("discussion")
+            player_traces[player][action].pop("upvotes")
+            player_traces[player][action].pop("state_matrix")
 
     return player_traces
 
