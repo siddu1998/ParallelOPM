@@ -1440,10 +1440,10 @@ def getSimillar():
     player_1 = data['id']
     data     = getPlayerTrace_internal(data)
 
-    #REPLACE with API from Dev Team
+    #REPLACE with API from Dev Team-->
+    #let us start with give me the last 10 players this week
     fileName = "../../trace_13_knowledge.json"
     other_players = json.load(open(fileName))
-
 
     output = {}
 
