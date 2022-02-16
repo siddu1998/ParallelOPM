@@ -901,6 +901,7 @@ def getPlayerTrace():
             player_traces[player][action].pop("upvotes")
             player_traces[player][action].pop("state_matrix")
 
+    player_traces['level']=level
     return player_traces
 
 
@@ -1465,7 +1466,6 @@ def getSimillar():
                             pass
                         elif consine_similarity>0.3:
                             output[player_1][player_2][player_1_event][player_2_event]=consine_similarity
-
 
     return {"simillarity":output}
 
