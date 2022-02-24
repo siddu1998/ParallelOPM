@@ -827,12 +827,13 @@ def getPlayerTrace():
  
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                trace_absolute_board_state = deepcopy(board_state)
                 if user in player_traces:
                     player_traces[user][event['id']]={
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
+                        "absolute_board_state":trace_absolute_board_state,
                         "abstracted_board_state":abstraction,
                         "adjacency_matrix":adjacency_matrix,
                         "state_matrix":state_matrix,                    
@@ -852,7 +853,7 @@ def getPlayerTrace():
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
+                        "absolute_board_state":trace_absolute_board_state,
                         "abstracted_board_state":abstraction,
                         "adjacency_matrix":adjacency_matrix,
                         "state_matrix":state_matrix,
@@ -1296,8 +1297,6 @@ def getPlayerTrace_internal(data):
            
         #Calling Abstraction
         if store_in_trace:
-           
-            
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
                 if user in player_traces:
