@@ -876,7 +876,8 @@ def getPlayerTrace():
         
             
         store_in_trace = True
-
+        print(board_state)
+        
     print("SUGGESTIONS PART")    
     for player in player_traces:
         #go through player actions
