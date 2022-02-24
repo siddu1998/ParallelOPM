@@ -424,8 +424,8 @@ class Abstraction:
             self.indexMap[zone]=self.index
             self.index+=1
         
-        print(self.indexMap)
-        print('=========$$$$$$$$========$$$$$$======')
+        #print(self.indexMap)
+ 
         self.indexMap["semaphore_row"]=self.index
         self.index+=1
         self.indexMap["signal_row"]=self.index
@@ -584,15 +584,19 @@ def getPlayerTrace():
     abstraction_object = Abstraction(level,{})
     #
 
-
-    for index,event in enumerate(data['events']):    
+    board_state={}
+    for index,event in enumerate(data['events']):
+        print(f"=========={event['type']}=======================")    
+        print(event['id'])
         
         if event['type']=="BEGIN_LEVEL_LOAD":
+            print("[INFO] Starting New Level")
             board_state = {}
             if SCREENSHOT_FLAG:
                 stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
                 stateShot.buildScreenShot()
-    
+            
+
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
             element_type = event['element']['type'] #semaphore, signal
@@ -613,16 +617,18 @@ def getPlayerTrace():
                     "status":'inactive'
                 }
                 
-            print('[INFO] Element Added',element_id)
+            print('[INFO] Element Added',element_id,'at',element_x,element_y)
             
             if SCREENSHOT_FLAG:            
                 #CALL SCREEENSHOT on board_state
                 stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
                 stateShot.buildScreenShot()
-                                    
+          
+
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
             
+
             old_x = board_state[element_id]['element_x'] 
             old_y = board_state[element_id]['element_y']
             old_zone = abstraction_object.getZone(old_x,old_y)
@@ -630,15 +636,21 @@ def getPlayerTrace():
             new_x = event['element']['cell'][0] #x
             new_y = event['element']['cell'][1] #y
             new_zone = abstraction_object.getZone(new_x,new_y)
-            print(f"Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")
+        
+            
+            print('[INFO] Element Moved',element_id)
+            print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
+
+            board_state[element_id]['element_x']=new_x
+            board_state[element_id]['element_y']=new_y
             
             if (new_x,new_y) != (old_x,old_y):
-                print(f"#################### Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")                
+                print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
                 #update to new coordinates
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
                 
-                print('[INFO] Element Moved',element_id)
+                
                 
                 if new_zone == old_zone:
                     order_change_events_behaviour=True
@@ -646,7 +658,7 @@ def getPlayerTrace():
                 if board_state[element_id]["type"]=="signal":
                     if board_state[element_id]['link']!=None:
                         moving_connected_elements=True
-                        print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                        print('[FLAG] The User is moving a connected element!!')
                         
                 elif board_state[element_id]["type"]=="semaphore":
                     for item in board_state:
@@ -654,7 +666,7 @@ def getPlayerTrace():
                             try:
                                 if board_state[item]['link']==element_id:
                                     moving_connected_elements=True
-                                    print('[FLAGGGGG] The User is moving a connected element!!!!!')
+                                    print('[FLAG] The User is moving a connected element!!!!!')
                             except:
                                 pass
                             
@@ -664,7 +676,7 @@ def getPlayerTrace():
                     stateShot.buildScreenShot()
 
             else:
-                print('[INFOOOOOO] ############ ahaa did not actually move hence not adding to trace')
+                print('[WARNING] ahaa did not actually move hence not adding to trace')
                 store_in_trace = False
             
         if event['type'] == 'TOGGLE_ELEMENT':
@@ -776,17 +788,18 @@ def getPlayerTrace():
                 text  = getStatus(data,event['id'])                    
                 stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
                 stateShot.buildScreenShot()
-           
+          
         #Calling Abstraction
         if store_in_trace:
             if event['type'] in CRITICAL_EVENTS:                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
+                trace_absolute_board_state = deepcopy(board_state)
                 if user in player_traces:
                     player_traces[user][event['id']]={
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
+                        "absolute_board_state":trace_absolute_board_state,
                         "abstracted_board_state":abstraction,
                         "adjacency_matrix":adjacency_matrix,
                         "state_matrix":state_matrix,
@@ -801,7 +814,7 @@ def getPlayerTrace():
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
+                        "absolute_board_state":trace_absolute_board_state,
                         "abstracted_board_state":abstraction,
                         "adjacency_matrix":adjacency_matrix, 
                         "state_matrix":state_matrix,                   
@@ -811,7 +824,7 @@ def getPlayerTrace():
                         "created":event['created']
 
                     }
-            
+ 
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
                 if user in player_traces:
@@ -860,15 +873,17 @@ def getPlayerTrace():
                 moving_connected_elements = False
                 knowledge_statement="No Knowledge Statement",
         
+            
         store_in_trace = True
 
+    print("SUGGESTIONS PART")    
     for player in player_traces:
         #go through player actions
         for action in player_traces[player]:
             #get player submissions
             if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
-                print("Player ID: ", player)
-                print("Event ID: ",action)
+                #print("Player ID: ", player)
+                #print("Event ID: ",action)
                 suggestions = []
                 #get adjacency matrix of submission
                 adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
@@ -879,11 +894,11 @@ def getPlayerTrace():
                         if adjacency_matrix[row][col]>0:
                             link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
                             
-                            print(f"[INFO] Link in between {link}")
+                            #print(f"[INFO] Link in between {link}")
                             for concept in knowledge[str(level)]["concepts"]:
                                 if link == knowledge[str(level)]["concepts"][concept]["link"]:
-                                    print("--- Concept Found",concept,link)
-                                    print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
+                                    #print("--- Concept Found",concept,link)
+                                    #print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
                                     suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
                                     k_flag = True
                             if k_flag==False:
@@ -891,7 +906,7 @@ def getPlayerTrace():
                                 suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
                                 #alert(there is a new link can you give a reason)
                 player_traces[player][action]["suggestions"]=suggestions
-                print('========================')
+                #print('========================')
             
             else:
                 player_traces[player][action]["suggestions"]=[]
@@ -1007,31 +1022,7 @@ def getGlyphFile():
             if event['type']=='BOARD_SNAPSHOT':
                 pass
             
-            #Calling Abstraction
-            if event['type'] in CRITICAL_EVENTS:                   
-                if user in player_traces:
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":buildAbstraction(level,board_state),
-                        "discussion":[],
-                        "upvotes":0,
-                        "created": event['created']
-                    }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":buildAbstraction(level,board_state),
-                        "discussion":[],
-                        "upvotes":0,
-                        "created":event['created']
-                    }
+
             
             if event['type']=='BOARD_SNAPSHOT':                   
                 if user in player_traces:
@@ -1305,38 +1296,7 @@ def getPlayerTrace_internal(data):
            
         #Calling Abstraction
         if store_in_trace:
-            if event['type'] in CRITICAL_EVENTS:                   
-                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
-                if user in player_traces:
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix,
-                        "state_matrix":state_matrix,
-                        "discussion":[],
-                        "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
-                        "created": event['created']
-                    }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix, 
-                        "state_matrix":state_matrix,                   
-                        "discussion":[],
-                        "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
-                        "created":event['created']
-
-                    }
+           
             
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
@@ -1356,7 +1316,7 @@ def getPlayerTrace_internal(data):
                         "ticks":board_snapshot_ticks,
                         "no_order_change_behaviour_issue":order_change_events_behaviour,
                         "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
+                        #"knowledge_statement":knowledge_statement,
                         "moving_connected_elements":moving_connected_elements
                     }
                 else:
@@ -1376,7 +1336,7 @@ def getPlayerTrace_internal(data):
                         "ticks":board_snapshot_ticks,
                         "no_order_change_behaviour_issue":order_change_events_behaviour,
                         "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
+                        #"knowledge_statement":knowledge_statement,
                         "moving_connected_elements":moving_connected_elements
                     }
             
