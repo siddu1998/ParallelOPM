@@ -1,0 +1,4146 @@
+{
+"player_1":{
+    "a96c510e-687c-4889-8d21-a4444cd08de0": {
+        "b2daf766-cf46-4517-a228-503d4391b852": {
+            "id": "b2daf766-cf46-4517-a228-503d4391b852",
+            "type": "BEGIN_LEVEL_LOAD",
+            "screenshot": "0_b2daf766-cf46-4517-a228-503d4391b852.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": "No Knowledge Statement",
+            "created": 1632855382209,
+            "suggestions": []
+        },
+        "52c2c91d-646b-4d2e-b71c-6f55538750df": {
+            "id": "52c2c91d-646b-4d2e-b71c-6f55538750df",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "1_52c2c91d-646b-4d2e-b71c-6f55538750df.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "created": 1632855382236,
+            "submission_result": "Not a test/submit",
+            "ticks": "No Ticks Available",
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "No Knowledge Statement",
+            "moving_connected_elements": false,
+            "suggestions": []
+        },
+        "daa0fbaf-ea3c-46bb-8dc8-fa1ec8d62f60": {
+            "id": "daa0fbaf-ea3c-46bb-8dc8-fa1ec8d62f60",
+            "type": "ADD_ELEMENT",
+            "screenshot": "7_daa0fbaf-ea3c-46bb-8dc8-fa1ec8d62f60.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "X": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855406550,
+            "suggestions": []
+        },
+        "94ebeefc-06e9-4794-953c-8e3f710356f0": {
+            "id": "94ebeefc-06e9-4794-953c-8e3f710356f0",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "8_94ebeefc-06e9-4794-953c-8e3f710356f0.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "X": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855407032,
+            "suggestions": []
+        },
+        "a6c8f500-cd8a-42bc-b46c-5d335c8fdd4e": {
+            "id": "a6c8f500-cd8a-42bc-b46c-5d335c8fdd4e",
+            "type": "ADD_ELEMENT",
+            "screenshot": "11_a6c8f500-cd8a-42bc-b46c-5d335c8fdd4e.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855418912,
+            "suggestions": []
+        },
+        "768c5343-7455-4f0a-b384-677eb4c4832a": {
+            "id": "768c5343-7455-4f0a-b384-677eb4c4832a",
+            "type": "ADD_ELEMENT",
+            "screenshot": "12_768c5343-7455-4f0a-b384-677eb4c4832a.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1
+                },
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855428702,
+            "suggestions": []
+        },
+        "ac5f05fe-acf0-4781-b9ac-dabd72ef62c9": {
+            "id": "ac5f05fe-acf0-4781-b9ac-dabd72ef62c9",
+            "type": "BEGIN_LINK",
+            "screenshot": "17_ac5f05fe-acf0-4781-b9ac-dabd72ef62c9.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1
+                },
+                "link_dict": {
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632855434481,
+            "suggestions": []
+        },
+        "4b591923-f71d-4f47-aed1-1ac1ec23a511": {
+            "id": "4b591923-f71d-4f47-aed1-1ac1ec23a511",
+            "type": "ADD_ELEMENT",
+            "screenshot": "19_4b591923-f71d-4f47-aed1-1ac1ec23a511.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632855446474,
+            "suggestions": []
+        },
+        "3bfb41aa-a419-456a-a880-cdc3992b0647": {
+            "id": "3bfb41aa-a419-456a-a880-cdc3992b0647",
+            "type": "BEGIN_LINK",
+            "screenshot": "20_3bfb41aa-a419-456a-a880-cdc3992b0647.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632855447838,
+            "suggestions": []
+        },
+        "82fd4545-515c-43fb-a910-dc189f26c1ff": {
+            "id": "82fd4545-515c-43fb-a910-dc189f26c1ff",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "23_82fd4545-515c-43fb-a910-dc189f26c1ff.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632855455127,
+            "suggestions": []
+        },
+        "417e7a13-4705-4461-9b4c-1f4fdac84ed8": {
+            "id": "417e7a13-4705-4461-9b4c-1f4fdac84ed8",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "28_417e7a13-4705-4461-9b4c-1f4fdac84ed8.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "created": 1632855461023,
+            "submission_result": "failure/TEST",
+            "ticks": 24,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "Adding Link:D:J",
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "0680a71b-6151-4817-84e0-90af87907a7e": {
+            "id": "0680a71b-6151-4817-84e0-90af87907a7e",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "29_0680a71b-6151-4817-84e0-90af87907a7e.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855463799,
+            "suggestions": []
+        },
+        "a2cc5009-df59-4dbb-af2b-028eac36144a": {
+            "id": "a2cc5009-df59-4dbb-af2b-028eac36144a",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "34_a2cc5009-df59-4dbb-af2b-028eac36144a.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "created": 1632855479270,
+            "submission_result": "failure/TEST",
+            "ticks": 130,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "0dd58861-80ed-4ab9-81f5-b619520898ad": {
+            "id": "0dd58861-80ed-4ab9-81f5-b619520898ad",
+            "type": "ADD_ELEMENT",
+            "screenshot": "36_0dd58861-80ed-4ab9-81f5-b619520898ad.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632855501769,
+            "suggestions": []
+        },
+        "fc5728d7-b1a9-4e3c-b236-1f8179bf428b": {
+            "id": "fc5728d7-b1a9-4e3c-b236-1f8179bf428b",
+            "type": "BEGIN_LINK",
+            "screenshot": "38_fc5728d7-b1a9-4e3c-b236-1f8179bf428b.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "X": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632855503823,
+            "suggestions": []
+        },
+        "82968f29-8fad-4086-831d-50ea924c79e9": {
+            "id": "82968f29-8fad-4086-831d-50ea924c79e9",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "40_82968f29-8fad-4086-831d-50ea924c79e9.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632855511400,
+            "suggestions": []
+        },
+        "da88fc88-39af-4cb9-9908-59510dd02ef8": {
+            "id": "da88fc88-39af-4cb9-9908-59510dd02ef8",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "41_da88fc88-39af-4cb9-9908-59510dd02ef8.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632855511641,
+            "suggestions": []
+        },
+        "5d7dc9da-b342-4adf-8f4a-53299338888d": {
+            "id": "5d7dc9da-b342-4adf-8f4a-53299338888d",
+            "type": "ADD_ELEMENT",
+            "screenshot": "43_5d7dc9da-b342-4adf-8f4a-53299338888d.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaba": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaap"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1,
+                    "E": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632855520756,
+            "suggestions": []
+        },
+        "22481026-9698-4e56-a3f9-b086879c10c3": {
+            "id": "22481026-9698-4e56-a3f9-b086879c10c3",
+            "type": "BEGIN_LINK",
+            "screenshot": "44_22481026-9698-4e56-a3f9-b086879c10c3.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaba": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaap"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1,
+                    "E": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1,
+                    "EA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:E:A",
+            "created": 1632855522175,
+            "suggestions": []
+        },
+        "f3773032-e742-4f36-845f-71c6d0d05356": {
+            "id": "f3773032-e742-4f36-845f-71c6d0d05356",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "46_f3773032-e742-4f36-845f-71c6d0d05356.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaba": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaap"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1,
+                    "E": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1,
+                    "EA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:E:A",
+            "created": 1632855524822,
+            "suggestions": []
+        },
+        "6a679406-3e3a-4459-a59f-058c10d90b56": {
+            "id": "6a679406-3e3a-4459-a59f-058c10d90b56",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "51_6a679406-3e3a-4459-a59f-058c10d90b56.png",
+            "absolute_board_state": {
+                "aaaaap": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 3,
+                    "status": "active"
+                },
+                "aaaaaq": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaar": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaau": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 16,
+                    "link": "aaaaaq"
+                },
+                "aaaaax": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaba": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaap"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "A": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1,
+                    "E": 1
+                },
+                "link_dict": {
+                    "DY": 1,
+                    "DJ": 1,
+                    "FY": 1,
+                    "EA": 1
+                }
+            },
+            "created": 1632855553561,
+            "submission_result": "success/TEST",
+            "ticks": 253,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "Adding Link:E:A",
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "EA: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        }
+    },
+    "level": "13"
+},
+"player_2":{
+    "776ac684-6591-4c40-a6f7-443ef4c8855b": {
+        "76de74a1-2df9-488e-8eae-c9373226bfa5": {
+            "id": "76de74a1-2df9-488e-8eae-c9373226bfa5",
+            "type": "BEGIN_LEVEL_LOAD",
+            "screenshot": "0_76de74a1-2df9-488e-8eae-c9373226bfa5.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": "No Knowledge Statement",
+            "created": 1632951742452,
+            "suggestions": []
+        },
+        "1ab773be-97c8-4cdd-a3b2-15a823ed11b4": {
+            "id": "1ab773be-97c8-4cdd-a3b2-15a823ed11b4",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "1_1ab773be-97c8-4cdd-a3b2-15a823ed11b4.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "created": 1632951742477,
+            "submission_result": "Not a test/submit",
+            "ticks": "No Ticks Available",
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "No Knowledge Statement",
+            "moving_connected_elements": false,
+            "suggestions": []
+        },
+        "2124479f-f7ba-4de8-9f6f-6df39fe9813b": {
+            "id": "2124479f-f7ba-4de8-9f6f-6df39fe9813b",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "6_2124479f-f7ba-4de8-9f6f-6df39fe9813b.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "created": 1632951772019,
+            "submission_result": "failure/TEST",
+            "ticks": 94,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": []
+        },
+        "48e9797f-3b56-4b52-bb2d-1d95d0d28f11": {
+            "id": "48e9797f-3b56-4b52-bb2d-1d95d0d28f11",
+            "type": "ADD_ELEMENT",
+            "screenshot": "17_48e9797f-3b56-4b52-bb2d-1d95d0d28f11.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "J": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632951856618,
+            "suggestions": []
+        },
+        "9a35cbd5-860d-43dd-98e7-665c6474fd46": {
+            "id": "9a35cbd5-860d-43dd-98e7-665c6474fd46",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "18_9a35cbd5-860d-43dd-98e7-665c6474fd46.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "J": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632951858899,
+            "suggestions": []
+        },
+        "4f2d7f4d-c747-4893-9f3e-8dcc52a0fa5c": {
+            "id": "4f2d7f4d-c747-4893-9f3e-8dcc52a0fa5c",
+            "type": "ADD_ELEMENT",
+            "screenshot": "27_4f2d7f4d-c747-4893-9f3e-8dcc52a0fa5c.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1
+                },
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632951865501,
+            "suggestions": []
+        },
+        "bd6db76d-dbe0-43d4-97e6-065f34752693": {
+            "id": "bd6db76d-dbe0-43d4-97e6-065f34752693",
+            "type": "BEGIN_LINK",
+            "screenshot": "32_bd6db76d-dbe0-43d4-97e6-065f34752693.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1
+                },
+                "link_dict": {
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632951867816,
+            "suggestions": []
+        },
+        "10a44a3c-3f53-4adb-bb0d-b94ebaa02083": {
+            "id": "10a44a3c-3f53-4adb-bb0d-b94ebaa02083",
+            "type": "ADD_ELEMENT",
+            "screenshot": "42_10a44a3c-3f53-4adb-bb0d-b94ebaa02083.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1
+                },
+                "link_dict": {
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632951887802,
+            "suggestions": []
+        },
+        "14a12597-e6d7-43d6-9745-08215462282b": {
+            "id": "14a12597-e6d7-43d6-9745-08215462282b",
+            "type": "ADD_ELEMENT",
+            "screenshot": "45_14a12597-e6d7-43d6-9745-08215462282b.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632951901618,
+            "suggestions": []
+        },
+        "29fcda5e-dd1e-479f-92fc-f79710e79148": {
+            "id": "29fcda5e-dd1e-479f-92fc-f79710e79148",
+            "type": "BEGIN_LINK",
+            "screenshot": "46_29fcda5e-dd1e-479f-92fc-f79710e79148.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:A",
+            "created": 1632951903138,
+            "suggestions": []
+        },
+        "5dba5c74-14af-403b-ba24-679d6f503e84": {
+            "id": "5dba5c74-14af-403b-ba24-679d6f503e84",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "54_5dba5c74-14af-403b-ba24-679d6f503e84.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:A",
+            "created": 1632951915282,
+            "suggestions": []
+        },
+        "b5a56d16-cadc-4d74-9d3a-930f18816303": {
+            "id": "b5a56d16-cadc-4d74-9d3a-930f18816303",
+            "type": "ADD_ELEMENT",
+            "screenshot": "57_b5a56d16-cadc-4d74-9d3a-930f18816303.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:A",
+            "created": 1632951930003,
+            "suggestions": []
+        },
+        "281aa651-3995-4bfb-be92-04ec9286e75e": {
+            "id": "281aa651-3995-4bfb-be92-04ec9286e75e",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "60_281aa651-3995-4bfb-be92-04ec9286e75e.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:A",
+            "created": 1632951937100,
+            "suggestions": []
+        },
+        "e88070b4-cd46-439e-9701-882f1e632607": {
+            "id": "e88070b4-cd46-439e-9701-882f1e632607",
+            "type": "BEGIN_LINK",
+            "screenshot": "61_e88070b4-cd46-439e-9701-882f1e632607.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632951937822,
+            "suggestions": []
+        },
+        "eeb62f34-a81c-490e-bc2b-5cd82b111f18": {
+            "id": "eeb62f34-a81c-490e-bc2b-5cd82b111f18",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "63_eeb62f34-a81c-490e-bc2b-5cd82b111f18.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 1
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632951946299,
+            "suggestions": []
+        },
+        "bde11a07-da95-49c1-ba13-d830edfab428": {
+            "id": "bde11a07-da95-49c1-ba13-d830edfab428",
+            "type": "ADD_ELEMENT",
+            "screenshot": "64_bde11a07-da95-49c1-ba13-d830edfab428.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632951948768,
+            "suggestions": []
+        },
+        "d2f84f57-6ef3-4152-867b-f39ec333d36f": {
+            "id": "d2f84f57-6ef3-4152-867b-f39ec333d36f",
+            "type": "BEGIN_LINK",
+            "screenshot": "65_d2f84f57-6ef3-4152-867b-f39ec333d36f.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632951949402,
+            "suggestions": []
+        },
+        "846f34fc-7779-4ab8-8456-7cc38c7bb318": {
+            "id": "846f34fc-7779-4ab8-8456-7cc38c7bb318",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "70_846f34fc-7779-4ab8-8456-7cc38c7bb318.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632951978486,
+            "submission_result": "success/TEST",
+            "ticks": 258,
+            "no_order_change_behaviour_issue": true,
+            "same_zone_linking": false,
+            "knowledge_statement": "Adding Link:F:Y",
+            "moving_connected_elements": true,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "67f987d9-18e7-4331-9208-7692db34aa97": {
+            "id": "67f987d9-18e7-4331-9208-7692db34aa97",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "74_67f987d9-18e7-4331-9208-7692db34aa97.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952007240,
+            "submission_result": "failure/SUBMIT",
+            "ticks": 244,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "abfd881f-9bb0-4f56-a591-9b4e22361828": {
+            "id": "abfd881f-9bb0-4f56-a591-9b4e22361828",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "79_abfd881f-9bb0-4f56-a591-9b4e22361828.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952067705,
+            "submission_result": "success/TEST",
+            "ticks": 275,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "42211f45-c8b6-4b38-9d09-6a00376f91cb": {
+            "id": "42211f45-c8b6-4b38-9d09-6a00376f91cb",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "84_42211f45-c8b6-4b38-9d09-6a00376f91cb.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952077401,
+            "submission_result": "failure/SUBMIT",
+            "ticks": 244,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "b931c2d5-bd2f-491f-9796-946989c761d0": {
+            "id": "b931c2d5-bd2f-491f-9796-946989c761d0",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "93_b931c2d5-bd2f-491f-9796-946989c761d0.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952097661,
+            "submission_result": "success/TEST",
+            "ticks": 258,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "5cd5d781-8c76-4750-87e7-4754781dea36": {
+            "id": "5cd5d781-8c76-4750-87e7-4754781dea36",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "97_5cd5d781-8c76-4750-87e7-4754781dea36.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "D": 2,
+                    "F": 2
+                },
+                "link_dict": {
+                    "DJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952125243,
+            "submission_result": "failure/SUBMIT",
+            "ticks": 244,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FA: With a signal in F and and Semaphore in A, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "cce6c98c-ecf3-40eb-a3ac-b2316d8e336b": {
+            "id": "cce6c98c-ecf3-40eb-a3ac-b2316d8e336b",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "104_cce6c98c-ecf3-40eb-a3ac-b2316d8e336b.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 1
+                },
+                "link_dict": {
+                    "BJ": 1,
+                    "FA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632952140603,
+            "suggestions": []
+        },
+        "4cdfa910-0713-4376-bc8c-d3114e6056d2": {
+            "id": "4cdfa910-0713-4376-bc8c-d3114e6056d2",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "105_4cdfa910-0713-4376-bc8c-d3114e6056d2.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "B": 2,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "BJ": 1,
+                    "BA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632952148035,
+            "suggestions": []
+        },
+        "2defb52c-12a8-47a7-abcc-1d7b2d784299": {
+            "id": "2defb52c-12a8-47a7-abcc-1d7b2d784299",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "111_2defb52c-12a8-47a7-abcc-1d7b2d784299.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "B": 2,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "BJ": 1,
+                    "BA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952176343,
+            "submission_result": "success/TEST",
+            "ticks": 254,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": true,
+            "suggestions": [
+                "BA: With a Signal in Zone B unlocking a Semaphore in Zone H. You seem to be trying to handle the race condition. But is unlocking peer threads from the critical section a right idea (the thread you are trying to unlock can also lock itself if signals are placed in the critical section)? It is always recommended you unlock peer threads from sections which belong exclusively to a thread.",
+                "BJ: With a Signal in Zone B unlocking a Semaphore in Zone H. You seem to be trying to handle the race condition. But is unlocking peer threads from the critical section a right idea (the thread you are trying to unlock can also lock itself if signals are placed in the critical section)? It is always recommended you unlock peer threads from sections which belong exclusively to a thread.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "e8f71bc5-daf4-4028-a2d7-ae62e61c3594": {
+            "id": "e8f71bc5-daf4-4028-a2d7-ae62e61c3594",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "116_e8f71bc5-daf4-4028-a2d7-ae62e61c3594.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "B": 2,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "BJ": 1,
+                    "BA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952180829,
+            "submission_result": "failure/SUBMIT",
+            "ticks": 153,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "BA: With a Signal in Zone B unlocking a Semaphore in Zone H. You seem to be trying to handle the race condition. But is unlocking peer threads from the critical section a right idea (the thread you are trying to unlock can also lock itself if signals are placed in the critical section)? It is always recommended you unlock peer threads from sections which belong exclusively to a thread.",
+                "BJ: With a Signal in Zone B unlocking a Semaphore in Zone H. You seem to be trying to handle the race condition. But is unlocking peer threads from the critical section a right idea (the thread you are trying to unlock can also lock itself if signals are placed in the critical section)? It is always recommended you unlock peer threads from sections which belong exclusively to a thread.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "4ed48cb1-4257-4eae-86ff-e0cef3ce7af4": {
+            "id": "4ed48cb1-4257-4eae-86ff-e0cef3ce7af4",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "119_4ed48cb1-4257-4eae-86ff-e0cef3ce7af4.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "A": 1,
+                    "B": 1,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "AJ": 1,
+                    "BA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632952191087,
+            "suggestions": []
+        },
+        "0b8d18cf-a0dd-4f00-a6db-9972a3fdbf2d": {
+            "id": "0b8d18cf-a0dd-4f00-a6db-9972a3fdbf2d",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "123_0b8d18cf-a0dd-4f00-a6db-9972a3fdbf2d.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "A": 1,
+                    "E": 1,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "AJ": 1,
+                    "EA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632952199851,
+            "suggestions": []
+        },
+        "e7145310-a895-461f-a7ef-2ec866435677": {
+            "id": "e7145310-a895-461f-a7ef-2ec866435677",
+            "type": "MOVE_ELEMENT",
+            "screenshot": "124_e7145310-a895-461f-a7ef-2ec866435677.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "A": 1,
+                    "E": 1,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "AJ": 1,
+                    "EA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632952201302,
+            "suggestions": []
+        },
+        "dd6a9c86-5afd-496c-8fa7-9812161ab24b": {
+            "id": "dd6a9c86-5afd-496c-8fa7-9812161ab24b",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "129_dd6a9c86-5afd-496c-8fa7-9812161ab24b.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "A": 1,
+                    "E": 1,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "AJ": 1,
+                    "EA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952224212,
+            "submission_result": "success/TEST",
+            "ticks": 256,
+            "no_order_change_behaviour_issue": true,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": true,
+            "suggestions": [
+                "AJ: You have choosen a nice way to prevent race condition by locking the pink thread before the red thread delivers. Can you think of ways how the pink thread can block the red thread inorder to prevent a race condition.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "EA: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "6decce0f-619b-4e21-ab63-659a49b00291": {
+            "id": "6decce0f-619b-4e21-ab63-659a49b00291",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "134_6decce0f-619b-4e21-ab63-659a49b00291.png",
+            "absolute_board_state": {
+                "aaaaau": {
+                    "type": "semaphore",
+                    "element_x": 6,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaav": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 2,
+                    "link": "aaaaau"
+                },
+                "aaaaay": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 1,
+                    "status": "active"
+                },
+                "aaaaaz": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 4,
+                    "link": "aaaaay"
+                },
+                "aaaabc": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaabf": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "J": 1,
+                    "A": 1
+                },
+                "signal_zone_dict": {
+                    "A": 1,
+                    "E": 1,
+                    "D": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "AJ": 1,
+                    "EA": 1,
+                    "DY": 1,
+                    "FY": 1
+                }
+            },
+            "created": 1632952261248,
+            "submission_result": "success/SUBMIT",
+            "ticks": 256,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "AJ: You have choosen a nice way to prevent race condition by locking the pink thread before the red thread delivers. Can you think of ways how the pink thread can block the red thread inorder to prevent a race condition.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "EA: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        }
+    },
+    "level": "13"
+},
+
+"player_3":{
+    "a9ad2164-9ec7-47e7-9e15-9214ecadd879": {
+        "bfcc577e-3680-45b4-b755-4eef9a96be05": {
+            "id": "bfcc577e-3680-45b4-b755-4eef9a96be05",
+            "type": "BEGIN_LEVEL_LOAD",
+            "screenshot": "0_bfcc577e-3680-45b4-b755-4eef9a96be05.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": "No Knowledge Statement",
+            "created": 1632341498980,
+            "suggestions": []
+        },
+        "8c478f3f-0158-4ce6-969e-f1700261a35d": {
+            "id": "8c478f3f-0158-4ce6-969e-f1700261a35d",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "1_8c478f3f-0158-4ce6-969e-f1700261a35d.png",
+            "absolute_board_state": {},
+            "abstracted_board_state": {
+                "nSemaphores": 0,
+                "nSignals": 0,
+                "semaphore_zone_dict": {},
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "created": 1632341499007,
+            "submission_result": "Not a test/submit",
+            "ticks": "No Ticks Available",
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "No Knowledge Statement",
+            "moving_connected_elements": false,
+            "suggestions": []
+        },
+        "54e09152-8a21-4f62-85df-dfd23feae4f4": {
+            "id": "54e09152-8a21-4f62-85df-dfd23feae4f4",
+            "type": "ADD_ELEMENT",
+            "screenshot": "5_54e09152-8a21-4f62-85df-dfd23feae4f4.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "C": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632341504297,
+            "suggestions": []
+        },
+        "1cbe9d92-6035-4d5b-831c-a212d0607813": {
+            "id": "1cbe9d92-6035-4d5b-831c-a212d0607813",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "7_1cbe9d92-6035-4d5b-831c-a212d0607813.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 0,
+                "semaphore_zone_dict": {
+                    "C": 1
+                },
+                "signal_zone_dict": {},
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632341505010,
+            "suggestions": []
+        },
+        "d3a1a787-7e63-4060-95ee-7ab4017e5539": {
+            "id": "d3a1a787-7e63-4060-95ee-7ab4017e5539",
+            "type": "ADD_ELEMENT",
+            "screenshot": "10_d3a1a787-7e63-4060-95ee-7ab4017e5539.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "C": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1
+                },
+                "link_dict": {}
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632341506977,
+            "suggestions": []
+        },
+        "85b76fac-032a-4c19-afce-ba5d963299d5": {
+            "id": "85b76fac-032a-4c19-afce-ba5d963299d5",
+            "type": "BEGIN_LINK",
+            "screenshot": "13_85b76fac-032a-4c19-afce-ba5d963299d5.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 1,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "C": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1
+                },
+                "link_dict": {
+                    "BC": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:B:C",
+            "created": 1632341512629,
+            "suggestions": []
+        },
+        "71384883-a514-44c6-a714-883cdfc79133": {
+            "id": "71384883-a514-44c6-a714-883cdfc79133",
+            "type": "ADD_ELEMENT",
+            "screenshot": "18_71384883-a514-44c6-a714-883cdfc79133.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 2,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1
+                },
+                "link_dict": {
+                    "BC": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:B:C",
+            "created": 1632341526140,
+            "suggestions": []
+        },
+        "37da4813-68d7-47e1-8de8-f113c562c905": {
+            "id": "37da4813-68d7-47e1-8de8-f113c562c905",
+            "type": "ADD_ELEMENT",
+            "screenshot": "19_37da4813-68d7-47e1-8de8-f113c562c905.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1
+                },
+                "link_dict": {
+                    "BC": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:B:C",
+            "created": 1632341528273,
+            "suggestions": []
+        },
+        "3af44269-fd52-476c-8b26-20627e262aa2": {
+            "id": "3af44269-fd52-476c-8b26-20627e262aa2",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "21_3af44269-fd52-476c-8b26-20627e262aa2.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 1,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1
+                },
+                "link_dict": {
+                    "BC": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:B:C",
+            "created": 1632341529211,
+            "suggestions": []
+        },
+        "98af0aa2-6a81-4aa5-a402-0d22bfc7bd01": {
+            "id": "98af0aa2-6a81-4aa5-a402-0d22bfc7bd01",
+            "type": "ADD_ELEMENT",
+            "screenshot": "22_98af0aa2-6a81-4aa5-a402-0d22bfc7bd01.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "BC": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:B:C",
+            "created": 1632341531930,
+            "suggestions": []
+        },
+        "04f492f3-bd82-461a-9638-d648e311bda1": {
+            "id": "04f492f3-bd82-461a-9638-d648e311bda1",
+            "type": "BEGIN_LINK",
+            "screenshot": "23_04f492f3-bd82-461a-9638-d648e311bda1.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 2,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 1
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632341534515,
+            "suggestions": []
+        },
+        "73e81037-4cf2-4a28-b0fd-41d559b65c85": {
+            "id": "73e81037-4cf2-4a28-b0fd-41d559b65c85",
+            "type": "ADD_ELEMENT",
+            "screenshot": "28_73e81037-4cf2-4a28-b0fd-41d559b65c85.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:Y",
+            "created": 1632341539281,
+            "suggestions": []
+        },
+        "b42a4a1d-3b58-43b6-b86a-6eb2fb4c4ed7": {
+            "id": "b42a4a1d-3b58-43b6-b86a-6eb2fb4c4ed7",
+            "type": "BEGIN_LINK",
+            "screenshot": "29_b42a4a1d-3b58-43b6-b86a-6eb2fb4c4ed7.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 3,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:H",
+            "created": 1632341539923,
+            "suggestions": []
+        },
+        "3a0f9583-d4ba-409e-80ff-abc7f2a90602": {
+            "id": "3a0f9583-d4ba-409e-80ff-abc7f2a90602",
+            "type": "ADD_ELEMENT",
+            "screenshot": "32_3a0f9583-d4ba-409e-80ff-abc7f2a90602.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 1
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:F:H",
+            "created": 1632341544578,
+            "suggestions": []
+        },
+        "0ace66df-38e8-43b2-9edf-34440b7cf1b1": {
+            "id": "0ace66df-38e8-43b2-9edf-34440b7cf1b1",
+            "type": "BEGIN_LINK",
+            "screenshot": "33_0ace66df-38e8-43b2-9edf-34440b7cf1b1.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 4,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 1
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632341548259,
+            "suggestions": []
+        },
+        "00a13ba7-4560-48b9-a931-d8bb85d0fd5f": {
+            "id": "00a13ba7-4560-48b9-a931-d8bb85d0fd5f",
+            "type": "ADD_ELEMENT",
+            "screenshot": "35_00a13ba7-4560-48b9-a931-d8bb85d0fd5f.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:Y",
+            "created": 1632341550922,
+            "suggestions": []
+        },
+        "a68f49f1-553c-4176-aefe-810025a8e3f6": {
+            "id": "a68f49f1-553c-4176-aefe-810025a8e3f6",
+            "type": "BEGIN_LINK",
+            "screenshot": "36_a68f49f1-553c-4176-aefe-810025a8e3f6.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": "Adding Link:D:J",
+            "created": 1632341551323,
+            "suggestions": []
+        },
+        "ad030f98-f352-4ccd-92b7-f0d9a6077ce3": {
+            "id": "ad030f98-f352-4ccd-92b7-f0d9a6077ce3",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "41_ad030f98-f352-4ccd-92b7-f0d9a6077ce3.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "created": 1632341558920,
+            "submission_result": "failure/TEST",
+            "ticks": 25,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": "Adding Link:D:J",
+            "moving_connected_elements": false,
+            "suggestions": [
+                "BC: You are Forcefully trying to block the critical section! This is not a good practice. Instead you should make sure only process reaches the critical section, this is more optimal. Consider rearranging your semaphores and signals to make sure only one thread reaches the delivery point at once.",
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FH: With a signal in F and and Semaphore in H, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "96eb6689-d951-4044-be14-88df03155eb1": {
+            "id": "96eb6689-d951-4044-be14-88df03155eb1",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "47_96eb6689-d951-4044-be14-88df03155eb1.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632341581685,
+            "suggestions": []
+        },
+        "b0e193de-b841-4724-8096-c545da57b8fc": {
+            "id": "b0e193de-b841-4724-8096-c545da57b8fc",
+            "type": "TOGGLE_ELEMENT",
+            "screenshot": "49_b0e193de-b841-4724-8096-c545da57b8fc.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "created": 1632341582236,
+            "suggestions": []
+        },
+        "0d002391-15f9-46ae-95db-7b3b5543d38a": {
+            "id": "0d002391-15f9-46ae-95db-7b3b5543d38a",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "53_0d002391-15f9-46ae-95db-7b3b5543d38a.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "created": 1632341610489,
+            "submission_result": "success/TEST",
+            "ticks": 261,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "BC: You are Forcefully trying to block the critical section! This is not a good practice. Instead you should make sure only process reaches the critical section, this is more optimal. Consider rearranging your semaphores and signals to make sure only one thread reaches the delivery point at once.",
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FH: With a signal in F and and Semaphore in H, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        },
+        "a7d14606-c9f7-4eb7-bb34-70fb0874b050": {
+            "id": "a7d14606-c9f7-4eb7-bb34-70fb0874b050",
+            "type": "BOARD_SNAPSHOT",
+            "screenshot": "57_a7d14606-c9f7-4eb7-bb34-70fb0874b050.png",
+            "absolute_board_state": {
+                "aaaaaa": {
+                    "type": "semaphore",
+                    "element_x": 0,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaab": {
+                    "type": "signal",
+                    "element_x": 0,
+                    "element_y": 6,
+                    "link": "aaaaaa"
+                },
+                "aaaaae": {
+                    "type": "semaphore",
+                    "element_x": 4,
+                    "element_y": 10,
+                    "status": "active"
+                },
+                "aaaaaf": {
+                    "type": "semaphore",
+                    "element_x": 5,
+                    "element_y": 12,
+                    "status": "inactive"
+                },
+                "aaaaag": {
+                    "type": "signal",
+                    "element_x": 3,
+                    "element_y": 12,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaaj": {
+                    "type": "signal",
+                    "element_x": 2,
+                    "element_y": 12,
+                    "link": "aaaaae"
+                },
+                "aaaaam": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 14,
+                    "link": "L_dragonfruit_5001"
+                },
+                "aaaaap": {
+                    "type": "signal",
+                    "element_x": 4,
+                    "element_y": 16,
+                    "link": "aaaaaf"
+                }
+            },
+            "abstracted_board_state": {
+                "nSemaphores": 3,
+                "nSignals": 5,
+                "semaphore_zone_dict": {
+                    "C": 1,
+                    "H": 1,
+                    "J": 1
+                },
+                "signal_zone_dict": {
+                    "B": 1,
+                    "F": 2,
+                    "D": 2
+                },
+                "link_dict": {
+                    "BC": 1,
+                    "FY": 1,
+                    "FH": 1,
+                    "DY": 1,
+                    "DJ": 1
+                }
+            },
+            "created": 1632341647458,
+            "submission_result": "success/SUBMIT",
+            "ticks": 281,
+            "no_order_change_behaviour_issue": false,
+            "same_zone_linking": false,
+            "knowledge_statement": [
+                "No Knowledge Statement"
+            ],
+            "moving_connected_elements": false,
+            "suggestions": [
+                "BC: You are Forcefully trying to block the critical section! This is not a good practice. Instead you should make sure only process reaches the critical section, this is more optimal. Consider rearranging your semaphores and signals to make sure only one thread reaches the delivery point at once.",
+                "DJ: Your Choice for a link between D and J, could be to prevent the pink thread from moving before the red thread passes the switch. Is this is a good way go ahead? What happens if the red thread waits after passing through the switch. Would this lead to a race condition? Could you think of a way to move your signal from Zone D to a Zone after the red thread has delivered its package (or) Can you guard the critical section such that only one thread passes at a time.",
+                "DY: You are trying to handle the switch. You have a connection between a signal in D and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal",
+                "FH: With a signal in F and and Semaphore in H, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
+                "FY: You are trying to handle the switch.You have a connection between a signal in F and the switch. This turns the switch to align with the direction of the pink thread. What needs to be done to align it again with the red thread. Can you also think of a way to handle the switch with only one signal"
+            ]
+        }
+    },
+    "level": "13"
+}
+
+}
