@@ -794,8 +794,7 @@ def getPlayerTrace():
             if event['type'] in CRITICAL_EVENTS:                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
                 trace_absolute_board_state = deepcopy(board_state)
-                if user in player_traces:
-                    player_traces[user][event['id']]={
+                trace_entry = {
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
@@ -808,28 +807,13 @@ def getPlayerTrace():
                         "knowledge_statement":knowledge_statement,
                         "created": event['created']
                     }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":trace_absolute_board_state,
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix, 
-                        "state_matrix":state_matrix,                   
-                        "discussion":[],
-                        "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
-                        "created":event['created']
-
-                    }
+                player_traces[user]=player_traces.get(user,{})                    
+                player_traces[user][event['id']]=trace_entry
  
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
                 trace_absolute_board_state = deepcopy(board_state)
-                if user in player_traces:
-                    player_traces[user][event['id']]={
+                trace_entry = {
                         "id":event['id'],
                         "type":event['type'],
                         "screenshot":f"{index}_{event['id']}.png",
@@ -847,27 +831,12 @@ def getPlayerTrace():
                         "knowledge_statement":knowledge_statement,
                         "moving_connected_elements":moving_connected_elements
                     }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":trace_absolute_board_state,
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix,
-                        "state_matrix":state_matrix,
-                        "discussion":[],
-                        "upvotes":0,
-                        "created":event['created'],
-                        "submission_result" : getStatus(data,event['id']),
-                        "ticks":board_snapshot_ticks,
-                        "no_order_change_behaviour_issue":order_change_events_behaviour,
-                        "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
-                        "moving_connected_elements":moving_connected_elements
-                    }
-            
+    
+                
+
+                player_traces[user]=player_traces.get(user,{})                    
+                player_traces[user][event['id']]=trace_entry
+
                 board_snapshot_ticks = "No Ticks Available"
                 order_change_events_behaviour = False
                 same_zone_linking=False
