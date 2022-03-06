@@ -4,11 +4,8 @@ from snapshot_status import getStatus
 from getBoardID import get_board_ids
 from BuildNewGlyph import *
 from copy import copy, deepcopy
-import numpy as np
-from numpy import dot
-from numpy.linalg import norm
 import math
-from scipy import spatial
+from itertools import chain
 import Constants
 
 app = Flask(__name__)
@@ -513,11 +510,18 @@ def getPlayerTrace_internal(data):
     return response
 
 
-def cosine(a,b):
-    if (np.isnan(round(dot(a, b)/(norm(a)*norm(b)),2))):
-        print("NAN FOUND", a,b)
-        return "x" 
-    return round(dot(a, b)/(norm(a)*norm(b)),2)
+def cosine(v1,v2):
+    "compute cosine similarity of v1 to v2: (v1 dot v2)/{||v1||*||v2||)"
+    try:
+        sumxx, sumxy, sumyy = 0, 0, 0
+        for i in range(len(v1)):
+            x = v1[i]; y = v2[i]
+            sumxx += x*x
+            sumyy += y*y
+            sumxy += x*y
+        return sumxy/math.sqrt(sumxx*sumyy)
+    except:
+        return "Similarity Not Found"
 #HELPER FUNCTIONS
 
 
@@ -856,7 +860,7 @@ def getPlayerTrace():
     
     #SIMILARITY
     ranking_table = {}
-    other_logs = ['../DATA/LEVEL_13_LOGS/a9ad2164-9ec7-47e7-9e15-9214ecadd879.json']
+    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json']
     #TODO : BERT has to pull the log file of the mentioned ids
     current_player_full_trace = getPlayerTrace_internal(data)
     current_player_last_state = current_player_full_trace['events'][-1]
@@ -871,8 +875,8 @@ def getPlayerTrace():
         player2_submission_efficiency = player2_last_state['ticks']
         matrix_1 =  current_player_last_state['state_matrix']
         matrix_2 =  player2_last_state['state_matrix']
-        matrix_1 = np.array(matrix_1).flatten()
-        matrix_2 = np.array(matrix_2).flatten()
+        matrix_1 = list(chain.from_iterable(matrix_1))
+        matrix_2 = list(chain.from_iterable(matrix_2))
         consine_similarity =  cosine(matrix_1,matrix_2)
 
         #Common Links
