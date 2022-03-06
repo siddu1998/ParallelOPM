@@ -189,7 +189,7 @@ def buildAbstraction(level,board_state):
 
 
 
-#HEPLER FUNCTIONS 
+#HEPLER FUNCTIONS --> move to chalice
 def getPlayerTrace_internal(data):
     player_id = data['metadata']['playerId']
     user = data['id']
@@ -544,8 +544,8 @@ def getPlayerTrace():
 
     board_snapshot_ticks = "No Ticks Available"
     abstraction_object = Abstraction(level,{})
-    #
 
+    #Abstraction
     board_state={}
     for index,event in enumerate(data['events']):
         print(f"=========={event['type']}=======================")    
@@ -808,7 +808,8 @@ def getPlayerTrace():
             
         store_in_trace = True
         print(board_state)
-        
+
+    #suggestions    
     print("SUGGESTIONS PART")    
     for player in player_traces:
         #go through player actions
@@ -844,7 +845,7 @@ def getPlayerTrace():
             else:
                 player_traces[player][action]["suggestions"]=[]
 
-    #removing things not required in response 
+    #removing matrics, things not required in response 
     for player in player_traces:
         for action in player_traces[player]:
             player_traces[player][action].pop("adjacency_matrix")
