@@ -855,9 +855,7 @@ def getPlayerTrace():
     
     #SIMILARITY
     ranking_table = {}
-    other_logs = ['../DATA/LEVEL_13_LOGS/a9ad2164-9ec7-47e7-9e15-9214ecadd879.json',
-                '../DATA/LEVEL_13_LOGS/0bda2331-f590-4b16-9409-b2d22411b1ca.json'
-    ]
+    other_logs = ['../DATA/LEVEL_13_LOGS/a9ad2164-9ec7-47e7-9e15-9214ecadd879.json']
     #TODO : BERT has to pull the log file of the mentioned ids
     current_player_full_trace = getPlayerTrace_internal(data)
     current_player_last_state = current_player_full_trace['events'][-1]
@@ -904,6 +902,7 @@ def getPlayerTrace():
     response['player_id'] = player_id
     response['log_id']    = user
     response['events']    = [player_traces[user][x] for x in player_traces[user]]
+    response['solving_time_milliseconds']=abs(response['events'][0]['created']-response['events'][-1]['created'])
     response['ranking']   = ranking_table
 
 
