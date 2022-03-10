@@ -7,9 +7,12 @@ from copy import copy, deepcopy
 import math
 from itertools import chain
 import Constants
+import numpy as np
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
+
+debug = False
 
 CRITICAL_EVENTS=Constants.CRITICAL_EVENTS
 knowledge = Constants.knowledge
@@ -103,13 +106,15 @@ class Abstraction:
             self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
-            print('[INFO] This signal could not find a semaphore!')
-            print('[INFO] This could be a link between a signal and a Default element!')
-            print('[INFO] Attempting to search in default elements')
+            if debug:
+                print('[INFO] This signal could not find a semaphore!')
+                print('[INFO] This could be a link between a signal and a Default element!')
+                print('[INFO] Attempting to search in default elements')
             if id_2!=None:
                 (connection_x,connection_y) = default_elements[str(self.level)][id_2]
                 if connection_x!=None:
-                    print('[INFO] Yes! Default element found!')
+                    if debug:
+                        print('[INFO] Yes! Default element found!')
                     key  = zone + self.getZone(connection_x,connection_y)
                     if key in self.link_dict:
                         self.link_dict[key]+=1
@@ -119,8 +124,9 @@ class Abstraction:
                     self.adjaceny_matrix[self.zoneIndex(zone)][self.zoneIndex(self.getZone(connection_x,connection_y))]+=1
                     self.linkPositions.append([x,y,connection_x,connection_y])
                 else:
-                    print("===================CONNECTION NOT FOUND IN DEFAULT ELEMENTS TOO!") 
-                    
+                    if debug:
+                        print("===================CONNECTION NOT FOUND IN DEFAULT ELEMENTS TOO!") 
+                    pass                
     #returns which zone a point belongs to 
     def getZone(self,x,y):
         query = [x,y]
@@ -147,7 +153,8 @@ class Abstraction:
         signal_row    = []
         for zone in self.zones:
             if zone in self.semaphore_zone_dict:
-                print(zone,"+1")
+                if debug:
+                    print(zone,"+1")
                 semaphore_row.append(self.semaphore_zone_dict[zone])
             else:
                 semaphore_row.append(0)
@@ -206,11 +213,13 @@ def getPlayerTrace_internal(data):
 
     board_state={}
     for index,event in enumerate(data['events']):
-        print(f"=========={event['type']}=======================")    
-        print(event['id'])
+        if debug:
+            print(f"=========={event['type']}=======================")    
+            print(event['id'])
         
         if event['type']=="BEGIN_LEVEL_LOAD":
-            print("[INFO] Starting New Level")
+            if debug:
+                print("[INFO] Starting New Level")
             board_state = {}
             if SCREENSHOT_FLAG:
                 stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
@@ -236,8 +245,8 @@ def getPlayerTrace_internal(data):
                     "element_y":element_y,
                     "status":'inactive'
                 }
-                
-            print('[INFO] Element Added',element_id,'at',element_x,element_y)
+            if debug:
+                print('[INFO] Element Added',element_id,'at',element_x,element_y)
             
             if SCREENSHOT_FLAG:            
                 #CALL SCREEENSHOT on board_state
@@ -257,15 +266,16 @@ def getPlayerTrace_internal(data):
             new_y = event['element']['cell'][1] #y
             new_zone = abstraction_object.getZone(new_x,new_y)
         
-            
-            print('[INFO] Element Moved',element_id)
-            print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
+            if debug:
+                print('[INFO] Element Moved',element_id)
+                print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
 
             board_state[element_id]['element_x']=new_x
             board_state[element_id]['element_y']=new_y
             
             if (new_x,new_y) != (old_x,old_y):
-                print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
+                if debug:
+                    print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
                 #update to new coordinates
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
@@ -278,7 +288,8 @@ def getPlayerTrace_internal(data):
                 if board_state[element_id]["type"]=="signal":
                     if board_state[element_id]['link']!=None:
                         moving_connected_elements=True
-                        print('[FLAG] The User is moving a connected element!!')
+                        if debug:
+                            print('[FLAG] The User is moving a connected element!!')
                         
                 elif board_state[element_id]["type"]=="semaphore":
                     for item in board_state:
@@ -286,7 +297,8 @@ def getPlayerTrace_internal(data):
                             try:
                                 if board_state[item]['link']==element_id:
                                     moving_connected_elements=True
-                                    print('[FLAG] The User is moving a connected element!!!!!')
+                                    if debug:
+                                        print('[FLAG] The User is moving a connected element!!!!!')
                             except:
                                 pass
                             
@@ -296,14 +308,15 @@ def getPlayerTrace_internal(data):
                     stateShot.buildScreenShot()
 
             else:
-                print('[WARNING] ahaa did not actually move hence not adding to trace')
+                if debug:
+                    print('[WARNING] ahaa did not actually move hence not adding to trace')
                 store_in_trace = False
             
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
-
-            print('[INFO] Element Toggled',element_id)
+            if debug:
+                print('[INFO] Element Toggled',element_id)
             
             if SCREENSHOT_FLAG:
                 #CALL SCREENSHOT on board_state
@@ -322,7 +335,8 @@ def getPlayerTrace_internal(data):
                     try:
                         if board_state[item]['link']==element_id:
                             board_state[item]['link']=None
-                            print(f'[INFO] Element Link Removed {element_id} and {item}',)            
+                            if debug:
+                                print(f'[INFO] Element Link Removed {element_id} and {item}',)            
 
                     except:
                         pass
@@ -336,12 +350,15 @@ def getPlayerTrace_internal(data):
                 stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
-            print('[INFO] Adding a Link')
+            if debug:
+                print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
-            print('[INFO] Adding a Link',element_1_id)
+            if debug:
+                print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                if debug:
+                    print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -357,15 +374,17 @@ def getPlayerTrace_internal(data):
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 
                 if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    if debug:
+                        print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
-                    
-                print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                if debug:   
+                    print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
                                                        
 
             elif data['events'][index+2]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+2]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                if debug:
+                    print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -381,17 +400,18 @@ def getPlayerTrace_internal(data):
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
                     
-                print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                #print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
             else:
-                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
-                print('[INFO] Either CODE needs fix or the log file is corrupted')
+                pass
+                #print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
+                #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
             
             knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
-            print(knowledge_statement)
+            #print(knowledge_statement)
 
             #CALL SCREENSHOT            
             if SCREENSHOT_FLAG:
@@ -465,9 +485,9 @@ def getPlayerTrace_internal(data):
         
             
         store_in_trace = True
-        print(board_state)
+        #print(board_state)
         
-    print("SUGGESTIONS PART")    
+    #print("SUGGESTIONS PART")    
     for player in player_traces:
         #go through player actions
         for action in player_traces[player]:
@@ -493,7 +513,7 @@ def getPlayerTrace_internal(data):
                                     suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
                                     k_flag = True
                             if k_flag==False:
-                                print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
+                                #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
                                 suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
                                 #alert(there is a new link can you give a reason)
                 player_traces[player][action]["suggestions"]=suggestions
@@ -522,6 +542,82 @@ def cosine(v1,v2):
         return sumxy/math.sqrt(sumxx*sumyy)
     except:
         return "Similarity Not Found"
+
+
+def dynamic_time_warping(trace_1,trace_2):
+    events=[]
+    s=[]
+    t=[]
+    #establish s
+    print("Trace 1 Links")
+    for event in trace_1:
+        connected_links = event["abstracted_board_state"]['link_dict']
+        #print(connected_links)
+        if connected_links not in events:
+            events.append(connected_links)
+
+        s.append(events.index(connected_links))
+    
+    print("Trace 2 Links")
+    for event in trace_2:
+        connected_links = event["abstracted_board_state"]['link_dict']
+        #print(connected_links)
+        if connected_links not in events:
+            events.append(connected_links)
+
+        t.append(events.index(connected_links))
+    if debug:
+        print(s)
+        print(t)
+        print(events)
+
+    #establish t
+
+
+    n, m = len(s), len(t)
+    dtw_matrix = np.zeros((n+1, m+1))
+    for i in range(n+1):
+        for j in range(m+1):
+            dtw_matrix[i, j] = np.inf
+    dtw_matrix[0, 0] = 0
+    
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            cost = abs(s[i-1] - t[j-1])
+            # take last min from a square box
+            last_min = np.min([dtw_matrix[i-1, j], dtw_matrix[i, j-1], dtw_matrix[i-1, j-1]])
+            dtw_matrix[i, j] = cost + last_min
+    
+    #print("DTW Value: ", dtw_matrix[n][m])
+    return dtw_matrix[n][m]
+
+
+
+
+def getSimillarStates(trace_1,trace_2):
+    max_match = 0.0
+    player_1_state_id=''
+    player_2_state_id=''
+    states = {}
+    for player1_event in trace_1:
+        for player2_event in trace_2:
+            matrix_1 =  player1_event['state_matrix']
+            matrix_2 =  player2_event['state_matrix']
+            matrix_1 = list(chain.from_iterable(matrix_1))
+            matrix_2 = list(chain.from_iterable(matrix_2))
+            cs=cosine(matrix_1,matrix_2)
+            try:
+                if cs>=max_match:
+                    player_1_state_id = player1_event['id']
+                    player_2_state_id = player2_event['id']
+                    max_match         = cs
+            except:
+                pass
+    return ({
+        'player_1_state_id':player_1_state_id,
+        'player_2_state_id':player_2_state_id,
+        'cosine_similarity': max_match})
+
 #HELPER FUNCTIONS
 
 
@@ -552,11 +648,11 @@ def getPlayerTrace():
     #Abstraction
     board_state={}
     for index,event in enumerate(data['events']):
-        print(f"=========={event['type']}=======================")    
-        print(event['id'])
+        #print(f"=========={event['type']}=======================")    
+        #print(event['id'])
         
         if event['type']=="BEGIN_LEVEL_LOAD":
-            print("[INFO] Starting New Level")
+            #print("[INFO] Starting New Level")
             board_state = {}
             if SCREENSHOT_FLAG:
                 stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
@@ -583,7 +679,7 @@ def getPlayerTrace():
                     "status":'inactive'
                 }
                 
-            print('[INFO] Element Added',element_id,'at',element_x,element_y)
+            #print('[INFO] Element Added',element_id,'at',element_x,element_y)
             
             if SCREENSHOT_FLAG:            
                 #CALL SCREEENSHOT on board_state
@@ -604,14 +700,14 @@ def getPlayerTrace():
             new_zone = abstraction_object.getZone(new_x,new_y)
         
             
-            print('[INFO] Element Moved',element_id)
-            print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
+            #print('[INFO] Element Moved',element_id)
+            #print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
 
             board_state[element_id]['element_x']=new_x
             board_state[element_id]['element_y']=new_y
             
             if (new_x,new_y) != (old_x,old_y):
-                print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
+                #print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
                 #update to new coordinates
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
@@ -624,7 +720,7 @@ def getPlayerTrace():
                 if board_state[element_id]["type"]=="signal":
                     if board_state[element_id]['link']!=None:
                         moving_connected_elements=True
-                        print('[FLAG] The User is moving a connected element!!')
+                        #print('[FLAG] The User is moving a connected element!!')
                         
                 elif board_state[element_id]["type"]=="semaphore":
                     for item in board_state:
@@ -632,7 +728,7 @@ def getPlayerTrace():
                             try:
                                 if board_state[item]['link']==element_id:
                                     moving_connected_elements=True
-                                    print('[FLAG] The User is moving a connected element!!!!!')
+                                    #print('[FLAG] The User is moving a connected element!!!!!')
                             except:
                                 pass
                             
@@ -642,14 +738,14 @@ def getPlayerTrace():
                     stateShot.buildScreenShot()
 
             else:
-                print('[WARNING] ahaa did not actually move hence not adding to trace')
+                #print('[WARNING] ahaa did not actually move hence not adding to trace')
                 store_in_trace = False
             
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
 
-            print('[INFO] Element Toggled',element_id)
+            #print('[INFO] Element Toggled',element_id)
             
             if SCREENSHOT_FLAG:
                 #CALL SCREENSHOT on board_state
@@ -668,7 +764,7 @@ def getPlayerTrace():
                     try:
                         if board_state[item]['link']==element_id:
                             board_state[item]['link']=None
-                            print(f'[INFO] Element Link Removed {element_id} and {item}',)            
+                            #print(f'[INFO] Element Link Removed {element_id} and {item}',)            
 
                     except:
                         pass
@@ -682,12 +778,12 @@ def getPlayerTrace():
                 stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
-            print('[INFO] Adding a Link')
+            #print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
-            print('[INFO] Adding a Link',element_1_id)
+            #print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                #print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -703,15 +799,15 @@ def getPlayerTrace():
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 
                 if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
                     
-                print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                #print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
                                                        
 
             elif data['events'][index+2]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+2]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                #print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -727,17 +823,17 @@ def getPlayerTrace():
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
                     
-                print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                #print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
             else:
-                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
-                print('[INFO] Either CODE needs fix or the log file is corrupted')
+                #print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
+                #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
-            
+                pass
             knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
-            print(knowledge_statement)
+            #print(knowledge_statement)
 
             #CALL SCREENSHOT            
             if SCREENSHOT_FLAG:
@@ -811,7 +907,7 @@ def getPlayerTrace():
         
             
         store_in_trace = True
-        print(board_state)
+        #print(board_state)
 
     #suggestions    
     print("SUGGESTIONS PART")    
@@ -840,7 +936,7 @@ def getPlayerTrace():
                                     suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
                                     k_flag = True
                             if k_flag==False:
-                                print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
+                                #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
                                 suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
                                 #alert(there is a new link can you give a reason)
                 player_traces[player][action]["suggestions"]=suggestions
@@ -860,7 +956,7 @@ def getPlayerTrace():
     
     #SIMILARITY
     ranking_table = {}
-    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json']
+    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json','../DATA/LEVEL_13_LOGS/776ac684-6591-4c40-a6f7-443ef4c8855b.json']
     #TODO : BERT has to pull the log file of the mentioned ids
     current_player_full_trace = getPlayerTrace_internal(data)
     current_player_last_state = current_player_full_trace['events'][-1]
@@ -878,6 +974,8 @@ def getPlayerTrace():
         matrix_1 = list(chain.from_iterable(matrix_1))
         matrix_2 = list(chain.from_iterable(matrix_2))
         consine_similarity =  cosine(matrix_1,matrix_2)
+        trace_distance = dynamic_time_warping(current_player_full_trace['events'],player2_full_trace['events'])
+        most_similar_states = getSimillarStates(current_player_full_trace['events'],player2_full_trace['events'])
 
         #Common Links
         player2_links = player2_last_state['abstracted_board_state']['link_dict'].keys()
@@ -889,16 +987,17 @@ def getPlayerTrace():
         else:
             player2_board_status = "Player Did Not Submit"
         
-        ranking_table[player2_id]={
-            'log_id':player2,
+        ranking_table[player2]={
+            'player_id':player2_id,
             'efficiency':player2_submission_efficiency,
             'nSignals':player2_n_signals,
             'nSemaphores':player2_n_semaphores,
             'similarity':consine_similarity,
             'board_status':player2_board_status,
             'uncommon_links':uncommon_links,
-            'solving_time_milliseconds':abs(player2_full_trace['events'][0]['created']-player2_full_trace['events'][-1]['created'])
-            
+            'trace_distance': trace_distance,
+            'most_similar_states':most_similar_states,
+            'solving_time_milliseconds':abs(player2_full_trace['events'][0]['created']-player2_full_trace['events'][-1]['created']),
         }
 
 
