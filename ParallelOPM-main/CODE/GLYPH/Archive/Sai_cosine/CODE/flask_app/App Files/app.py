@@ -12,7 +12,7 @@ import numpy as np
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-debug = False
+debug = True
 
 CRITICAL_EVENTS=Constants.CRITICAL_EVENTS
 knowledge = Constants.knowledge
@@ -339,10 +339,7 @@ def getPlayerTrace_internal(data):
                                 print(f'[INFO] Element Link Removed {element_id} and {item}',)            
 
                     except:
-                        pass
-
-                    
-                            
+                        pass            
                 
             if SCREENSHOT_FLAG:
                 #CALL SCREENSHOT
@@ -410,7 +407,7 @@ def getPlayerTrace_internal(data):
                 #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
             
-            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            #knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
             #print(knowledge_statement)
 
             #CALL SCREENSHOT            
@@ -492,35 +489,35 @@ def getPlayerTrace_internal(data):
         #go through player actions
         for action in player_traces[player]:
             #get player submissions
-            if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
-                #print("Player ID: ", player)
-                #print("Event ID: ",action)
-                suggestions = []
-                #get adjacency matrix of submission
-                adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
-                #get links in that submissions
-                for row in range(0,len(adjacency_matrix)):
-                    for col in range(0,len(adjacency_matrix[0])):
-                        k_flag = False
-                        if adjacency_matrix[row][col]>0:
-                            link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
-                            
-                            #print(f"[INFO] Link in between {link}")
-                            for concept in knowledge[str(level)]["concepts"]:
-                                if link == knowledge[str(level)]["concepts"][concept]["link"]:
-                                    #print("--- Concept Found",concept,link)
-                                    #print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
-                                    suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
-                                    k_flag = True
-                            if k_flag==False:
-                                #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
-                                suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
-                                #alert(there is a new link can you give a reason)
-                player_traces[player][action]["suggestions"]=suggestions
+            #if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
+            #print("Player ID: ", player)
+            #print("Event ID: ",action)
+            suggestions = []
+            #get adjacency matrix of submission
+            adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
+            #get links in that submissions
+            for row in range(0,len(adjacency_matrix)):
+                for col in range(0,len(adjacency_matrix[0])):
+                    k_flag = False
+                    if adjacency_matrix[row][col]>0:
+                        link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
+                        
+                        #print(f"[INFO] Link in between {link}")
+                        for concept in knowledge[str(level)]["concepts"]:
+                            if link == knowledge[str(level)]["concepts"][concept]["link"]:
+                                #print("--- Concept Found",concept,link)
+                                #print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
+                                suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
+                                k_flag = True
+                        if k_flag==False:
+                            #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
+                            suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
+                            #alert(there is a new link can you give a reason)
+            player_traces[player][action]["suggestions"]=suggestions
                 #print('========================')
             
-            else:
-                player_traces[player][action]["suggestions"]=[]
+            # else:
+            #     player_traces[player][action]["suggestions"]=[]
 
     response = {}
     response['level']=level
@@ -679,7 +676,7 @@ def getPlayerTrace():
                     "status":'inactive'
                 }
                 
-            #print('[INFO] Element Added',element_id,'at',element_x,element_y)
+            print('[INFO] Element Added',element_id,'at',element_x,element_y)
             
             if SCREENSHOT_FLAG:            
                 #CALL SCREEENSHOT on board_state
@@ -778,7 +775,8 @@ def getPlayerTrace():
                 stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
-            #print('[INFO] Adding a Link')
+            print(event['id'])
+            print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
             #print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
@@ -832,7 +830,7 @@ def getPlayerTrace():
                 #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
                 pass
-            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            #knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
             #print(knowledge_statement)
 
             #CALL SCREENSHOT            
@@ -915,35 +913,38 @@ def getPlayerTrace():
         #go through player actions
         for action in player_traces[player]:
             #get player submissions
-            if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
-                #print("Player ID: ", player)
-                #print("Event ID: ",action)
-                suggestions = []
-                #get adjacency matrix of submission
-                adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
-                #get links in that submissions
-                for row in range(0,len(adjacency_matrix)):
-                    for col in range(0,len(adjacency_matrix[0])):
-                        k_flag = False
-                        if adjacency_matrix[row][col]>0:
-                            link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
-                            
-                            #print(f"[INFO] Link in between {link}")
-                            for concept in knowledge[str(level)]["concepts"]:
-                                if link == knowledge[str(level)]["concepts"][concept]["link"]:
-                                    #print("--- Concept Found",concept,link)
-                                    #print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
-                                    suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
-                                    k_flag = True
-                            if k_flag==False:
-                                #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
-                                suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
-                                #alert(there is a new link can you give a reason)
-                player_traces[player][action]["suggestions"]=suggestions
-                #print('========================')
+            # if player_traces[player][action]["type"]=="BOARD_SNAPSHOT":
+            #print("Player ID: ", player)
+            #print("Event ID: ",action)
+            suggestions = []
+            link_recommendations = []
+            #get adjacency matrix of submission
+            adjacency_matrix=player_traces[player][action]["adjacency_matrix"]
+            #get links in that submissions
+            for row in range(0,len(adjacency_matrix)):
+                for col in range(0,len(adjacency_matrix[0])):
+                    k_flag = False
+                    if adjacency_matrix[row][col]>0:
+                        link = f"{level_zone_mapper[level][row]}{level_zone_mapper[level][col]}"
+                        
+                        #print(f"[INFO] Link in between {link}")
+                        for concept in knowledge[str(level)]["concepts"]:
+                            if link == knowledge[str(level)]["concepts"][concept]["link"]:
+                                #print("--- Concept Found",concept,link)
+                                #print("--- [OPM]", knowledge[level]["concepts"][concept]["OPM"])
+                                suggestions.append(knowledge[level]["concepts"][concept]["OPM"])
+                                link_recommendations.append(knowledge[level]['concepts'][concept]['recommendation_links'])
+                                k_flag = True
+                        if k_flag==False:
+                            #print('[WARNING] NEW LINK FOUND! No Reasoning Found for this link')
+                            suggestions.append(f"{link}:This link is not a popular link in the community! Not sure what the idea behind the link is!")
+                            #alert(there is a new link can you give a reason)
+            player_traces[player][action]["suggestions"]=suggestions
+            player_traces[player][action]["link_recommendations"]=link_recommendations
+            #print('========================')
             
-            else:
-                player_traces[player][action]["suggestions"]=[]
+            # else:
+            #     player_traces[player][action]["suggestions"]=[]
 
     #removing matrics, things not required in response 
     for player in player_traces:
