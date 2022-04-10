@@ -12,7 +12,7 @@ import numpy as np
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-debug = True
+debug = False
 
 CRITICAL_EVENTS=Constants.CRITICAL_EVENTS
 knowledge = Constants.knowledge
@@ -635,6 +635,12 @@ def getPlayerTrace():
     moving_connected_elements = False
     store_in_trace = True
     SCREENSHOT_FLAG=False
+
+    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json','../DATA/LEVEL_13_LOGS/776ac684-6591-4c40-a6f7-443ef4c8855b.json','../DATA/LEVEL_13_LOGS/f37b8cd6-dfd3-455f-8256-60b4718715cd.json']
+    other_player_traces={}
+    for log in other_logs:
+        other_player_traces[log]=getPlayerTrace_internal(json.load(open(log)))
+
     
     knowledge_statement = "No Knowledge Statement"
     move_classification          = "ignore"
@@ -717,11 +723,22 @@ def getPlayerTrace():
                         element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                         linked_zone = f"{new_zone}{element_2_zone}"
                         knowledge_statement=f'{linked_zone}'
+                        #getting + sign players
                         for concept in Constants.knowledge[level]['concepts']:
                             if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
                                 move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
                                 move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
-                        
+                                #now return the first event from other traces which has atleast one of the recommended links
+                                for player_log in other_player_traces:
+                                    for other_player_event in other_player_traces[player_log]['events']:
+                                        if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                            links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                            if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                                recommended_players[player_log]=recommended_players.get(player_log,[])
+                                                recommended_players[player_log].append(other_player_event['id'])
+                                                break
+
+
                 elif board_state[element_id]["type"]=="semaphore":#I am moving a semaphore
                     for item in board_state:
                         if board_state[item]['type']=='signal': #searching through signals if the semaphore is linked
@@ -733,11 +750,14 @@ def getPlayerTrace():
                                     element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                                     linked_zone = f"{new_zone}{element_2_zone}"
                                     knowledge_statement=f'{linked_zone}'
-                                    for concept in Constants.knowledge[level]['concepts']:
-                                        if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
-                                            move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
-                                            move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
-                                                
+                                    for player_log in other_player_traces:
+                                        for other_player_event in other_player_traces[player_log]['events']:
+                                            if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                                links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                                if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                                    recommended_players[player_log]=recommended_players.get(player_log,[])
+                                                    recommended_players[player_log].append(other_player_event['id'])
+                                                    break                                      
                                     
                                     #print('[FLAG] The User is moving a connected element!!!!!')
                             except:
@@ -814,7 +834,16 @@ def getPlayerTrace():
                     if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
                         move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
                         move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
-                                                
+                        #now return the first event from other traces which has atleast one of the recommended links
+                        for player_log in other_player_traces:
+                            for other_player_event in other_player_traces[player_log]['events']:
+                                if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                    links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                    if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                        recommended_players[player_log]=recommended_players.get(player_log,[])
+                                        recommended_players[player_log].append(other_player_event['id'])
+                                        break
+                                             
                                     
 
                 if element_2_zone == element_1_zone:
@@ -846,6 +875,14 @@ def getPlayerTrace():
                     if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
                         move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
                         move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
+                        for player_log in other_player_traces:
+                            for other_player_event in other_player_traces[player_log]['events']:
+                                if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                    links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                    if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                        recommended_players[player_log]=recommended_players.get(player_log,[])
+                                        recommended_players[player_log].append(other_player_event['id'])
+                                        break
  
                 if element_2_zone == element_1_zone:
                     #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
@@ -894,6 +931,7 @@ def getPlayerTrace():
                         "activity":knowledge_statement,
                         'move_classification':move_classification,
                         'move_recommendations':move_recommendations,
+                        'recommended_players':recommended_players,
                         "created": event['created']
                     }
                 player_traces[user]=player_traces.get(user,{})                    
@@ -901,6 +939,7 @@ def getPlayerTrace():
                 move_classification='ignore'
                 knowledge_statement="No Knowledge Statement",
                 move_recommendations         = []
+                recommended_players          = {}
  
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
@@ -923,7 +962,8 @@ def getPlayerTrace():
                         "activity":knowledge_statement,
                         "move_classification":move_classification,
                         'move_recommendations':move_recommendations,
-                        "moving_connected_elements":moving_connected_elements
+                        "moving_connected_elements":moving_connected_elements,
+                        'recommended_players':recommended_players
                     }
     
                 
@@ -938,6 +978,7 @@ def getPlayerTrace():
                 knowledge_statement="No Knowledge Statement",
                 move_classification="ignore"
                 move_recommendations         = []
+                recommended_players          = {}
         
             
         store_in_trace = True
@@ -993,7 +1034,6 @@ def getPlayerTrace():
     
     #SIMILARITY
     ranking_table = {}
-    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json','../DATA/LEVEL_13_LOGS/776ac684-6591-4c40-a6f7-443ef4c8855b.json']
     #TODO : BERT has to pull the log file of the mentioned ids
     current_player_full_trace = getPlayerTrace_internal(data)
     current_player_last_state = current_player_full_trace['events'][-1]
@@ -1280,6 +1320,5 @@ if __name__ == '__main__':
 
 """
 Things still to do
-1. add recommendations for good links
 2. return players to recommend based on the good and bad links
 """
