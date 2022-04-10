@@ -18,14 +18,14 @@ knowledge = {
                     "link": "ZY",
                     "OPM":"ZY: Great job with using the critical section to handle the default switch. Can you think of another position to place the signal!",
                     "classification" : "good",
-                    "recommendation_links":[]
+                    "recommendation_links":["WY","BY","CY"]
                     },
                 "concept_2":{
                     "statement":"Handling the switch using Critical Section",
                     "link": "WY",
                     "OPM":"WY: Great job with using the critical section to handle the default switch. Can you think of another position to place the signal!",
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["ZY","BY","CY"]
                     },
                 "concept_3":{
                     "statement":"Handling the switch two signals",
@@ -53,14 +53,14 @@ knowledge = {
                     "link": "AI",
                     "OPM":"AI: You have choosen a nice way to prevent race condition by locking the pink thread before the red thread delivers. Can you think of ways how the pink thread can block the red thread inorder to prevent a race condition.",
                     "classifiction":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["AJ"]
                 },
                 "concept_7":{
                     "statement":"Handling Race Condition (Red thread Blocking Pink thread)",
                     "link": "AJ",
                     "OPM":"AJ: You have choosen a nice way to prevent race condition by locking the pink thread before the red thread delivers. Can you think of ways how the pink thread can block the red thread inorder to prevent a race condition.",
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["AI"]
                 },
                 "concept_8":{
                     "statement":"Handling Race Condition (Red thread Blocking Pink thread)",
@@ -81,42 +81,42 @@ knowledge = {
                     "link": "EA",
                     "OPM":"EA: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["EG","EH","IA","IG","IH"]
                 },
                 "concept_11":{
                     "statement":"Handling Race Condition (Pink thread Blocking Red thread)",
                     "link": "EG",
                     "OPM":"EG: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",                  
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["EA","EH","IA","IG","IH"]
                 },
                 "concept_12":{
                     "statement":"Handling Race Condition (Pink thread Blocking Red thread)",
                     "link": "EH",
                     "OPM":"EH: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",                 
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["EA","EG","IA","IG","IH"]
                 },
                 "concept_13":{
                     "statement":"Handling Race Condition (Pink thread Blocking Red thread)",
                     "link": "IA",
                     "OPM":"IA: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",                    
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["EA","EG","EH","IG","IH"]
                 },
                 "concept_14":{
                     "statement":"Handling Race Condition (Pink thread Blocking Red thread)",
                     "link": "IG",
                     "OPM":"IG: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",                    
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["EA","EG","EH","IA","IH"]
                 },
                 "concept_15":{
                     "statement":"Handling Race Condition (Pink thread Blocking Red thread)",
                     "link": "IH",
                     "OPM":"IH: You have choosen a nice way to prevent race condition by locking the red thread before the Pink thread delivers. Can you think of ways how the red thread can block the pink thread inorder to prevent a race condition.",                    
                     "classification":"good",
-                    "recommendation_links":[]                
+                    "recommendation_links":["EA","EG","EH","IA","IG"]               
                 },
                 "concept_16":{
                     "statement":"Trying to prevent race condition. But does not understand the concept of 'Allowing Peer Process to deliver only after current process has delivered.'",
@@ -158,14 +158,14 @@ knowledge = {
                     "link": "BY",
                     "OPM":"BY: Great job with using the critical section to handle the default switch. Can you think of another position to place the signal!",
                     "classifiction":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["ZY","WY","CY"]
                 },  
                 "concept_22":{
                     "statement":"Handling the switch using critical section",
                     "link": "CY",
                     "OPM":"CY: Great job with using the critical section to handle the default switch. Can you think of another position to place the signal!",
                     "classification":"good",
-                    "recommendation_links":[]
+                    "recommendation_links":["ZY","WY","BY"]
                 },  
                 "concept_23":{
                     "statement":"Trying to prevent race condition. But fails to understand that needs to unlock peer thread only after completing threads own task ",
