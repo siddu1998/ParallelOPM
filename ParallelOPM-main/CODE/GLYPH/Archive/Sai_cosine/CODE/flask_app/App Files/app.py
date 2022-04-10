@@ -636,7 +636,11 @@ def getPlayerTrace():
     store_in_trace = True
     SCREENSHOT_FLAG=False
 
-    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json','../DATA/LEVEL_13_LOGS/776ac684-6591-4c40-a6f7-443ef4c8855b.json','../DATA/LEVEL_13_LOGS/f37b8cd6-dfd3-455f-8256-60b4718715cd.json']
+    other_logs = ['../DATA/LEVEL_13_LOGS/a96c510e-687c-4889-8d21-a4444cd08de0.json',
+                  '../DATA/LEVEL_13_LOGS/776ac684-6591-4c40-a6f7-443ef4c8855b.json',
+                  '../DATA/LEVEL_13_LOGS/f37b8cd6-dfd3-455f-8256-60b4718715cd.json',
+                  '../DATA/LEVEL_13_LOGS/975572d2-1e6f-4d20-aac8-01c45b7abf3b.json',
+                  '../DATA/LEVEL_13_LOGS/b6040382-973d-434c-8d69-ffe682aa06ed.json']
     other_player_traces={}
     for log in other_logs:
         other_player_traces[log]=getPlayerTrace_internal(json.load(open(log)))
@@ -1317,8 +1321,3 @@ def hello_world():
 if __name__ == '__main__':  
     app.run(debug=True)
 
-
-"""
-Things still to do
-2. return players to recommend based on the good and bad links
-"""
