@@ -364,6 +364,7 @@ def getPlayerTrace_internal(data):
                 except:
                     element_2_x = default_elements[str(level)][element_2_id][0]
                     element_2_y = default_elements[str(level)][element_2_id][1]
+                
                 element_1_x = board_state[element_1_id]['element_x']
                 element_1_y = board_state[element_1_id]['element_y']
                 
@@ -407,7 +408,7 @@ def getPlayerTrace_internal(data):
                 #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
             
-            #knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
             #print(knowledge_statement)
 
             #CALL SCREENSHOT            
@@ -615,8 +616,6 @@ def getSimillarStates(trace_1,trace_2):
         'player_2_state_id':player_2_state_id,
         'cosine_similarity': max_match})
 
-#HELPER FUNCTIONS
-
 
 
 
@@ -638,18 +637,17 @@ def getPlayerTrace():
     SCREENSHOT_FLAG=False
     
     knowledge_statement = "No Knowledge Statement"
+    move_classification          = "ignore"
+    move_recommendations         = []
+    recommended_players          = {}
 
     board_snapshot_ticks = "No Ticks Available"
     abstraction_object = Abstraction(level,{})
 
     #Abstraction
     board_state={}
-    for index,event in enumerate(data['events']):
-        #print(f"=========={event['type']}=======================")    
-        #print(event['id'])
-        
+    for index,event in enumerate(data['events']):        
         if event['type']=="BEGIN_LEVEL_LOAD":
-            #print("[INFO] Starting New Level")
             board_state = {}
             if SCREENSHOT_FLAG:
                 stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
@@ -687,7 +685,6 @@ def getPlayerTrace():
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
             
-
             old_x = board_state[element_id]['element_x'] 
             old_y = board_state[element_id]['element_y']
             old_zone = abstraction_object.getZone(old_x,old_y)
@@ -696,35 +693,52 @@ def getPlayerTrace():
             new_y = event['element']['cell'][1] #y
             new_zone = abstraction_object.getZone(new_x,new_y)
         
-            
-            #print('[INFO] Element Moved',element_id)
-            #print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
-
             board_state[element_id]['element_x']=new_x
             board_state[element_id]['element_y']=new_y
             
             if (new_x,new_y) != (old_x,old_y):
-                #print(f"Element moved form {old_zone},{(old_x,old_y)},'to' ,{new_zone},{(new_x,new_y)}")
-                #update to new coordinates
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
-                
-                
-                
                 if new_zone == old_zone:
                     order_change_events_behaviour=True
+
                 #if the element is connected and being moved it is an interesting move and we want to flag!
-                if board_state[element_id]["type"]=="signal":
-                    if board_state[element_id]['link']!=None:
+                if board_state[element_id]["type"]=="signal": #if I am moving a signal
+                    if board_state[element_id]['link']!=None: # if the signal I am moving has a link 
                         moving_connected_elements=True
-                        #print('[FLAG] The User is moving a connected element!!')
+                        try:
+                            element_2_x =  board_state[element_2_id]['element_x']               
+                            element_2_y =  board_state[element_2_id]['element_y']
+                            #if element_2 not in board state and is possibly a default element
+                        except:
+                            element_2_x = default_elements[str(level)][element_2_id][0]
+                            element_2_y = default_elements[str(level)][element_2_id][1]
+
+                        element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                        linked_zone = f"{new_zone}{element_2_zone}"
+                        knowledge_statement=f'{linked_zone}'
+                        for concept in Constants.knowledge[level]['concepts']:
+                            if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
+                                move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
+                                move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
                         
-                elif board_state[element_id]["type"]=="semaphore":
+                elif board_state[element_id]["type"]=="semaphore":#I am moving a semaphore
                     for item in board_state:
-                        if board_state[item]['type']=='signal':
+                        if board_state[item]['type']=='signal': #searching through signals if the semaphore is linked
                             try:
-                                if board_state[item]['link']==element_id:
+                                if board_state[item]['link']==element_id: #Found a signal linked to the semaphore
                                     moving_connected_elements=True
+                                    element_2_x =  board_state[item]['element_x']               
+                                    element_2_y =  board_state[item]['element_y']
+                                    element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+                                    linked_zone = f"{new_zone}{element_2_zone}"
+                                    knowledge_statement=f'{linked_zone}'
+                                    for concept in Constants.knowledge[level]['concepts']:
+                                        if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
+                                            move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
+                                            move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
+                                                
+                                    
                                     #print('[FLAG] The User is moving a connected element!!!!!')
                             except:
                                 pass
@@ -775,7 +789,6 @@ def getPlayerTrace():
                 stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
-            print(event['id'])
             print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
             #print('[INFO] Adding a Link',element_1_id)
@@ -795,7 +808,15 @@ def getPlayerTrace():
                 
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
-                
+                linked_zone = f"{element_1_zone}{element_2_zone}"
+                knowledge_statement=f'{linked_zone}'
+                for concept in Constants.knowledge[level]['concepts']:
+                    if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
+                        move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
+                        move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
+                                                
+                                    
+
                 if element_2_zone == element_1_zone:
                     #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
@@ -819,7 +840,13 @@ def getPlayerTrace():
                 element_1_y = board_state[element_1_id]['element_y']
                 
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
-                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y)
+                linked_zone = f"{element_1_zone}{element_2_zone}"
+                for concept in Constants.knowledge[level]['concepts']:
+                    if linked_zone == Constants.knowledge[level]['concepts'][concept]['link']:
+                        move_classification = Constants.knowledge[level]['concepts'][concept]['classification']
+                        move_recommendations = Constants.knowledge[level]['concepts'][concept]['recommendation_links']
+ 
                 if element_2_zone == element_1_zone:
                     #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
@@ -830,7 +857,7 @@ def getPlayerTrace():
                 #print('[INFO] Either CODE needs fix or the log file is corrupted')
                 #print(file)
                 pass
-            #knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
+            knowledge_statement=f'{linked_zone}'
             #print(knowledge_statement)
 
             #CALL SCREENSHOT            
@@ -864,11 +891,16 @@ def getPlayerTrace():
                         "state_matrix":state_matrix,
                         "discussion":[],
                         "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
+                        "activity":knowledge_statement,
+                        'move_classification':move_classification,
+                        'move_recommendations':move_recommendations,
                         "created": event['created']
                     }
                 player_traces[user]=player_traces.get(user,{})                    
                 player_traces[user][event['id']]=trace_entry
+                move_classification='ignore'
+                knowledge_statement="No Knowledge Statement",
+                move_recommendations         = []
  
             if event['type']=='BOARD_SNAPSHOT':                   
                 abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
@@ -888,7 +920,9 @@ def getPlayerTrace():
                         "ticks":board_snapshot_ticks,
                         "no_order_change_behaviour_issue":order_change_events_behaviour,
                         "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
+                        "activity":knowledge_statement,
+                        "move_classification":move_classification,
+                        'move_recommendations':move_recommendations,
                         "moving_connected_elements":moving_connected_elements
                     }
     
@@ -902,6 +936,8 @@ def getPlayerTrace():
                 same_zone_linking=False
                 moving_connected_elements = False
                 knowledge_statement="No Knowledge Statement",
+                move_classification="ignore"
+                move_recommendations         = []
         
             
         store_in_trace = True
@@ -1013,6 +1049,16 @@ def getPlayerTrace():
 
 
     return response
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1230,3 +1276,10 @@ def hello_world():
   
 if __name__ == '__main__':  
     app.run(debug=True)
+
+
+"""
+Things still to do
+1. add recommendations for good links
+2. return players to recommend based on the good and bad links
+"""
