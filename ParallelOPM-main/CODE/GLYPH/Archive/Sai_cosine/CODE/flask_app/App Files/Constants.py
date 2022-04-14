@@ -240,7 +240,7 @@ knowledge = {
                     "recommendation_links":["EA","EG","EH","IA","IG","IH"]
                 },  
             }
-},
+    },
     "15":{
             "optimal_semaphores":1,
             "optimal_signals":7,
