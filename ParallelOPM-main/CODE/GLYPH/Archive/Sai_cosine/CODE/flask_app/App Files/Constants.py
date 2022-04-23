@@ -52,7 +52,7 @@ knowledge = {
                     "statement":"Handling Race Condition (Red thread Blocking Pink thread)",
                     "link": "AI",
                     "OPM":"AI: You have choosen a nice way to prevent race condition by locking the pink thread before the red thread delivers. Can you think of ways how the pink thread can block the red thread inorder to prevent a race condition.",
-                    "classifiction":"good",
+                    "classification":"good",
                     "recommendation_links":["AJ"]
                 },
                 "concept_7":{
@@ -157,7 +157,7 @@ knowledge = {
                     "statement":"Handling the switch using critical section",
                     "link": "BY",
                     "OPM":"BY: Great job with using the critical section to handle the default switch. Can you think of another position to place the signal!",
-                    "classifiction":"good",
+                    "classification":"good",
                     "recommendation_links":["ZY","WY","CY"]
                 },  
                 "concept_22":{
@@ -441,7 +441,4 @@ level_zone_mapper={
     "5":level_5_index_map
 }
 
-
-
 default_elements = {"13":{"L_dragonfruit_5001":(4,12)}}
-
