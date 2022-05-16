@@ -238,7 +238,7 @@ knowledge = {
                     "OPM":"FG: With a signal in F and and Semaphore in G, you seem to be trying to control the red thread with the red thread. But is unlocking the red thread before the pink thread delivers its package the right approach. Where do you think the Signal in F has to be placed to make this right?",
                     "classification":"bad",
                     "recommendation_links":["EA","EG","EH","IA","IG","IH"]
-                },  
+                },
             }
     },
     "15":{

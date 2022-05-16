@@ -1,6 +1,5 @@
 # called in abstraction_glyph.py
 from PIL import Image, ImageDraw, ImageFont
-from sys import exit
 import json
 import os
 
