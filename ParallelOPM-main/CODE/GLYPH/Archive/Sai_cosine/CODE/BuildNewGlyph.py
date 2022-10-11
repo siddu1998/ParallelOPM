@@ -24,8 +24,10 @@ INFINITE_SIMILARITY = 50000
 
 
 class GlyphBuilder():
-    def __init__(self, userStates, userActions, userboardids, filename,usermap):
+    def __init__(self, userStates, userActions, userboardids, filename,usermap,cosine):
+        self.cosine_threshold = cosine
         self.usermap = usermap
+        print(self.usermap)
         #print(self.usermap)
         self.states = []            #Store all of the states
         self.trajectories = []      #Store all of the trajectories
@@ -80,6 +82,7 @@ class GlyphBuilder():
                 userStates[user][-1]['board_ids']=[]
             if f==1:  
                 for i in range(len(userActions[user])):
+                    print(i)
                     userStates[user][i]['board_ids'].append(userboardids[user][i])
                 userStates[user][-1]['nextAction'] = 'end game'
                 # edited to remove the last element not getting added problem
@@ -101,6 +104,7 @@ class GlyphBuilder():
             'traj_similarity': self.traj_similarity,
             'setting': 'Parallel data'
         }
+        print('The total number of nodes in abstracted glyph is',len(self.states))
         filename = self.filename
         with open(os.path.join(GLYPHDIR, filename), 'w') as f:
             json.dump(data, f)
@@ -257,7 +261,7 @@ class GlyphBuilder():
         elif sum(a)==0 and sum(b)==0:
             return True
 
-        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=0.8:
+        elif round(dot(a, b)/(norm(a)*norm(b)),2) >=self.cosine_threshold:
             return True
 
         
@@ -380,6 +384,7 @@ class GlyphBuilder():
         Create Trajectories of Glyph visualization
         """
         for user in self.userIds:
+            print(user)
             trajectory = self.userTrajectories[user]
             action_meaning = ['transition'] * (len(trajectory) - 2)
             action_meaning.insert(0, 'start_game')

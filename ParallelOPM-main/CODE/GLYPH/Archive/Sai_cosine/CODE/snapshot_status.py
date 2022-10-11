@@ -5,9 +5,9 @@ import json
 
 #LOGS = '../DATA/Logfiles'
 #LOGS = '../DATA/LEVEL_5_LOGS'
-LOGS = '../DATA/LEVEL_10_LOGS'
+# LOGS = '../DATA/LEVEL_10_LOGS'
 # LOGS = "../DATA/LEVEL_15_LOGS"
-#LOGS = "../DATA/LEVEL_13_LOGS"
+LOGS = "../DATA/LEVEL_13_LOGS"
 
 
 def getStatus(board_snapshot_id,fileName):

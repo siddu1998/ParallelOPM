@@ -12,8 +12,6 @@ from copy import copy, deepcopy
 from datetime import datetime
 
 
-
-
 SCREENSHOT_BLOCKS = '../DATA/ScreenshotData'
 
 #TODO : CHANGE FILE PATH in snapshot_status.py
@@ -34,8 +32,8 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
-SCREENSHOT_FLAG = True
-GIF_FLAG        = True
+SCREENSHOT_FLAG = False
+GIF_FLAG        = False
 
 
 
@@ -318,43 +316,32 @@ total_number_of_nodes = 0
 total_number_of_begin_links = 0
 abstraction_object = Abstraction(level,{})
 
+
+entry = {} 
+
 for file in os.listdir(log_files):
+    print("===============")
     user = file.split('.')[0]
     fileName = log_files+'/'+file
-    board_state = {}
-    
-    order_change_events_behaviour = False
-    same_zone_linking = False
-    moving_connected_elements = False
-    store_in_trace = True
-    
-    knowledge_statement = "No Knowledge Statement"
-    
-    
-    
-    try:
-        os.mkdir(f'../DATA/IntermediateScreenShots/{user}')
-        os.mkdir(f'../DATA/Screenshots/{user}')
-    except:
-        pass
+    board_state = {} 
+    entry[user] = {} 
+    activity = ""
+
         
-    board_snapshot_ticks = "No Ticks Available"
-    print(fileName)
     data = json.load(open(fileName))
     for index,event in enumerate(data['events']):    
         if event['type'] in CRITICAL_EVENTS or event['type']=="BOARD_SNAPSHOT":
-            total_number_of_nodes+=1
+            pass
+
         if event['type']=="BEGIN_LEVEL_LOAD":
-            board_state = {}
-            if SCREENSHOT_FLAG:
-                stateShot = StateShot(board_state,f"{index}_{event['id']}","LEVEL RESTARTED",level,user) 
-                stateShot.buildScreenShot()
+            pass
     
         if event['type'] == 'ADD_ELEMENT':
             element_id   = event['element']['id']     #element id
             element_type = event['element']['type'] #semaphore, signal
             element_x = event['element']['cell'][0] #x
             element_y = event['element']['cell'][1] #y
+            
             if element_type == 'signal':
                 board_state[element_id] = {
                     "type":element_type,
@@ -369,17 +356,15 @@ for file in os.listdir(log_files):
                     "element_y":element_y,
                     "status":'inactive'
                 }
-                
-            print('[INFO] Element Added',element_id)
             
-            if SCREENSHOT_FLAG:            
-                #CALL SCREEENSHOT on board_state
-                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-                stateShot.buildScreenShot()
+            zone_added = abstraction_object.getZone(element_x,element_y)
+            #activity = f"Put {element_type} ({element_id}) in Zone {zone_added} "
+            #activity = f"Put {element_type}  in Zone {zone_added} "
+            print(f"case_{user},",f"Put {element_type}  in Zone {zone_added}"",",user,",",event['created'],",",event['created']+1)
                                     
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
-            
+            element_type = event['element']['type'] 
             old_x = board_state[element_id]['element_x'] 
             old_y = board_state[element_id]['element_y']
             old_zone = abstraction_object.getZone(old_x,old_y)
@@ -387,58 +372,38 @@ for file in os.listdir(log_files):
             new_x = event['element']['cell'][0] #x
             new_y = event['element']['cell'][1] #y
             new_zone = abstraction_object.getZone(new_x,new_y)
-            print(f"Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")
+            
             
             if (new_x,new_y) != (old_x,old_y):
-                print(f"#################### Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")                
+                #print(f"#################### Element moved form {new_zone}, {old_zone},{(new_x,new_y)},{(old_x,old_y)}")                
                 #update to new coordinates
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
-                
-                print('[INFO] Element Moved',element_id)
-                
-                if new_zone == old_zone:
-                    order_change_events_behaviour=True
-                #if the element is connected and being moved it is an interesting move and we want to flag!
-                if board_state[element_id]["type"]=="signal":
-                    if board_state[element_id]['link']!=None:
-                        moving_connected_elements=True
-                        print('[FLAGGGGG] The User is moving a connected element!!!!!')
-                        
-                elif board_state[element_id]["type"]=="semaphore":
-                    for item in board_state:
-                        if board_state[item]['type']=='signal':
-                            try:
-                                if board_state[item]['link']==element_id:
-                                    moving_connected_elements=True
-                                    print('[FLAGGGGG] The User is moving a connected element!!!!!')
-                            except:
-                                pass
-                            
-                #CALL SCREENSHOT on board_state
-                if SCREENSHOT_FLAG:
-                    stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-                    stateShot.buildScreenShot()
+                #activity =f"{element_type} ({element_id}) moved form {new_zone} -> {old_zone}"
+                print(f"case_{user},",f"{element_type} ({element_id}) removed form {old_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case_{user},",f"{element_type} ({element_id}) added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
 
             else:
-                print('[INFOOOOOO] ############ ahaa did not actually move hence not adding to trace')
-                store_in_trace = False
+                #activity =f"{element_type} ({element_id}) moved form {new_zone} -> {old_zone}"
+                #print(f"Put {element_type}  in Zone {zone_added}")
+                print(f"case_{user},",f"{element_type} ({element_id}) removed form {old_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case_{user},",f"{element_type} ({element_id}) added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
             
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
+            #activity =f"{element_type} ({element_id}) Toggled"
+            print(f"case_{user},",f"{element_type} ({element_id}) Toggled",",",user,",",event['created'],",",event['created']+1)
 
-            print('[INFO] Element Toggled',element_id)
-            
-            if SCREENSHOT_FLAG:
-                #CALL SCREENSHOT on board_state
-                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-                stateShot.buildScreenShot()
-
+        
         if event['type'] == 'REMOVE_ELEMENT':
-            element_id = event['element']['id']         
+            element_id = event['element']['id']
+            removed_element_x = board_state[element_id]['element_x'] 
+            removed_element_y = board_state[element_id]['element_y']
+            removed_element_zone = abstraction_object.getZone(removed_element_x,removed_element_y)
+         
             board_state.pop(element_id)
-            print('[INFO] Element Removed',element_id,file)            
+            #print('[INFO] Element Removed',element_id,file)            
 
             #if you are deleting a semaphore 
             # you want to delete the signal link
@@ -447,27 +412,23 @@ for file in os.listdir(log_files):
                     try:
                         if board_state[item]['link']==element_id:
                             board_state[item]['link']=None
-                            print(f'[INFO] Element Link Removed {element_id} and {item}',)            
+                            #print(f'[INFO] Element Link Removed {element_id} and {item}',)            
 
                     except:
                         pass
 
-                    
-                            
-                
-            if SCREENSHOT_FLAG:
-                #CALL SCREENSHOT
-                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-                stateShot.buildScreenShot()
+            #activity =f"{element_type} ({element_id}) Removed"
+            print(f"case_{user},",f"{element_type} ({element_id}) removed from {removed_element_zone}",",",user,",",event['created'],",",event['created']+1)
+
                
         if event['type'] == 'BEGIN_LINK':
             total_number_of_begin_links+=1
-            print('[INFO] Adding a Link')
+            #print('[INFO] Adding a Link')
             element_1_id = event['element']['id']
-            print('[INFO] Adding a Link',element_1_id)
+            #print('[INFO] Adding a Link',element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                #print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -482,16 +443,14 @@ for file in os.listdir(log_files):
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 
-                if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
-                    same_zone_linking = True
+           
                     
-                print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                #print(f"########################ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
                                                        
 
             elif data['events'][index+2]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+2]['element']['id']
-                print(f"ADDING LINK : {element_1_id},{element_2_id}")    
+                #print(f"ADDING LINK : {element_1_id},{element_2_id}")    
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -507,193 +466,31 @@ for file in os.listdir(log_files):
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 if element_2_zone == element_1_zone:
-                    print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
+                    #print("####[INFO] Connection Appears to be from the Same Zone! Flagging!###")
                     same_zone_linking = True
                     
-                print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
+                #print(f"ADDING LINK : {element_1_id},{element_2_id},{element_2_zone},{element_1_zone}")
             else:
-                print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
-                print('[INFO] Either CODE needs fix or the log file is corrupted')
-                print(file)
+                pass
+                # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ERROR] Could Not find Finish Link!')
+                # print('[INFO] Either CODE needs fix or the log file is corrupted')
+                # print(file)
             
-            knowledge_statement=f"Adding Link:{element_1_zone}:{element_2_zone}"
-            print(knowledge_statement)
-
-            #CALL SCREENSHOT            
-            if SCREENSHOT_FLAG:
-                stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
-                stateShot.buildScreenShot()
+            #activity =f"{element_1_zone}{element_2_zone}"
+            print(f"case_{user},",f"{element_1_zone}{element_2_zone}"",",user,",",event['created'],",",event['created']+1)
         
         if event['type'] == 'FINISH_SIMULATION':
-            board_snapshot_ticks = event['total']
+            #board_snapshot_ticks = event['total']
+            pass
         
         if event['type']=='BOARD_SNAPSHOT':
             #No element manipulation 
             # so just Build the screenshot
-            if SCREENSHOT_FLAG:
-                text  = getStatus(event['id'],f"{user}"+".json")                    
-                stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
-                stateShot.buildScreenShot()
-           
-        #Calling Abstraction
-        if store_in_trace:
-            if event['type'] in CRITICAL_EVENTS:                   
-                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
-                if user in player_traces:
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix,
-                        "state_matrix":state_matrix,
-                        "discussion":[],
-                        "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
-                        "created": event['created']
-                    }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix, 
-                        "state_matrix":state_matrix,                   
-                        "discussion":[],
-                        "upvotes":0,
-                        "knowledge_statement":knowledge_statement,
-                        "created":event['created']
+            #activity =  getStatus(event['id'],f"{user}"+".json")
+            print(f"case_{user},",getStatus(event['id'],f"{user}"+".json"),",",user,",",event['created'],",",event['created']+1)
 
-                    }
-            
-            if event['type']=='BOARD_SNAPSHOT':                   
-                abstraction,adjacency_matrix,state_matrix =  buildAbstraction(level,board_state)
-                if user in player_traces:
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix,
-                        "state_matrix":state_matrix,                    
-                        "discussion":[],
-                        "upvotes":0,
-                        "created": event['created'],
-                        "submission_result" : getStatus(event['id'],f"{user}"+".json"),
-                        "ticks":board_snapshot_ticks,
-                        "no_order_change_behaviour_issue":order_change_events_behaviour,
-                        "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
-                        "moving_connected_elements":moving_connected_elements
-                    }
-                else:
-                    player_traces[user]={}
-                    player_traces[user][event['id']]={
-                        "id":event['id'],
-                        "type":event['type'],
-                        "screenshot":f"{index}_{event['id']}.png",
-                        "absolute_board_state":board_state.copy(),
-                        "abstracted_board_state":abstraction,
-                        "adjacency_matrix":adjacency_matrix,
-                        "state_matrix":state_matrix,
-                        "discussion":[],
-                        "upvotes":0,
-                        "created":event['created'],
-                        "submission_result" : getStatus(event['id'],f"{user}"+".json"),
-                        "ticks":board_snapshot_ticks,
-                        "no_order_change_behaviour_issue":order_change_events_behaviour,
-                        "same_zone_linking":same_zone_linking,
-                        "knowledge_statement":knowledge_statement,
-                        "moving_connected_elements":moving_connected_elements
-                    }
-            
-                board_snapshot_ticks = "No Ticks Available"
-                order_change_events_behaviour = False
-                same_zone_linking=False
-                moving_connected_elements = False
-                knowledge_statement="No Knowledge Statement",
-        
-        store_in_trace = True
-
-#BUILD GLYPH Visualization
-print('[INFO] Building Glyph Visualization')
-
-userStates = {}
-userActions = {} 
-usermap = {}
-for player in player_traces:
-    board_snapshot_abstractions = []
-    for event in player_traces[player]:
-        # if player_traces[player][event]['type']=='BOARD_SNAPSHOT' or player_traces[player][event]['type'] in CRITICAL_EVENTS:
-        #     board_snapshot_abstractions.append({"state_matrix":player_traces[player][event]["state_matrix"]})
-        if player_traces[player][event]['type']=='BEGIN_LINK':
-            board_snapshot_abstractions.append({"state_matrix":player_traces[player][event]["state_matrix"]})
-        
-    if len(board_snapshot_abstractions)>1:
-        userStates[f"{player}.json"]=board_snapshot_abstractions
-        userActions[f"{player}.json"]=["Recieved Next State"]*(len(userStates[f"{player}.json"])-1 )     
-        userboardids=get_board_ids(log_files) 
-
-
-for user in player_traces:
-    usermap[user+'.json']=user+'.json'
-
-
-# cosine_ts = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-# for cosine in cosine_ts:
-filename = 'level13_point6_knowledge'
-glyphBuilder = GlyphBuilder(userStates, userActions, userboardids, f'{filename}.json',usermap,0.6)
-glyphBuilder.run()
-
-print('[INFO] GLYPH Visualizatoin Built and saved')
-
-
-#if GIF_FLAG:
-    #BUILD GIFs Comment out to ignore
-    #print('[INFO] Building GIFs')
-    #gif_builder.main(level,log_files)
-    #print('[INFO] Finished Building GIFs')
-    #GIF Log file
-
-#Player Statistics
-# stats = player_statistics.get_statistics(log_files)
-
-# stats_2 = {}
-# for player in player_traces:
-#     stats_2[f'{player}.json']={}
-
-#     for event in player_traces[player]:
-#         if player_traces[player][event]['type'] in CRITICAL_EVENTS:
-#             if player_traces[player][event]['type'] in stats_2[f'{player}.json']:
-#                 stats_2[f'{player}.json'][player_traces[player][event]['type']]+=1
-#             else:
-#                 stats_2[f'{player}.json'][player_traces[player][event]['type']]=1
-#         print(stats_2)    
-
-
-# #SAVING LOG FILES
-# #1. Trace Data
-# out_file = open("trace_13_knowledge.json", "w") 
-# json.dump(player_traces, out_file, indent = 6) 
-# out_file.close() 
-
-# #2. Player Statistics
-# out_file = open("stats_13_knowledge.json", "w") 
-# json.dump(stats, out_file, indent = 6) 
-# out_file.close() 
-
-# out_file = open("stats_2_13_knowledge.json", "w") 
-# json.dump(stats_2, out_file, indent = 6) 
-# out_file.close() 
-
-
-
-print('Information')
-
-print("total number of nodes in community", total_number_of_nodes)
-print("Total number of Begin Links", total_number_of_begin_links)
+        if event['type'] in CRITICAL_EVENTS and event['type'] != "BEGIN_LEVEL_LOAD":
+            #print(f"case_{user},",event['type'],activity,",",user,",",event['created'],",",event['created']+1)
+            #print(f"case_{user},",activity,",",user,",",event['created'],",",event['created']+1)
+            #activity = ''
+            pass

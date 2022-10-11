@@ -3,7 +3,14 @@ import json
 import os
 # from abstraction_glyph import *
 
-
+CRITICAL_EVENTS=[
+    "BEGIN_LEVEL_LOAD",
+    'ADD_ELEMENT',
+    'MOVE_ELEMENT',
+    'TOGGLE_ELEMENT',
+    'REMOVE_ELEMENT',
+    'BEGIN_LINK',
+]
 
 def get_board_ids(LOGS):
     # bi= Board Ids
@@ -20,7 +27,7 @@ def get_board_ids(LOGS):
             print("snap")
             exit()
         for event in data['events']:
-            if event["type"]=="BOARD_SNAPSHOT":
+            if event["type"]=="BEGIN_LINK":
                 log.append(event["id"])
                 
         bi[filename]=log

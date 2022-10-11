@@ -107,9 +107,10 @@ class Abstraction:
             self.linkPositions.append([x,y,connection_x,connection_y])
         else:
             if debug:
-                print('[INFO] This signal could not find a semaphore!')
-                print('[INFO] This could be a link between a signal and a Default element!')
-                print('[INFO] Attempting to search in default elements')
+                pass
+                #print('[INFO] This signal could not find a semaphore!')
+                #print('[INFO] This could be a link between a signal and a Default element!')
+                #print('[INFO] Attempting to search in default elements')
             if id_2!=None:
                 (connection_x,connection_y) = default_elements[str(self.level)][id_2]
                 if connection_x!=None:
@@ -154,7 +155,8 @@ class Abstraction:
         for zone in self.zones:
             if zone in self.semaphore_zone_dict:
                 if debug:
-                    print(zone,"+1")
+                    pass
+                    #print(zone,"+1")
                 semaphore_row.append(self.semaphore_zone_dict[zone])
             else:
                 semaphore_row.append(0)
@@ -436,7 +438,7 @@ def dynamic_time_warping(trace_1,trace_2):
     s=[]
     t=[]
     #establish s
-    print("Trace 1 Links")
+    #print("Trace 1 Links")
     for event in trace_1:
         connected_links = event["abstracted_board_state"]['link_dict']
         #print(connected_links)
@@ -445,7 +447,7 @@ def dynamic_time_warping(trace_1,trace_2):
 
         s.append(events.index(connected_links))
     
-    print("Trace 2 Links")
+    #print("Trace 2 Links")
     for event in trace_2:
         connected_links = event["abstracted_board_state"]['link_dict']
         #print(connected_links)
@@ -454,9 +456,10 @@ def dynamic_time_warping(trace_1,trace_2):
 
         t.append(events.index(connected_links))
     if debug:
-        print(s)
-        print(t)
-        print(events)
+        pass
+        #print(s)
+        #print(t)
+        #print(events)
 
     #establish t
 
@@ -517,7 +520,7 @@ def getPlayerTrace():
     data = json.loads(str(request.data, encoding='utf-8'))
     player_id = data['metadata']['playerId']
     user = data['id']
-    print(user)
+    #print(user)
     level = data['events'][0]['order']
     player_traces = {}
     order_change_events_behaviour = False
@@ -555,11 +558,6 @@ def getPlayerTrace():
     #Abstraction
     board_state={}
     for index,event in enumerate(data['events']):
-        print('-----------')
-        print(index)
-        print(board_state)
-        print('-----------')
-        
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
             if SCREENSHOT_FLAG:
@@ -714,9 +712,9 @@ def getPlayerTrace():
                 stateShot.buildScreenShot()
 
         if event['type'] == 'REMOVE_ELEMENT':
-            print('REMOVING ELEMENT!!')
+            #print('REMOVING ELEMENT!!')
             element_id = event['element']['id']
-            print(element_id, event['element']['type'])         
+            #print(element_id, event['element']['type'])         
             board_state.pop(element_id)
 
             #if you are deleting a semaphore 
@@ -726,14 +724,19 @@ def getPlayerTrace():
                     if board_state[item]['link']==element_id:
                         board_state[item]['link']=None
             
-            print(board_state)
+            #print(board_state)
             if SCREENSHOT_FLAG:
                 #CALL SCREENSHOT
                 stateShot = StateShot(board_state,f"{index}_{event['id']}",event['type'],level,user) 
                 stateShot.buildScreenShot()
                
         if event['type'] == 'BEGIN_LINK':
+            print('------')
+            print("Begin Link Event", print(event['id']))
             element_1_id = event['element']['id']
+
+            
+            print("element_1_id",element_1_id)
             if data['events'][index+1]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+1]['element']['id']
                 board_state[element_1_id]['link']=element_2_id
@@ -746,10 +749,15 @@ def getPlayerTrace():
                     element_2_y = default_elements[str(level)][element_2_id][1]
                 element_1_x = board_state[element_1_id]['element_x']
                 element_1_y = board_state[element_1_id]['element_y']
-                
+                print("element_1_zone",abstraction_object.getZone(element_1_x,element_1_y))
+
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
-                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                element_1_zone = abstraction_object.getZone(element_1_x,element_1_y)
+                print("element_2_id",element_2_id)
+                print("element_2_zone",abstraction_object.getZone(element_2_x,element_2_y))
+ 
                 linked_zone = f"{element_1_zone}{element_2_zone}"
+                print(linked_zone)
                 knowledge_statement=f'{linked_zone}'
                 for concept in knowledge[level]['concepts']:
                     if linked_zone == knowledge[level]['concepts'][concept]['link']:
@@ -780,6 +788,7 @@ def getPlayerTrace():
                                                        
             elif data['events'][index+2]['type']=='FINISH_LINK':
                 element_2_id = data['events'][index+2]['element']['id']
+
                 board_state[element_1_id]['link']=element_2_id
                 try:
                     element_2_x =  board_state[element_2_id]['element_x']               
@@ -789,12 +798,20 @@ def getPlayerTrace():
                     element_2_x = default_elements[str(level)][element_2_id][0]
                     element_2_y = default_elements[str(level)][element_2_id][1]
 
+
                 element_1_x = board_state[element_1_id]['element_x']
                 element_1_y = board_state[element_1_id]['element_y']
-                
+                print("element_1_id",element_1_id)
+                print("element_1_zone",abstraction_object.getZone(element_1_x,element_1_y))
+                print("element_2_id",element_2_id)
+                print("element_2_zone",abstraction_object.getZone(element_2_x,element_2_y))
+
+
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 linked_zone = f"{element_1_zone}{element_2_zone}"
+                knowledge_statement = linked_zone
+                print(linked_zone)
                 for concept in knowledge[level]['concepts']:
                     if linked_zone == knowledge[level]['concepts'][concept]['link']:
                         move_classification = knowledge[level]['concepts'][concept]['classification']
@@ -840,7 +857,61 @@ def getPlayerTrace():
                 text  = event['type'] #getStatus(data,event['id'])                    
                 stateShot = StateShot(board_state,f"{index}_{event['id']}",text,level,user,event['type']) 
                 stateShot.buildScreenShot()
-          
+
+        ranked_recommended_players = {}
+        element_diff_count_dict={}
+        
+        # print('===================================')
+        # print('Current Player Event ID:', event['id'])
+        # print('Move Classification',move_classification)
+        temp_copy_current_player_board_state = deepcopy(board_state)
+        number_of_elements_in_current_player_event = len(temp_copy_current_player_board_state)
+        # print('Current Player Event number of elements:',number_of_elements_in_current_player_event)
+        # print("Recommened Events from Other Players")
+        for log_id_of_recommened_player in recommended_players:
+            recommended_player_event_id = recommended_players[log_id_of_recommened_player]
+            #print(len(other_player_traces))
+            for p_index, player_log in enumerate(other_player_traces):
+                if player_log['log_id'] != user:
+                    other_player_events = other_player_traces[p_index]['events']
+                    for e in other_player_events:
+                        if e['id'] == recommended_player_event_id:
+                            number_of_elements_in_recommened_player_event = e['abstracted_board_state']['nSemaphores'] + e['abstracted_board_state']['nSignals']
+                            #print("Log id of recommened Player",log_id_of_recommened_player, "Event Id from recommended Player", recommended_player_event_id, 'Number of elements in recommened',number_of_elements_in_recommened_player_event)
+                            difference = abs(number_of_elements_in_current_player_event-number_of_elements_in_recommened_player_event)
+                            element_diff_count_dict[log_id_of_recommened_player]=difference
+        
+        element_diff_count_dict={k: v for k, v in sorted(element_diff_count_dict.items(), key=lambda item: item[1])}
+        for key in element_diff_count_dict:
+            ranked_recommended_players[key]=recommended_players[key]
+        # print("Ranked Recommendations")
+        # print(ranked_recommended_players)
+        # print("Unranked Recommendations")
+        # print(recommended_players)
+        recommended_players = ranked_recommended_players
+        #print("===============")
+
+        # for log_id_of_recommened_player in recommended_players:
+        #     recommended_player_event_id = recommended_players[log_id_of_recommened_player]
+        #     temp_copy_current_player_board_state = deepcopy(board_state)
+        #     number_of_elements_in_current_player_event = len(temp_copy_current_player_board_state)
+        #     #print(number_of_elements_in_current_player_event)
+        #     for player_log in other_player_traces:
+        #         if player_log['log_id'] != user:
+        #             print(player_log['log_id'])
+            #         for other_player_event in player_log['events']:
+            #             if other_player_event == recommended_player_event_id:
+            #                 number_of_elements_in_recommened_player_event = len(list(other_player_event['abstracted_board_state']))
+            #                 print(player_log['log_id'],other_player_event,number_of_elements_in_recommened_player_event)
+            #                 difference = abs(number_of_elements_in_current_player_event-number_of_elements_in_recommened_player_event)
+            #                 element_diff_count_dict[log_id_of_recommened_player]=difference
+            
+            # element_diff_count_dict={k: v for k, v in sorted(element_diff_count_dict.items(), key=lambda item: item[1])}
+            # for key,value in element_diff_count_dict:
+            #     ranked_recommended_players[key]=recommended_players[key]
+                
+
+
         #Calling Abstraction
         if store_in_trace:
             if event['type'] in CRITICAL_EVENTS:                   
@@ -911,6 +982,8 @@ def getPlayerTrace():
                 move_classification="ignore"
                 move_recommendations         = []
                 recommended_players          = {}
+                ranked_recommended_players = {}
+                element_diff_count_dict={}
                 recommended_suggestion       = ''
                 suggestions_from_other_players={}
         
@@ -966,7 +1039,7 @@ def getPlayerTrace():
     #     player2_id = player2_full_trace['player_id']
     #     if player2['id'] == user:
     #         continue
-    #     player2_last_state = player2_full_trace['events'][-1]
+    #     player2_last_state = player2_full_trace ['events'][-1]
     #     player2_n_signals = player2_last_state['abstracted_board_state']['nSignals']
     #     player2_n_semaphores = player2_last_state['abstracted_board_state']['nSemaphores']
     #     player2_submission_efficiency = player2_last_state['ticks']
@@ -1036,13 +1109,13 @@ def getGlyphFile():
     player_traces = {}
     board_snapshot_ticks = "No Ticks Available"
     for player in raw_logs:
-        print(player)
+        #print(player)
         user = player
         board_state = {}
         
         board_snapshot_ticks = "No Ticks Available"
         data = raw_logs[user]
-        print(data['events'])
+        #print(data['events'])
         for index,event in enumerate(data['events']):                
             if event['type']=="BEGIN_LEVEL_LOAD":
                 board_state = {}
@@ -1067,7 +1140,7 @@ def getGlyphFile():
                         "status":'inactive'
                     }
                     
-                print('[INFO] Element Added',element_id)
+                #print('[INFO] Element Added',element_id)
                 
                                     
             if event['type'] == 'MOVE_ELEMENT':
@@ -1079,24 +1152,24 @@ def getGlyphFile():
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
                 
-                print('[INFO] Element Moved',element_id)
+                #print('[INFO] Element Moved',element_id)
 
             if event['type'] == 'TOGGLE_ELEMENT':
                 element_id   = event['element']['id']  #element id
                 board_state[element_id]['status']=event['element']['spec']
-                print('[INFO] Element Toggled',element_id)
+                #print('[INFO] Element Toggled',element_id)
 
             if event['type'] == 'REMOVE_ELEMENT':
                 element_id = event['element']['id']         
                 board_state.pop(element_id)
-                print('[INFO] Element Removed',element_id)            
+                #print('[INFO] Element Removed',element_id)            
 
                 for item in board_state:
                     if board_state[item]['type']=='signal':
                         try:
                             if board_state[item]['link']==element_id:
                                 board_state[item]['link']=None
-                                print(f'[INFO] Element Link Removed {element_id} and {item}',)            
+                                #print(f'[INFO] Element Link Removed {element_id} and {item}',)            
 
                         except:
                             pass
@@ -1105,15 +1178,16 @@ def getGlyphFile():
                 #CALL SCREENSHOT
                 
             if event['type'] == 'BEGIN_LINK':
-                print('[INFO] Adding a Link')
+                #print('[INFO] Adding a Link')
                 element_1_id = event['element']['id']
-                print('[INFO] Adding a Link',element_1_id)
+                #print('[INFO] Adding a Link',element_1_id)
                 if data['events'][index+1]['type']=='FINISH_LINK':
                     element_2_id = data['events'][index+1]['element']['id']
-                    print(element_2_id)
+                    #print(element_2_id)
                 else:
-                    print('[ERROR] Could Not find Finish Link!')
-                    print('[INFO] Either CODE needs fix or the log file is corrupted')
+                    pass
+                    #print('[ERROR] Could Not find Finish Link!')
+                    #print('[INFO] Either CODE needs fix or the log file is corrupted')
                     
                 board_state[element_1_id]['link']=element_2_id
 
@@ -1160,7 +1234,7 @@ def getGlyphFile():
 
 
     # #BUILD GLYPH Visualization
-    print('[INFO] Building Glyph Visualization')
+    #print('[INFO] Building Glyph Visualization')
     userStates = {}
     userActions = {}
     usermap = {}
@@ -1178,12 +1252,12 @@ def getGlyphFile():
     
     for user in raw_logs:
         usermap[user+'.json']=user+'.json'
-    print(userStates,userActions,usermap,userboardids)
+    #print(userStates,userActions,usermap,userboardids)
     glyphBuilder = GlyphBuilder(userStates, userActions, userboardids,usermap)
     glyph_vis = glyphBuilder.run()
     
-    print(player_traces)
-    print('[INFO] GLYPH Visualizatoin Built and saved')
+    #print(player_traces)
+    #print('[INFO] GLYPH Visualizatoin Built and saved')
     return {"glyph_vis":glyph_vis, "player_traces":player_traces}
 
 
@@ -1219,7 +1293,7 @@ def getSimillar():
                         matrix_1 = np.array(matrix_1).flatten()
                         matrix_2 = np.array(matrix_2).flatten()
                         consine_similarity =  cosine(matrix_1,matrix_2)
-                        print(consine_similarity,type(consine_similarity))
+                        #print(consine_similarity,type(consine_similarity))
                         if consine_similarity=="x":
                             pass
                         elif consine_similarity>0.3:
