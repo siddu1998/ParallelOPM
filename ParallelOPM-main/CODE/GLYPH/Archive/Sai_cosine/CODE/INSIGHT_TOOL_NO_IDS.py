@@ -359,7 +359,7 @@ for file in os.listdir(log_files):
             zone_added = abstraction_object.getZone(element_x,element_y)
             #activity = f"Put {element_type} ({element_id}) in Zone {zone_added} "
             #activity = f"Put {element_type}  in Zone {zone_added} "
-            print(f"case-{user},",f"Put {element_type} ({element_id})  in Zone {zone_added}"",",user,",",event['created'],",",event['created']+1)
+            print(f"case-{user},",f"Put {element_type}  in Zone {zone_added}"",",user,",",event['created'],",",event['created']+1)
                                     
         if event['type'] == 'MOVE_ELEMENT':
             element_id   = event['element']['id']  #element id
@@ -379,20 +379,20 @@ for file in os.listdir(log_files):
                 board_state[element_id]['element_x']=new_x
                 board_state[element_id]['element_y']=new_y
                 #activity =f"{element_type} ({element_id}) moved from {new_zone} -> {old_zone}"
-                print(f"case-{user},",f"{element_type} ({element_id}) removed from {old_zone}",",",user,",",event['created'],",",event['created']+1)
-                print(f"case-{user},",f"{element_type} ({element_id}) added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case-{user},",f"{element_type} removed from {old_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case-{user},",f"{element_type} added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
 
             else:
                 #activity =f"{element_type} ({element_id}) moved from {new_zone} -> {old_zone}"
                 #print(f"Put {element_type}  in Zone {zone_added}")
-                print(f"case-{user},",f"{element_type} ({element_id}) removed from {old_zone}",",",user,",",event['created'],",",event['created']+1)
-                print(f"case-{user},",f"{element_type} ({element_id}) added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case-{user},",f"{element_type} removed from {old_zone}",",",user,",",event['created'],",",event['created']+1)
+                print(f"case-{user},",f"{element_type} added in {new_zone}",",",user,",",event['created'],",",event['created']+1)
             
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
             #activity =f"{element_type} ({element_id}) Toggled"
-            print(f"case-{user},",f"{element_type} ({element_id}) Toggled",",",user,",",event['created'],",",event['created']+1)
+            print(f"case-{user},",f"{element_type} Toggled",",",user,",",event['created'],",",event['created']+1)
 
         
         if event['type'] == 'REMOVE_ELEMENT':
@@ -417,7 +417,7 @@ for file in os.listdir(log_files):
                         pass
 
             #activity =f"{element_type} ({element_id}) Removed"
-            print(f"case-{user},",f"{element_type} ({element_id}) removed from {removed_element_zone}",",",user,",",event['created'],",",event['created']+1)
+            print(f"case-{user},",f"{element_type} removed from {removed_element_zone}",",",user,",",event['created'],",",event['created']+1)
 
                
         if event['type'] == 'BEGIN_LINK':
