@@ -1,6 +1,7 @@
 # called in GlyphBoardState_2.py
 import json
 import os
+from sys import exit
 # from abstraction_glyph import *
 
 CRITICAL_EVENTS=[
@@ -22,6 +23,7 @@ def get_board_ids(LOGS):
         try:
             data = json.load(open(fileName))
         except:
+            print(fileName)
             print('[ERROR] A game play with the eneterd data does not exist!')
             print('[INFO] Please run the program again!')
             print("snap")
@@ -34,4 +36,3 @@ def get_board_ids(LOGS):
 
     return bi
 
-# get_board_ids()

@@ -1,7 +1,7 @@
 # called in abstraction_glyph.py
 import json
 
-
+from sys import exit
 
 #LOGS = '../DATA/Logfiles'
 #LOGS = '../DATA/LEVEL_5_LOGS'

@@ -214,6 +214,13 @@ def getPlayerTrace_internal(data):
 
     board_state={}
     for index,event in enumerate(data['events']):
+        involved_signal_id  = ""
+        involved_signal_x   = ""
+        involved_signal_y   = ""
+        
+        signal_connected_to_id = ""
+        signal_connected_to_x  = ""
+        signal_connected_to_y  = ""
         
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
@@ -314,7 +321,15 @@ def getPlayerTrace_internal(data):
                 
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+
+                involved_signal_id  = element_1_id
+                involved_signal_x   = element_1_x
+                involved_signal_y   = element_1_y
                 
+                signal_connected_to_id = element_2_id
+                signal_connected_to_x  = element_2_x
+                signal_connected_to_y  = element_2_y
+
                 if element_2_zone == element_1_zone:
                     same_zone_linking = True
                     
@@ -334,6 +349,15 @@ def getPlayerTrace_internal(data):
                 
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
+                
+                involved_signal_id  = element_1_id
+                involved_signal_x   = element_1_x
+                involved_signal_y   = element_1_y
+                
+                signal_connected_to_id = element_2_id
+                signal_connected_to_x  = element_2_x
+                signal_connected_to_y  = element_2_y
+
                 if element_2_zone == element_1_zone:
                     same_zone_linking = True
                     
@@ -368,6 +392,12 @@ def getPlayerTrace_internal(data):
                         "discussion":[],
                         "upvotes":0,
                         "knowledge_statement":knowledge_statement,
+                        "signal_id"  : involved_signal_id,
+                        "signal_x"   : involved_signal_x,
+                        "signal_y"   : involved_signal_y,
+                        "connected_id" : signal_connected_to_id,
+                        "connected_x"  : signal_connected_to_x,
+                        "connected_y"  : signal_connected_to_y,                        
                         "created": event['created']
                     }
                 player_traces[user]=player_traces.get(user,{})                    
@@ -558,6 +588,14 @@ def getPlayerTrace():
     #Abstraction
     board_state={}
     for index,event in enumerate(data['events']):
+        involved_signal_id  = ""
+        involved_signal_x   = ""
+        involved_signal_y   = ""
+        
+        signal_connected_to_id = ""
+        signal_connected_to_x  = ""
+        signal_connected_to_y  = ""
+
         if event['type']=="BEGIN_LEVEL_LOAD":
             board_state = {}
             if SCREENSHOT_FLAG:
@@ -627,6 +665,15 @@ def getPlayerTrace():
                             element_2_x = default_elements[str(level)][element_2_id][0]
                             element_2_y = default_elements[str(level)][element_2_id][1]
 
+                        involved_signal_id  = element_id
+                        involved_signal_x   = board_state[element_id]['element_x']
+                        involved_signal_y   = board_state[element_id]['element_y']
+                        
+                        signal_connected_to_id = element_2_id
+                        signal_connected_to_x  = element_2_x
+                        signal_connected_to_y  = element_2_y
+                        
+                        
                         element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
                         linked_zone = f"{new_zone}{element_2_zone}"
                         knowledge_statement=f'{linked_zone}'
@@ -638,22 +685,25 @@ def getPlayerTrace():
                                 move_classification = knowledge[level]['concepts'][concept]['classification']
                                 move_recommendations = knowledge[level]['concepts'][concept]['recommendation_links']
                                 recommended_suggestion = knowledge[level]['concepts'][concept]['OPM']
+                                for_me_to_think        = knowledge[level]['concepts'][concept]['for_me_to_examine']
+                                top_text               = knowledge[level]['concepts'][concept]['top_text']
                                 #now return the first event from other traces which has atleast one of the recommended links
                                 for player_log in other_player_traces:
-                                    for other_player_event in player_log['events']:
-                                        if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
-                                            links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
-                                            if len(set(move_recommendations).intersection(set(links_on_board)))>0:
-                                                recommended_players[player_log['log_id']]=recommended_players.get(player_log['log_id'],{})
-                                                recommended_players[player_log['log_id']]=other_player_event['id']
-                                                #so you found an event which has a recommendation
-                                                #now what do i recommend from this?
-                                                correction_links = list(set(move_recommendations) & set(links_on_board))
-                                                suggestions_from_other_players[player_log['log_id']]=suggestions_from_other_players.get(player_log['log_id'],{})
-                                                for concept in knowledge[level]['concepts']:
-                                                    if knowledge[level]['concepts'][concept]['link']==correction_links[0]:
-                                                        suggestions_from_other_players[player_log['log_id']]=knowledge[level]['concepts'][concept]['OPM']
-                                                break
+                                    if player_log['log_id'] != user:
+                                        for other_player_event in player_log['events']:
+                                            if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                                links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                                if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                                    recommended_players[player_log['log_id']]=recommended_players.get(player_log['log_id'],{})
+                                                    recommended_players[player_log['log_id']]=other_player_event['id']
+                                                    #so you found an event which has a recommendation
+                                                    #now what do i recommend from this?
+                                                    correction_links = list(set(move_recommendations) & set(links_on_board))
+                                                    suggestions_from_other_players[player_log['log_id']]=suggestions_from_other_players.get(player_log['log_id'],{})
+                                                    for concept in knowledge[level]['concepts']:
+                                                        if knowledge[level]['concepts'][concept]['link']==correction_links[0]:
+                                                            suggestions_from_other_players[player_log['log_id']]=knowledge[level]['concepts'][concept]['for_others_to_examine']
+                                                    break
 
 
                 elif board_state[element_id]["type"]=="semaphore":#I am moving a semaphore
@@ -665,6 +715,15 @@ def getPlayerTrace():
                                     element_2_x =  board_state[item]['element_x']               
                                     element_2_y =  board_state[item]['element_y']
                                     element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
+
+                                    involved_signal_id  = item
+                                    involved_signal_x   = element_2_x
+                                    involved_signal_y   = element_2_y
+                                    
+                                    signal_connected_to_id = element_id
+                                    signal_connected_to_x  = board_state[element_id]['element_x']
+                                    signal_connected_to_y  = board_state[element_id]['element_y']
+
                                     linked_zone = f"{new_zone}{element_2_zone}"
                                     knowledge_statement=f'{linked_zone}'
                                     for concept in knowledge[level]['concepts']:
@@ -672,22 +731,25 @@ def getPlayerTrace():
                                             move_classification = knowledge[level]['concepts'][concept]['classification']
                                             move_recommendations = knowledge[level]['concepts'][concept]['recommendation_links']
                                             recommended_suggestion = knowledge[level]['concepts'][concept]['OPM']
+                                            for_me_to_think        = knowledge[level]['concepts'][concept]['for_me_to_examine']
+                                            top_text               = knowledge[level]['concepts'][concept]['top_text']
                                             #now return the first event from other traces which has atleast one of the recommended links
                                             for player_log in other_player_traces:
-                                                for other_player_event in player_log['events']:
-                                                    if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
-                                                        links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
-                                                        if len(set(move_recommendations).intersection(set(links_on_board)))>0:
-                                                            recommended_players[player_log['log_id']]=recommended_players.get(player_log['log_id'],{})
-                                                            recommended_players[player_log['log_id']]=other_player_event['id']
-                                                            #so you found an event which has a recommendation
-                                                            #now what do i recommend from this?
-                                                            correction_links = list(set(move_recommendations) & set(links_on_board))
-                                                            suggestions_from_other_players[player_log['log_id']]=suggestions_from_other_players.get(player_log['log_id'],{})
-                                                            for concept in knowledge[level]['concepts']:
-                                                                if knowledge[level]['concepts'][concept]['link']==correction_links[0]:
-                                                                    suggestions_from_other_players[player_log['log_id']]=knowledge[level]['concepts'][concept]['OPM']
-                                                            break
+                                                if player_log['log_id'] != user:
+                                                    for other_player_event in player_log['events']:
+                                                        if other_player_event['type']=='MOVE_ELEMENT' or other_player_event['type']=='BEGIN_LINK':
+                                                            links_on_board = list(other_player_event['abstracted_board_state']['link_dict'].keys())
+                                                            if len(set(move_recommendations).intersection(set(links_on_board)))>0:
+                                                                recommended_players[player_log['log_id']]=recommended_players.get(player_log['log_id'],{})
+                                                                recommended_players[player_log['log_id']]=other_player_event['id']
+                                                                #so you found an event which has a recommendation
+                                                                #now what do i recommend from this?
+                                                                correction_links = list(set(move_recommendations) & set(links_on_board))
+                                                                suggestions_from_other_players[player_log['log_id']]=suggestions_from_other_players.get(player_log['log_id'],{})
+                                                                for concept in knowledge[level]['concepts']:
+                                                                    if knowledge[level]['concepts'][concept]['link']==correction_links[0]:
+                                                                        suggestions_from_other_players[player_log['log_id']]=knowledge[level]['concepts'][concept]['for_others_to_examine']
+                                                                break
                                     
                                     #print('[FLAG] The User is moving a connected element!!!!!')
                             except:
@@ -700,7 +762,7 @@ def getPlayerTrace():
 
             else:
                 store_in_trace = False
-            
+       
         if event['type'] == 'TOGGLE_ELEMENT':
             element_id   = event['element']['id']  #element id
             board_state[element_id]['status']=event['element']['spec']
@@ -749,6 +811,17 @@ def getPlayerTrace():
                     element_2_y = default_elements[str(level)][element_2_id][1]
                 element_1_x = board_state[element_1_id]['element_x']
                 element_1_y = board_state[element_1_id]['element_y']
+                
+                involved_signal_id  = element_1_id
+                involved_signal_x   = element_1_x
+                involved_signal_y   = element_1_y
+                
+                signal_connected_to_id = element_2_id
+                signal_connected_to_x  = element_2_x
+                signal_connected_to_y  = element_2_y
+
+                
+                
                 print("element_1_zone",abstraction_object.getZone(element_1_x,element_1_y))
 
                 element_2_zone = abstraction_object.getZone(element_2_x,element_2_y)
@@ -811,6 +884,16 @@ def getPlayerTrace():
                 element_1_zone = abstraction_object.getZone(element_1_x,element_1_y) 
                 linked_zone = f"{element_1_zone}{element_2_zone}"
                 knowledge_statement = linked_zone
+                
+                involved_signal_id  = element_1_id
+                involved_signal_x   = element_1_x
+                involved_signal_y   = element_1_y
+                
+                signal_connected_to_id = element_2_id
+                signal_connected_to_x  = element_2_x
+                signal_connected_to_y  = element_2_y
+
+                
                 print(linked_zone)
                 for concept in knowledge[level]['concepts']:
                     if linked_zone == knowledge[level]['concepts'][concept]['link']:
@@ -933,7 +1016,13 @@ def getPlayerTrace():
                         'recommended_suggestion':recommended_suggestion,
                         'recommended_players':recommended_players,
                         'suggestions_from_other_players':suggestions_from_other_players,
-                        "created": event['created']
+                        "created": event['created'],
+                        "signal_id"  : involved_signal_id,
+                        "signal_x"   : involved_signal_x,
+                        "signal_y"   : involved_signal_y,
+                        "connected_id" : signal_connected_to_id,
+                        "connected_x"  : signal_connected_to_x,
+                        "connected_y"  : signal_connected_to_y,
                     }
                 player_traces[user]=player_traces.get(user,{})                    
                 player_traces[user][event['id']]=trace_entry

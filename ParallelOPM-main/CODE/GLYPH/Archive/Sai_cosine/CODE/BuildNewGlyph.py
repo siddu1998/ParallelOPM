@@ -27,7 +27,7 @@ class GlyphBuilder():
     def __init__(self, userStates, userActions, userboardids, filename,usermap,cosine):
         self.cosine_threshold = cosine
         self.usermap = usermap
-        print(self.usermap)
+        #print(self.usermap)
         #print(self.usermap)
         self.states = []            #Store all of the states
         self.trajectories = []      #Store all of the trajectories
@@ -82,7 +82,7 @@ class GlyphBuilder():
                 userStates[user][-1]['board_ids']=[]
             if f==1:  
                 for i in range(len(userActions[user])):
-                    print(i)
+                    #print(i)
                     userStates[user][i]['board_ids'].append(userboardids[user][i])
                 userStates[user][-1]['nextAction'] = 'end game'
                 # edited to remove the last element not getting added problem
@@ -104,7 +104,7 @@ class GlyphBuilder():
             'traj_similarity': self.traj_similarity,
             'setting': 'Parallel data'
         }
-        print('The total number of nodes in abstracted glyph is',len(self.states))
+        print(f'The total number of nodes in abstracted glyph is for cosine value {self.cosine_threshold}: ',len(self.states))
         filename = self.filename
         with open(os.path.join(GLYPHDIR, filename), 'w') as f:
             json.dump(data, f)
@@ -335,8 +335,8 @@ class GlyphBuilder():
                     # edited by moulika
                     if stateInfo['board_ids'] not in stateExist['details']['board_ids']:
                         stateExist['details']['board_ids']=stateExist['details']['board_ids']+(stateInfo['board_ids']) 
-                    print("since duplicacy appended==check")
-                    print(stateExist)
+                    #print("since duplicacy appended==check")
+                    #print(stateExist)
                     userTrajectory.append(existId)
             
             # print(userTrajectory)
@@ -384,7 +384,7 @@ class GlyphBuilder():
         Create Trajectories of Glyph visualization
         """
         for user in self.userIds:
-            print(user)
+            #print(user)
             trajectory = self.userTrajectories[user]
             action_meaning = ['transition'] * (len(trajectory) - 2)
             action_meaning.insert(0, 'start_game')

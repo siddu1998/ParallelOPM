@@ -34,8 +34,8 @@ level = 13
 # log_files = "../DATA/Logfiles"
 # level = 7
 
-SCREENSHOT_FLAG = True
-GIF_FLAG        = True
+SCREENSHOT_FLAG = False
+GIF_FLAG        = False
 
 
 
