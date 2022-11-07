@@ -21,18 +21,18 @@ for player_1 in data: #choose first player
     for player_2 in data: #choose all other player
         output[player_1][player_2]={}
         for player_1_event in data[player_1]: #choose one event of first player
-            if data[player_1][player_1_event]["type"]=="BOARD_SNAPSHOT":
-                output[player_1][player_2][player_1_event]={}
-                for player_2_event in data[player_2]:  #choose all other player events
-                    if data[player_2][player_2_event]["type"]=="BOARD_SNAPSHOT":
-                        matrix_1 = data[player_1][player_1_event]['state_matrix']
-                        matrix_2 = data[player_2][player_2_event]['state_matrix']
-                        matrix_1 = np.array(matrix_1).flatten()
-                        matrix_2 = np.array(matrix_2).flatten()
-                        consine_similarity =  cosine(matrix_1,matrix_2)
-                        output[player_1][player_2][player_1_event][player_2_event]=consine_similarity
+            #if data[player_1][player_1_event]["type"]=="BOARD_SNAPSHOT":
+            output[player_1][player_2][player_1_event]={}
+            for player_2_event in data[player_2]:  #choose all other player events
+                # if data[player_2][player_2_event]["type"]=="BOARD_SNAPSHOT":
+                matrix_1 = data[player_1][player_1_event]['state_matrix']
+                matrix_2 = data[player_2][player_2_event]['state_matrix']
+                matrix_1 = np.array(matrix_1).flatten()
+                matrix_2 = np.array(matrix_2).flatten()
+                consine_similarity =  cosine(matrix_1,matrix_2)
+                output[player_1][player_2][player_1_event][player_2_event]=consine_similarity
 
-out_file = open("cosine.json", "w") 
+out_file = open("cosine_all.json", "w") 
 json.dump(output, out_file, indent = 6) 
 out_file.close() 
 
